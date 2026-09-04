@@ -1,0 +1,461 @@
+{
+ "generated": "2026-09-04T03:58:45.964Z",
+ "count": 45,
+ "unmatched": 0,
+ "players": [
+  {
+   "name": "Ashton Jeanty",
+   "pos": "RB",
+   "nfl": "LV",
+   "leagues": [
+    "Y60",
+    "Boats"
+   ],
+   "sleeperId": "12527",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Quinshon Judkins",
+   "pos": "RB",
+   "nfl": "CLE",
+   "leagues": [
+    "SoFi",
+    "Y60"
+   ],
+   "sleeperId": "12512",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Mark Andrews",
+   "pos": "TE",
+   "nfl": "BAL",
+   "leagues": [
+    "Y60",
+    "Boats"
+   ],
+   "sleeperId": "5012",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Drake London",
+   "pos": "WR",
+   "nfl": "ATL",
+   "leagues": [
+    "Y60",
+    "Boats"
+   ],
+   "sleeperId": "8112",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Dallas Cowboys",
+   "pos": "DST",
+   "nfl": "DAL",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "DAL",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Green Bay Packers",
+   "pos": "DST",
+   "nfl": "GB",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "GB",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Houston Texans",
+   "pos": "DST",
+   "nfl": "HOU",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "HOU",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jason Myers",
+   "pos": "K",
+   "nfl": "SEA",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "2747",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Ka'imi Fairbairn",
+   "pos": "K",
+   "nfl": "HOU",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "3451",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tyler Bass",
+   "pos": "K",
+   "nfl": "BUF",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "7042",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Baker Mayfield",
+   "pos": "QB",
+   "nfl": "TB",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "4892",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "C.J. Stroud",
+   "pos": "QB",
+   "nfl": "HOU",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "9758",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jaxson Dart",
+   "pos": "QB",
+   "nfl": "NYG",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "12508",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Joe Burrow",
+   "pos": "QB",
+   "nfl": "CIN",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "6770",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Justin Herbert",
+   "pos": "QB",
+   "nfl": "LAC",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "6797",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Trevor Lawrence",
+   "pos": "QB",
+   "nfl": "JAX",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "7523",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tyler Shough",
+   "pos": "QB",
+   "nfl": "NO",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "12545",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Bijan Robinson",
+   "pos": "RB",
+   "nfl": "ATL",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "9509",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Devon Achane",
+   "pos": "RB",
+   "nfl": "MIA",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "9226",
+   "matchedBy": "collapsed-name+pos"
+  },
+  {
+   "name": "Jahmyr Gibbs",
+   "pos": "RB",
+   "nfl": "DET",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "9221",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jaylen Warren",
+   "pos": "RB",
+   "nfl": "PIT",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "8228",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Justice Hill",
+   "pos": "RB",
+   "nfl": "BAL",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "5995",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tony Pollard",
+   "pos": "RB",
+   "nfl": "TEN",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "5967",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Woody Marks",
+   "pos": "RB",
+   "nfl": "HOU",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "12474",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Brock Bowers",
+   "pos": "TE",
+   "nfl": "LV",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "11604",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Isaiah Likely",
+   "pos": "TE",
+   "nfl": "NYG",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "8131",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Juwan Johnson",
+   "pos": "TE",
+   "nfl": "NO",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "7002",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "A.J. Brown",
+   "pos": "WR",
+   "nfl": "NE",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "5859",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Alec Pierce",
+   "pos": "WR",
+   "nfl": "IND",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "8142",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Brian Thomas Jr.",
+   "pos": "WR",
+   "nfl": "JAX",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "11631",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Chris Olave",
+   "pos": "WR",
+   "nfl": "NO",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "8144",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Deebo Samuel",
+   "pos": "WR",
+   "nfl": "SF",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "5872",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "George Pickens",
+   "pos": "WR",
+   "nfl": "DAL",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "8137",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jakobi Meyers",
+   "pos": "WR",
+   "nfl": "JAX",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "5947",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jayden Reed",
+   "pos": "WR",
+   "nfl": "GB",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "10222",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Jerry Jeudy",
+   "pos": "WR",
+   "nfl": "CLE",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "6783",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Keenan Allen",
+   "pos": "WR",
+   "nfl": "IND",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "1479",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Khalil Shakir",
+   "pos": "WR",
+   "nfl": "BUF",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "8134",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Luther Burden III",
+   "pos": "WR",
+   "nfl": "CHI",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "12519",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Malik Nabers",
+   "pos": "WR",
+   "nfl": "NYG",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "11632",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Malik Washington",
+   "pos": "WR",
+   "nfl": "MIA",
+   "leagues": [
+    "SoFi"
+   ],
+   "sleeperId": "11610",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Rome Odunze",
+   "pos": "WR",
+   "nfl": "CHI",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "11620",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tank Dell",
+   "pos": "WR",
+   "nfl": "HOU",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "9502",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tee Higgins",
+   "pos": "WR",
+   "nfl": "CIN",
+   "leagues": [
+    "Boats"
+   ],
+   "sleeperId": "6801",
+   "matchedBy": "name+team+pos"
+  },
+  {
+   "name": "Tre Tucker",
+   "pos": "WR",
+   "nfl": "LV",
+   "leagues": [
+    "Y60"
+   ],
+   "sleeperId": "10213",
+   "matchedBy": "name+team+pos"
+  }
+ ]
+}
