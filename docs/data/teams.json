@@ -1,0 +1,322 @@
+{
+ "ARI": {
+  "name": "Arizona Cardinals",
+  "short": "Cardinals",
+  "city": "Arizona",
+  "primary": "#A40227",
+  "secondary": "#FFFFFF",
+  "espn": "ari",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/ari.png"
+ },
+ "ATL": {
+  "name": "Atlanta Falcons",
+  "short": "Falcons",
+  "city": "Atlanta",
+  "primary": "#A71930",
+  "secondary": "#000000",
+  "espn": "atl",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/atl.png"
+ },
+ "BAL": {
+  "name": "Baltimore Ravens",
+  "short": "Ravens",
+  "city": "Baltimore",
+  "primary": "#29126F",
+  "secondary": "#000000",
+  "espn": "bal",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/bal.png"
+ },
+ "BUF": {
+  "name": "Buffalo Bills",
+  "short": "Bills",
+  "city": "Buffalo",
+  "primary": "#00338D",
+  "secondary": "#D50A0A",
+  "espn": "buf",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/buf.png"
+ },
+ "CAR": {
+  "name": "Carolina Panthers",
+  "short": "Panthers",
+  "city": "Carolina",
+  "primary": "#0085CA",
+  "secondary": "#000000",
+  "espn": "car",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png"
+ },
+ "CHI": {
+  "name": "Chicago Bears",
+  "short": "Bears",
+  "city": "Chicago",
+  "primary": "#0B1C3A",
+  "secondary": "#E64100",
+  "espn": "chi",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/chi.png"
+ },
+ "CIN": {
+  "name": "Cincinnati Bengals",
+  "short": "Bengals",
+  "city": "Cincinnati",
+  "primary": "#FB4F14",
+  "secondary": "#000000",
+  "espn": "cin",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/cin.png"
+ },
+ "CLE": {
+  "name": "Cleveland Browns",
+  "short": "Browns",
+  "city": "Cleveland",
+  "primary": "#472A08",
+  "secondary": "#FF3C00",
+  "espn": "cle",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/cle.png"
+ },
+ "DAL": {
+  "name": "Dallas Cowboys",
+  "short": "Cowboys",
+  "city": "Dallas",
+  "primary": "#002A5C",
+  "secondary": "#B0B7BC",
+  "espn": "dal",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png"
+ },
+ "DEN": {
+  "name": "Denver Broncos",
+  "short": "Broncos",
+  "city": "Denver",
+  "primary": "#0A2343",
+  "secondary": "#FC4C02",
+  "espn": "den",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/den.png"
+ },
+ "DET": {
+  "name": "Detroit Lions",
+  "short": "Lions",
+  "city": "Detroit",
+  "primary": "#0076B6",
+  "secondary": "#BBBBBB",
+  "espn": "det",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/det.png"
+ },
+ "GB": {
+  "name": "Green Bay Packers",
+  "short": "Packers",
+  "city": "Green Bay",
+  "primary": "#204E32",
+  "secondary": "#FFB612",
+  "espn": "gb",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/gb.png"
+ },
+ "HOU": {
+  "name": "Houston Texans",
+  "short": "Texans",
+  "city": "Houston",
+  "primary": "#021018",
+  "secondary": "#EB0028",
+  "espn": "hou",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/hou.png"
+ },
+ "IND": {
+  "name": "Indianapolis Colts",
+  "short": "Colts",
+  "city": "Indianapolis",
+  "primary": "#003B75",
+  "secondary": "#FFFFFF",
+  "espn": "ind",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/ind.png"
+ },
+ "JAX": {
+  "name": "Jacksonville Jaguars",
+  "short": "Jaguars",
+  "city": "Jacksonville",
+  "primary": "#007487",
+  "secondary": "#D7A22A",
+  "espn": "jax",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/jax.png"
+ },
+ "KC": {
+  "name": "Kansas City Chiefs",
+  "short": "Chiefs",
+  "city": "Kansas City",
+  "primary": "#E31837",
+  "secondary": "#FFB612",
+  "espn": "kc",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/kc.png"
+ },
+ "LV": {
+  "name": "Las Vegas Raiders",
+  "short": "Raiders",
+  "city": "Las Vegas",
+  "primary": "#000000",
+  "secondary": "#A5ACAF",
+  "espn": "lv",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/lv.png"
+ },
+ "LAC": {
+  "name": "Los Angeles Chargers",
+  "short": "Chargers",
+  "city": "Los Angeles",
+  "primary": "#0080C6",
+  "secondary": "#FFC20E",
+  "espn": "lac",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/lac.png"
+ },
+ "LAR": {
+  "name": "Los Angeles Rams",
+  "short": "Rams",
+  "city": "Los Angeles",
+  "primary": "#003594",
+  "secondary": "#FFD100",
+  "espn": "lar",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/lar.png"
+ },
+ "MIA": {
+  "name": "Miami Dolphins",
+  "short": "Dolphins",
+  "city": "Miami",
+  "primary": "#008E97",
+  "secondary": "#FC4C02",
+  "espn": "mia",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/mia.png"
+ },
+ "MIN": {
+  "name": "Minnesota Vikings",
+  "short": "Vikings",
+  "city": "Minnesota",
+  "primary": "#4F2683",
+  "secondary": "#FFC62F",
+  "espn": "min",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/min.png"
+ },
+ "NE": {
+  "name": "New England Patriots",
+  "short": "Patriots",
+  "city": "New England",
+  "primary": "#002A5C",
+  "secondary": "#C60C30",
+  "espn": "ne",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/ne.png"
+ },
+ "NO": {
+  "name": "New Orleans Saints",
+  "short": "Saints",
+  "city": "New Orleans",
+  "primary": "#D3BC8D",
+  "secondary": "#000000",
+  "espn": "no",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/no.png"
+ },
+ "NYG": {
+  "name": "New York Giants",
+  "short": "Giants",
+  "city": "New York",
+  "primary": "#003C7F",
+  "secondary": "#C9243F",
+  "espn": "nyg",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/nyg.png"
+ },
+ "NYJ": {
+  "name": "New York Jets",
+  "short": "Jets",
+  "city": "New York",
+  "primary": "#115740",
+  "secondary": "#FFFFFF",
+  "espn": "nyj",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/nyj.png"
+ },
+ "PHI": {
+  "name": "Philadelphia Eagles",
+  "short": "Eagles",
+  "city": "Philadelphia",
+  "primary": "#06424D",
+  "secondary": "#000000",
+  "espn": "phi",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/phi.png"
+ },
+ "PIT": {
+  "name": "Pittsburgh Steelers",
+  "short": "Steelers",
+  "city": "Pittsburgh",
+  "primary": "#000000",
+  "secondary": "#FFB612",
+  "espn": "pit",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/pit.png"
+ },
+ "SF": {
+  "name": "San Francisco 49ers",
+  "short": "49ers",
+  "city": "San Francisco",
+  "primary": "#AA0000",
+  "secondary": "#B3995D",
+  "espn": "sf",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/sf.png"
+ },
+ "SEA": {
+  "name": "Seattle Seahawks",
+  "short": "Seahawks",
+  "city": "Seattle",
+  "primary": "#002A5C",
+  "secondary": "#69BE28",
+  "espn": "sea",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/sea.png"
+ },
+ "TB": {
+  "name": "Tampa Bay Buccaneers",
+  "short": "Buccaneers",
+  "city": "Tampa Bay",
+  "primary": "#BD1C36",
+  "secondary": "#3E3A35",
+  "espn": "tb",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png"
+ },
+ "TEN": {
+  "name": "Tennessee Titans",
+  "short": "Titans",
+  "city": "Tennessee",
+  "primary": "#4495D2",
+  "secondary": "#001532",
+  "espn": "ten",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/ten.png"
+ },
+ "WAS": {
+  "name": "Washington Commanders",
+  "short": "Commanders",
+  "city": "Washington",
+  "primary": "#5A1414",
+  "secondary": "#FFB612",
+  "espn": "wsh",
+  "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+  "logoDark": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/wsh.png"
+ }
+}

@@ -3,90 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>My Players</title>
-<meta name="theme-color" content="#0d1117">
+<title>Fantasy Hub</title>
+<meta name="theme-color" content="#07160F">
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="My Players">
+<meta name="apple-mobile-web-app-title" content="Fantasy Hub">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
-<style>
-/* Colourblind-safe: blue + orange only, never red/green, and every colour
-   is paired with a text tag so colour is never the only signal. */
-:root{
-  --bg:#0d1117; --card:#161b22; --line:#232b36;
-  --fg:#e6edf3; --dim:#8b949e;
-  --blue:#3d8bfd; --orange:#fc9c1c;
-  --safe:max(env(safe-area-inset-bottom),12px);
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--fg)}
-body{font:15px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
-     padding-bottom:var(--safe)}
-header{position:sticky;top:0;z-index:5;background:rgba(13,17,23,.96);
-  backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line);
-  padding:calc(env(safe-area-inset-top) + 10px) 12px 8px}
-.h1{display:flex;align-items:baseline;gap:8px}
-h1{font-size:19px;letter-spacing:.06em;margin:0;font-weight:700}
-#week{font-size:13px;color:var(--orange);font-weight:600}
-#sub,#updated{font-size:11.5px;color:var(--dim)}
-.subrow{display:flex;justify-content:space-between;margin-top:2px}
-.frow{display:flex;gap:6px;margin-top:9px;align-items:center}
-#filters{display:flex;gap:6px;flex:1}
-.chip{font:600 12.5px/1 inherit;color:var(--dim);background:#1c2230;
-  border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
-.chip.on{color:#04121f;background:var(--blue);border-color:var(--blue)}
-.chip.toggle.on{color:#1a1000;background:var(--orange);border-color:var(--orange)}
-main{padding:10px 12px 24px;display:flex;flex-direction:column;gap:7px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:11px;
-  padding:9px 10px;border-left-width:3px;border-left-color:var(--line)}
-.card.s-live{border-left-color:var(--orange)}
-.card.s-pre{border-left-color:var(--blue)}
-.card.s-final{border-left-color:#46505d}
-.card.s-off{border-left-color:#46505d}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.id{min-width:0}
-.nm{display:block;font-weight:650;font-size:15.5px;letter-spacing:-.1px}
-.meta{display:block;font-size:11.5px;color:var(--dim);margin-top:1px;letter-spacing:.04em}
-.pts{display:flex;gap:10px;flex:none}
-.ptcell{text-align:right}
-.plg{display:block;font-size:9.5px;color:var(--dim);letter-spacing:.09em;font-weight:700}
-.pval{display:block;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;
-  color:var(--fg);line-height:1.15}
-.pval.dim{color:var(--dim);font-weight:500}
-.status{display:flex;align-items:center;gap:7px;margin-top:7px;flex-wrap:wrap}
-.tag{font:700 9.5px/1 inherit;letter-spacing:.09em;padding:3px 6px;border-radius:4px;
-  border:1px solid;flex:none}
-.t-live{color:var(--orange);border-color:var(--orange);background:rgba(252,156,28,.11)}
-.t-pre{color:var(--blue);border-color:var(--blue);background:rgba(61,139,253,.11)}
-.t-final,.t-off{color:var(--dim);border-color:#46505d;background:#1b2029}
-.t-warn{color:var(--orange);border-color:var(--orange);background:rgba(252,156,28,.11)}
-.gtxt{font-size:12.5px;color:var(--dim);font-variant-numeric:tabular-nums}
-.line{margin-top:6px;font-size:12.5px;color:#c9d3de;font-variant-numeric:tabular-nums;
-  letter-spacing:.01em}
-.line.dim{color:var(--dim)}
-.unmatched{display:flex;gap:7px;align-items:center;margin-top:6px;font-size:12px;color:var(--orange)}
-.banner{display:flex;gap:7px;align-items:center;margin:0 12px 8px;padding:8px 10px;
-  border-radius:9px;font-size:12.5px;background:rgba(252,156,28,.09);
-  border:1px solid rgba(252,156,28,.35);color:var(--orange)}
-.empty{color:var(--dim);text-align:center;padding:28px 0;font-size:13.5px}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
-<header>
-  <div class="h1"><h1>MY PLAYERS</h1><span id="week"></span></div>
-  <div class="subrow"><span id="sub"></span><span id="updated"></span></div>
-  <div class="frow"><div id="filters"></div><div id="toggles"></div></div>
+<header class="top">
+  <div class="brand">
+    <div class="wordmark">Fantasy <b>Hub</b></div>
+    <div class="wk"><span id="wk"></span><span id="live" class="live" hidden></span><span id="upd" class="upd">Loading</span></div>
+  </div>
+  <nav class="rail" id="rail" role="tablist"></nav>
 </header>
-<div id="banner"></div>
-<main id="list"></main>
+<main id="view"><div class="empty">Loading</div></main>
 <script type="module" src="js/app.js"></script>
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(console.warn));
-}
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(console.warn));
 </script>
 </body>
 </html>
