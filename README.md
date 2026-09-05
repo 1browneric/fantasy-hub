@@ -35,11 +35,15 @@ phone calls them directly.
 
 ### Why Sleeper is primary for stats
 
-ESPN's `summary?event={id}` boxscore *does* work, but it returns per-category
-**display strings** (`"17/32"`, `"167"`) and has no clean fumbles-lost, 2-point
-or team-defense line. Sleeper returns **normalized numeric keys** (`rec`,
-`rec_yd`, `fum_lost`, `pass_2pt`, `fgm_yds_over_30`, `pts_allow`) that map 1:1
-onto both leagues' scoring formulas.
+ESPN's `summary?event={id}` boxscore *does* work (verified 2026-09-05 against
+2025 event 401772830, TB at ATL: `boxscore.players` has both teams with passing,
+rushing, receiving, fumbles, defensive, kicking categories, and its Mayfield line
+17/32, 167 yd, 3 TD matches Sleeper's for the same game). But it returns
+per-category **display strings** (`"17/32"`, `"1-8"`), has no 2-point or
+team-defense line, and needs one request per game (up to 16 per refresh).
+Sleeper returns **normalized numeric keys** (`rec`, `rec_yd`, `fum_lost`,
+`pass_2pt`, `fgm_yds_over_30`, `pts_allow`) for every player in one request,
+mapping 1:1 onto both leagues' scoring formulas.
 
 So: **Sleeper is primary for stats and fantasy points; ESPN is primary for game
 state.** ESPN's boxscore is not used at runtime.

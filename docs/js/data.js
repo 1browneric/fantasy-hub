@@ -5,7 +5,7 @@
 //   ESPN scoreboard  -> game state: opponent, kickoff, quarter/clock, score.
 //   Sleeper stats    -> stat lines + everything the scoring formulas need.
 // ESPN's boxscore CAN supply stats, but it returns display strings ("17/32")
-// per category and has no clean fumbles-lost / 2pt / team-defense line.
+// per category, has no 2pt / team-defense line, and costs one request per game.
 // Sleeper returns normalized numeric keys that map 1:1 onto both leagues'
 // scoring, so Sleeper is PRIMARY for stats and ESPN is PRIMARY for game state.
 
