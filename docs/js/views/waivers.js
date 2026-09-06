@@ -61,7 +61,7 @@ export function render(S, main) {
     const who = el('div', 'who'); who.appendChild(el('div', 'nm', t.team));
     const parts = []; if (t.adds?.length) parts.push('Add ' + t.adds.join(', ')); if (t.drops?.length) parts.push('Drop ' + t.drops.join(', '));
     who.appendChild(el('div', 'line', parts.join('  ') || '')); li.appendChild(who);
-    const r = el('div', 'pts'); r.appendChild(el('div', 'v', t.bid != null ? '$' + t.bid : '')); r.appendChild(el('div', 'p', t.when instanceof Date ? t.when.toLocaleDateString([], { month: 'short', day: 'numeric' }) : String(t.when || ''))); li.appendChild(r);
+    const r = el('div', 'pts'); r.appendChild(el('div', 'v', t.bid != null ? '$' + t.bid : '')); r.appendChild(el('div', 'p', t.when instanceof Date ? t.when.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/Chicago' }) : String(t.when || ''))); li.appendChild(r);
     tl.appendChild(li);
   }
   p2.appendChild(tl); main.appendChild(p2);

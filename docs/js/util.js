@@ -14,8 +14,10 @@ export const normName = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g
   .replace(/[.'`’\-]/g, ' ').replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(w => w && !SUFFIX.has(w)).join(' ');
 const ALIAS = { WSH: 'WAS', JAC: 'JAX', LA: 'LAR', OAK: 'LV', SD: 'LAC', STL: 'LAR' };
 export const normTeam = t => ALIAS[(t || '').toUpperCase()] || (t || '').toUpperCase();
-export const fmtKick = iso => new Date(iso).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' });
-export const fmtTime = d => d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+// Every clock in the app is Central Time, whatever zone the device is in.
+export const TZ = 'America/Chicago';
+export const fmtKick = iso => new Date(iso).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit', timeZone: TZ }) + ' CT';
+export const fmtTime = d => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', timeZone: TZ }) + ' CT';
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 // Team identity: paint --tp / --ts on any element so children can use them.

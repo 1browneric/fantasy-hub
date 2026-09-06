@@ -8,7 +8,7 @@ export function gameChip(S, g, names) {
   c.style.setProperty('--tp', S.T[g.away]?.primary || '#333'); c.style.setProperty('--to', S.T[g.home]?.primary || '#777');
   const side = (abbr, score, other) => {
     const t = el('div', 't' + (g.state !== 'pre' && score < other ? ' trail' : ''));
-    const ab = el('span', 'ab'); ab.appendChild(teamLogo(S.T, abbr)); ab.append(abbr);
+    const ab = el('span', 'ab'); ab.appendChild(teamLogo(S.T, abbr, 'lg')); ab.append(abbr);
     if (g.state === 'in' && g.possession === abbr) ab.appendChild(el('span', 'rz', g.redzone ? 'RED ZONE' : 'BALL'));
     t.appendChild(ab); t.appendChild(el('span', 's', g.state === 'pre' ? '' : String(score)));
     return t;
@@ -20,6 +20,7 @@ export function gameChip(S, g, names) {
   st.appendChild(el('span', null, g.state === 'in' ? g.detail + (g.down ? '  ' + g.down : '') : g.state === 'post' ? (g.detail || 'Final') : fmtKick(g.kickoff) + (g.broadcast ? '  ' + g.broadcast : '')));
   c.appendChild(st);
   if (names?.length) { const m = el('div', 'mine'); for (const n of names) m.appendChild(el('span', null, n)); c.appendChild(m); }
+  const open = el('div', 'open'); open.appendChild(el('span', null, names?.length ? `${names.length} of mine` : 'none of mine')); open.appendChild(el('span', 'go', 'OPEN')); c.appendChild(open);
   return c;
 }
 export function render(S, main) {
