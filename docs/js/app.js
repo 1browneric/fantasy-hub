@@ -15,8 +15,8 @@ import * as waivers from './views/waivers.js';
 import * as nfl from './views/nfl.js';
 
 const Q = new URLSearchParams(location.search);
-const DEBUG = { season: Q.get('season'), week: Q.get('week'), date: Q.get('date'), simulateLive: Q.get('simulate') === 'live',
-  get on() { return !!(this.season || this.week || this.date || this.simulateLive); }, replayStats: !!Q.get('season') };
+const DEBUG = { season: Q.get('season'), week: Q.get('week'), date: Q.get('date'), simulateLive: Q.get('simulate') === 'live', simulateSunday: Q.get('simulate') === 'sunday',
+  get on() { return !!(this.season || this.week || this.date || this.simulateLive || this.simulateSunday); }, replayStats: !!Q.get('season') };
 const MY_HANDLE = '1browneric2025';
 const TABS = [['home', 'Home', home], ['matchup', 'Matchup', matchup], ['players', 'My Players', players],
   ['rosters', 'Rosters', rosters], ['standings', 'Standings', standings], ['waivers', 'Waivers', waivers], ['nfl', 'NFL', nfl]];

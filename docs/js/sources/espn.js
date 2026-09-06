@@ -44,6 +44,25 @@ export async function loadGames(debug) {
       g.redzone = i % 5 === 0; g.possession = i % 2 ? g.home : g.away; i++;
     }
   }
+  // ?simulate=sunday: a mid-afternoon Sunday. Games that kicked off before
+  // 2pm Central are final (real scores), the 3:05/3:25 window is in progress,
+  // everything later has not started. Only with an explicit param.
+  if (debug.simulateSunday) {
+    let i = 0;
+    for (const g of [...list, ...byTeam.values()]) {
+      const h = Number(new Date(g.kickoff).toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: 'America/Chicago' }));
+      const day = new Date(g.kickoff).toLocaleString('en-US', { weekday: 'short', timeZone: 'America/Chicago' });
+      if (day !== 'Sun' && day !== 'Mon') { g.state = 'post'; g.elapsed = 1; g.detail = 'Final'; }
+      else if (day === 'Sun' && h < 14) { g.state = 'post'; g.elapsed = 1; g.detail = 'Final'; }
+      else if (day === 'Sun' && h < 18) {
+        g.state = 'in'; g.period = 2 + (i % 2); g.clock = `${3 + (i * 5) % 12}:${String((i * 17) % 60).padStart(2, '0')}`;
+        g.detail = `Q${g.period} ${g.clock}`; g.elapsed = ((g.period - 1) * 900 + (900 - ((3 + (i * 5) % 12) * 60))) / 3600;
+        g.redzone = i % 3 === 0; g.possession = i % 2 ? g.home : g.away; g.down = ['2nd & 7 at KC 34', '1st & 10 at DAL 22', '3rd & 2 at PHI 48'][i % 3];
+        g.lastPlay = ['12 yard pass complete to the left side.', '4 yard run up the middle.', 'Incomplete pass, deep right.'][i % 3];
+      } else { g.state = 'pre'; g.elapsed = 0; g.homeScore = 0; g.awayScore = 0; g.myScore = 0; g.oppScore = 0; }
+      i++;
+    }
+  }
   list.sort((a, b) => new Date(a.kickoff) - new Date(b.kickoff));
   return { byTeam, list, week: d.week?.number, season: d.season?.year };
 }
