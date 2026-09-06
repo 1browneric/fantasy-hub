@@ -30,7 +30,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .wordmark{font:800 22px/1 var(--display);white-space:nowrap;display:flex;align-items:center;gap:8px}
 .wordmark .mark{width:30px;height:30px;border-radius:7px;display:block}
 .wordmark{letter-spacing:.06em;text-transform:uppercase}
-.wordmark b{color:var(--signal)}
+.wordmark b{color:inherit}
 .wk{display:flex;align-items:center;gap:8px;font:700 12px/1 var(--display);white-space:nowrap;letter-spacing:.08em;text-transform:uppercase;color:var(--yard);flex:none}
 .wk .live{color:var(--signal);display:flex;align-items:center;gap:5px}
 .wk .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal);animation:pulse 1.4s ease-in-out infinite}
