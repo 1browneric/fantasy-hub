@@ -4,7 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
-  --field:#0E2A1C; --endzone:#07160F; --signal:#FF6A00; --sky:#2F7BFF;
+  /* chrome: navy from Eric's logo (green set was --field:#0E2A1C; --endzone:#07160F) */
+  --field:#0B1628; --endzone:#060E1A; --signal:#FF6A00; --sky:#2F7BFF;
   --chalk:#F5F2EA; --yard:#9BA7B0; --ink:#0B1410; --ink2:#3C4A44;
   --panel:#FFFFFF; --panel2:#F1EEE6; --rule:#DED9CD; --zebra:#F6F3EC;
   --signal-bg:#FFE9D6; --sky-bg:#DCE8FF; --sky-ink:#1A4FB3; --signal-ink:#7A3300; --red:#D7191C;
@@ -16,7 +17,7 @@
 html,body{margin:0;background:var(--field);color:var(--chalk)}
 body{font:14px/1.35 var(--body);padding-bottom:calc(var(--safe-b) + 8px);min-height:100vh;
   background:radial-gradient(1200px 500px at 50% -120px, rgba(255,106,0,.16), transparent 60%),
-             linear-gradient(180deg,#0B2016 0%, var(--field) 40%, #0A2016 100%)}
+             linear-gradient(180deg,#0A1526 0%, var(--field) 40%, #09111C 100%)}
 img{max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
 button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
@@ -24,7 +25,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 [hidden]{display:none!important}
 
 /* ---------- chrome ---------- */
-.top{position:sticky;top:0;z-index:20;background:rgba(7,22,15,.94);backdrop-filter:blur(10px) saturate(140%);
+.top{position:sticky;top:0;z-index:20;background:rgba(6,14,26,.94);backdrop-filter:blur(10px) saturate(140%);
   padding-top:var(--safe-t);border-bottom:1px solid rgba(255,255,255,.08)}
 .brand{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px 4px;white-space:nowrap}
 .wordmark{font:800 22px/1 var(--display);white-space:nowrap;display:flex;align-items:center;gap:8px}
@@ -92,7 +93,7 @@ main>.h:first-child{margin-top:4px}
 
 /* ---------- hero: live matchup ---------- */
 .hero{position:relative;border-radius:18px;overflow:hidden;color:#fff;
-  background:linear-gradient(135deg,color-mix(in srgb,var(--tp,#1B4332) 78%,#000) 0%, #0A1F16 55%, color-mix(in srgb,var(--to,#4A1F1F) 70%,#000) 100%);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--tp,#1B4332) 78%,#000) 0%, #0A1628 55%, color-mix(in srgb,var(--to,#4A1F1F) 70%,#000) 100%);
   box-shadow:0 20px 40px -20px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.07) inset}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:repeating-linear-gradient(90deg,transparent 0 62px,rgba(255,255,255,.035) 62px 63px)}
@@ -255,7 +256,7 @@ main>.h:first-child{margin-top:4px}
 .game{cursor:pointer;width:100%;font:inherit;color:var(--ink)}
 .game:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
 .sheet .hd.gm{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:22px 14px 14px;
-  background:linear-gradient(110deg,color-mix(in srgb,var(--tp) 80%,#000) 0%,#0B1410 50%,color-mix(in srgb,var(--to) 80%,#000) 100%)}
+  background:linear-gradient(110deg,color-mix(in srgb,var(--tp) 80%,#000) 0%,#09111C 50%,color-mix(in srgb,var(--to) 80%,#000) 100%)}
 .sheet .gside{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
 .sheet .gside.r{align-items:flex-end;text-align:right}
 .sheet .gab{font:800 20px/1 var(--display);letter-spacing:.05em;display:flex;align-items:center;gap:6px}
