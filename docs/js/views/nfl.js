@@ -16,11 +16,10 @@ export function gameChip(S, g, names) {
   c.appendChild(side(g.away, g.awayScore, g.homeScore));
   c.appendChild(side(g.home, g.homeScore, g.awayScore));
   const st = el('div', 'st');
-  st.appendChild(tag(g.state === 'in' ? 'live' : g.state === 'post' ? 'final' : 'pre', g.state === 'in' ? 'LIVE' : g.state === 'post' ? 'FINAL' : 'PRE'));
+  if (g.state !== 'pre') st.appendChild(tag(g.state === 'in' ? 'live' : 'final', g.state === 'in' ? 'LIVE' : 'FINAL'));
   st.appendChild(el('span', null, g.state === 'in' ? g.detail + (g.down ? '  ' + g.down : '') : g.state === 'post' ? (g.detail || 'Final') : fmtKick(g.kickoff) + (g.broadcast ? '  ' + g.broadcast : '')));
   c.appendChild(st);
   if (names?.length) { const m = el('div', 'mine'); for (const n of names) m.appendChild(el('span', null, n)); c.appendChild(m); }
-  const open = el('div', 'open'); open.appendChild(el('span', null, names?.length ? `${names.length} of mine` : 'none of mine')); open.appendChild(el('span', 'go', 'OPEN')); c.appendChild(open);
   return c;
 }
 export function render(S, main) {

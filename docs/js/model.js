@@ -119,9 +119,12 @@ export function projOf(league, slot, ctx) {
 }
 export function ptsOf(league, slot, ctx, matchup) {
   if (!slot.pid) return null;
+  const g = ctx.games?.byTeam.get(slot.nfl);
+  // Nothing to show until his game kicks off, whatever the source says
+  // (Sleeper lists every rostered player at 0 before the week starts).
+  if (g && g.state === 'pre') return null;
   if (matchup?.pp && slot.pid in matchup.pp && !ctx.debug?.replayStats) return matchup.pp[slot.pid];
   const s = ctx.stats?.[slot.pid];
-  const g = ctx.games?.byTeam.get(slot.nfl);
   if (!s) return g && g.state !== 'pre' ? 0 : null;
   return league.scoring === 'rt' ? scoreRT(s, slot.pos) : scoreSleeper(s, league.boatsScoring);
 }

@@ -21,7 +21,7 @@ export function openGame(S, g) {
   };
   hd.appendChild(side(g.away, g.awayScore, g.homeScore, false));
   const mid = el('div', 'gmid');
-  mid.appendChild(tag(g.state === 'in' ? 'live' : g.state === 'post' ? 'final' : 'pre', g.state === 'in' ? 'LIVE' : g.state === 'post' ? 'FINAL' : 'PRE'));
+  if (g.state !== 'pre') mid.appendChild(tag(g.state === 'in' ? 'live' : 'final', g.state === 'in' ? 'LIVE' : 'FINAL'));
   mid.appendChild(el('div', 'gdet', g.state === 'in' ? g.detail : g.state === 'post' ? 'Final' : fmtKick(g.kickoff)));
   if (g.state === 'in' && g.down) mid.appendChild(el('div', 'gdown', g.down));
   if (g.broadcast) mid.appendChild(el('div', 'gtv', g.broadcast));

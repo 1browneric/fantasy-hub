@@ -276,9 +276,6 @@ main>.h:first-child{margin-top:4px}
 .rows .grp+.row{border-top:0}
 .chips+.chips{margin-top:-2px}
 
-.game .open{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;font:600 11px var(--body);color:var(--ink2)}
-.game .open .go{font:800 11px/1 var(--display);letter-spacing:.12em;color:#fff;background:var(--ink);padding:6px 9px;border-radius:6px}
-.game:hover .open .go,.game:focus-visible .open .go{background:var(--signal);color:#1A0A00}
 
 /* ---------- head to head ---------- */
 .h2h .r{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);align-items:stretch;border-top:1px solid var(--rule)}

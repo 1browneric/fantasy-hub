@@ -23,7 +23,7 @@ export async function openPlayer(S, slot, league) {
   const cell = (k, v) => { const d = el('div'); d.appendChild(el('small', null, k)); d.appendChild(el('b', null, v)); return d; };
   kv.appendChild(cell(league.key + ' pts', r.pts == null ? '--' : f2(r.pts)));
   kv.appendChild(cell('proj', f1(r.proj)));
-  kv.appendChild(cell(g.tag, g.text.replace(/^(vs|@) \w+ ?/, '') || '--'));
+  kv.appendChild(cell(g.tag || 'Kickoff', g.text.replace(/^(vs|@) \w+ ?/, '') || '--'));
   sheet.appendChild(kv);
   // points in every league that owns him
   const owners = S.leagueList().filter(L => L.byId[L.me]?.slots.some(s => s.pid && s.pid === slot.pid));

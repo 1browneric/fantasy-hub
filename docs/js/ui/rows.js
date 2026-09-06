@@ -8,7 +8,7 @@ export function gameText(g) {
   const vs = `${g.isHome ? 'vs' : '@'} ${g.opp}`;
   if (g.state === 'in') return { cls: 'live', tag: 'LIVE', text: `${vs} ${g.detail} ${g.myScore}-${g.oppScore}` + (g.redzone && g.possession === g.team ? ' RED ZONE' : '') };
   if (g.state === 'post') return { cls: 'final', tag: 'FINAL', text: `${vs} ${g.myScore}-${g.oppScore}` };
-  return { cls: 'pre', tag: 'PRE', text: `${vs} ${fmtKick(g.kickoff)}` };
+  return { cls: 'pre', tag: '', text: `${vs} ${fmtKick(g.kickoff)}` };
 }
 
 // One player row. opts: {league, ctx, matchup, onOpen, action, second:{league,ctx,matchup}}
