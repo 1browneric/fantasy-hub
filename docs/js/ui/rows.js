@@ -130,12 +130,14 @@ export function lineupPanel(S, league, team, opts = {}) {
     panel.appendChild(wi);
   }
   const slots = effectiveSlots(league, team, S.ctx);
-  const ul = el('ul', 'rows');
-  for (const s of slots.filter(x => x.starter)) ul.appendChild(playerRow(S, s, { league, ctx: S.ctx, matchup, onOpen: S.openPlayer }));
-  panel.appendChild(ul);
+  if (!opts.startersHidden) {
+    const ul = el('ul', 'rows');
+    for (const s of slots.filter(x => x.starter)) ul.appendChild(playerRow(S, s, { league, ctx: S.ctx, matchup, onOpen: S.openPlayer }));
+    panel.appendChild(ul);
+  }
   const bench = slots.filter(x => !x.starter);
   if (bench.length && opts.bench !== false) {
-    const bh = el('div', 'ph'); bh.appendChild(el('span', null, 'Bench')); panel.appendChild(bh);
+    if (!opts.startersHidden) { const bh = el('div', 'ph'); bh.appendChild(el('span', null, 'Bench')); panel.appendChild(bh); }
     const bl = el('ul', 'rows');
     for (const s of bench) {
       let action = null;

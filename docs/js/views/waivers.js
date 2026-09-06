@@ -26,6 +26,31 @@ export function render(S, main) {
     cands.push({ slot, proj, trend: trend[pid] || 0, gain: need[pos] != null ? proj - need[pos] : null });
   }
   cands.sort((a, b) => b.proj - a.proj);
+  // Suggested bid (FAAB leagues): share of my remaining budget from how much
+  // he upgrades my lineup and how hot he is on the wire. Estimate, labelled.
+  if (L.faab && me) {
+    const maxTrend = Math.max(1, ...cands.map(c => c.trend));
+    const topByPos = {}; for (const c of cands) topByPos[c.slot.pos] = Math.max(topByPos[c.slot.pos] || 0, c.proj);
+    for (const c of cands) {
+      const gain = c.gain != null ? Math.max(0, c.gain) : 0;
+      const share = Math.min(0.35, 0.02 + gain * 0.025 + (c.trend / maxTrend) * 0.12 + (c.proj / (topByPos[c.slot.pos] || 1)) * 0.03);
+      c.bid = Math.max(1, Math.round(me.faabLeft * share));
+    }
+  }
+  if (L.faab) {
+    const fh = el('div', 'h'); fh.appendChild(el('h2', null, 'FAAB')); fh.appendChild(el('span', 'sub', `$${L.faab} budget, claims clear Wednesday`)); main.appendChild(fh);
+    const fp = el('section', 'panel faab');
+    const top = el('div', 'faab-me');
+    const a = el('div'); a.appendChild(el('small', null, 'My FAAB left')); a.appendChild(el('b', null, `$${me?.faabLeft ?? '--'}`)); a.appendChild(el('span', null, ` of $${L.faab}`)); top.appendChild(a);
+    const b = el('div'); b.appendChild(el('small', null, 'Waiver position')); b.appendChild(el('b', null, me?.waiverPos ? `${me.waiverPos}` : '--')); b.appendChild(el('span', null, ` of ${L.teams.length}`)); top.appendChild(b);
+    const c = el('div'); c.appendChild(el('small', null, 'Spent')); c.appendChild(el('b', null, `$${me ? L.faab - me.faabLeft : '--'}`)); top.appendChild(c);
+    fp.appendChild(top);
+    const bar = el('div', 'faab-bar'); const fill = el('i'); fill.style.width = me ? Math.round(100 * me.faabLeft / L.faab) + '%' : '0%'; bar.appendChild(fill); fp.appendChild(bar);
+    const grid = el('div', 'faab-teams');
+    for (const id of [...L.order].sort((x, y) => L.byId[y].faabLeft - L.byId[x].faabLeft)) { const T = L.byId[id]; const row = el('div', String(id) === String(L.me) ? 'me' : null); row.appendChild(el('span', 'tn', T.name + (String(id) === String(L.me) ? ' (me)' : ''))); row.appendChild(el('span', 'amt', `$${T.faabLeft}`)); grid.appendChild(row); }
+    fp.appendChild(grid);
+    main.appendChild(fp);
+  }
   const h = el('div', 'h'); h.appendChild(el('h2', null, 'Suggested pickups')); h.appendChild(el('span', 'sub', `${L.key} scoring, week ${S.state.week} projections`)); main.appendChild(h);
   const panel = el('section', 'panel');
   const pc = el('div', 'chips'); const posf = f.pos || 'ALL';
@@ -41,13 +66,13 @@ export function render(S, main) {
     if (c.trend) meta.appendChild(el('span', null, `${c.trend.toLocaleString()} adds in 24h`)); who.appendChild(meta);
     who.appendChild(el('div', 'line', c.gain != null ? (c.gain > 0 ? `Upgrade: +${f1(c.gain)} over your lowest ${c.slot.pos} starter` : `Depth: ${f1(-c.gain)} under your lowest ${c.slot.pos} starter`) : 'Depth pickup'));
     li.appendChild(who);
-    const pts = el('div', 'pts'); pts.appendChild(el('div', 'v', f1(c.proj))); pts.appendChild(el('div', 'p', 'proj')); li.appendChild(pts);
+    const pts = el('div', 'pts'); pts.appendChild(el('div', 'v', f1(c.proj))); pts.appendChild(el('div', 'p', c.bid ? `proj, bid $${c.bid} est.` : 'proj')); li.appendChild(pts);
     li.onclick = () => S.openPlayer(c.slot, L);
     ul.appendChild(li);
   }
   if (!ul.children.length) ul.appendChild(el('li', 'empty', 'No projected free agents at this position'));
   panel.appendChild(ul);
-  panel.appendChild(el('div', 'note', L.faab ? `FAAB: $${me?.faabLeft ?? '--'} left of $${L.faab}. Claims process on the league schedule.` : 'RT Sports waivers run on the league schedule; claim on RT.'));
+  panel.appendChild(el('div', 'note', L.faab ? `Bids are estimates from lineup upgrade and add volume; place the real claim on Sleeper.` : 'RT Sports waivers run on the league schedule; claim on RT.'));
   main.appendChild(panel);
 
   const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'Moves')); h2.appendChild(el('span', 'sub', `${L.transactions.length} this season`)); main.appendChild(h2);
