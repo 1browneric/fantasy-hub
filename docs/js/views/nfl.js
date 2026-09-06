@@ -15,10 +15,15 @@ export function gameChip(S, g, names) {
   };
   c.appendChild(side(g.away, g.awayScore, g.homeScore));
   c.appendChild(side(g.home, g.homeScore, g.awayScore));
+  // Right-aligned status: date, time and channel before kickoff; LIVE with
+  // quarter and clock once it starts (scores sit on the team rows above);
+  // FINAL when done.
   const st = el('div', 'st');
-  if (g.state !== 'pre') st.appendChild(tag(g.state === 'in' ? 'live' : 'final', g.state === 'in' ? 'LIVE' : 'FINAL'));
-  st.appendChild(el('span', null, g.state === 'in' ? g.detail + (g.down ? '  ' + g.down : '') : g.state === 'post' ? (g.detail || 'Final') : fmtKick(g.kickoff) + (g.broadcast ? '  ' + g.broadcast : '')));
+  if (g.state === 'in') { st.appendChild(tag('live', 'LIVE')); st.appendChild(el('span', 'clk', g.detail)); }
+  else if (g.state === 'post') st.appendChild(tag('final', 'FINAL'));
+  else { st.appendChild(el('span', null, fmtKick(g.kickoff))); if (g.broadcast) st.appendChild(el('span', 'tv', g.broadcast)); }
   c.appendChild(st);
+  if (g.state === 'in' && g.down) c.appendChild(el('div', 'st sub', g.down));
   if (names?.length) { const m = el('div', 'mine'); for (const n of names) m.appendChild(el('span', null, n)); c.appendChild(m); }
   return c;
 }

@@ -167,7 +167,10 @@ main>.h:first-child{margin-top:4px}
 .game .t .ab{font:800 20px/1 var(--display);letter-spacing:.05em;display:flex;align-items:center;gap:8px}
 .game .t .s{font:800 28px/1 var(--display);font-variant-numeric:tabular-nums}
 .game .t.trail .s{color:var(--ink2)}
-.game .st{display:flex;align-items:center;justify-content:space-between;margin-top:8px;font:600 12px var(--body);color:var(--ink2);gap:6px;flex-wrap:wrap}
+.game .st{display:flex;align-items:center;justify-content:flex-end;margin-top:8px;font:600 12px var(--body);color:var(--ink2);gap:8px;flex-wrap:wrap;text-align:right}
+.game .st .clk{font:800 15px/1 var(--display);font-variant-numeric:tabular-nums;color:var(--ink)}
+.game .st .tv{color:var(--yard)}
+.game .st.sub{margin-top:3px;font-size:11px}
 .game .mine{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
 .game .mine span{font:600 12px/1 var(--body);background:var(--panel2);padding:5px 7px;border-radius:5px;color:var(--ink)}
 .game.live{box-shadow:0 0 0 2px var(--signal)}
