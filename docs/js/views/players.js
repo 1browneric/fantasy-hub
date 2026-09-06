@@ -3,7 +3,7 @@
 // position; league chips and "Playing now" narrow further.
 import { el, tag } from '../util.js';
 import { myMatchup } from '../model.js';
-import { playerRow, legendItem } from '../ui/rows.js';
+import { playerRow } from '../ui/rows.js';
 
 const POS = ['QB', 'RB', 'WR', 'TE', 'K', 'DST'];
 const posIdx = p => { const i = POS.indexOf(p); return i < 0 ? POS.length : i; };
@@ -55,6 +55,5 @@ export function render(S, main) {
   }
   if (!rows.length) ul.appendChild(el('li', 'empty', f.live ? 'No games in progress' : 'No players match'));
   panel.appendChild(ul);
-  const lg = el('div', 'legend'); lg.append(legendItem('o', 'Live now'), legendItem('b', 'Up vs projection'), legendItem('g', 'Final')); panel.appendChild(lg);
   main.appendChild(panel);
 }

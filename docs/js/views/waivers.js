@@ -38,7 +38,7 @@ export function render(S, main) {
     }
   }
   if (L.faab) {
-    const fh = el('div', 'h'); fh.appendChild(el('h2', null, 'FAAB')); fh.appendChild(el('span', 'sub', `$${L.faab} budget, claims clear Wednesday`)); main.appendChild(fh);
+    const fh = el('div', 'h'); fh.appendChild(el('h2', null, 'FAAB')); fh.appendChild(el('span', 'sub', `$${L.faab} budget`)); main.appendChild(fh);
     const fp = el('section', 'panel faab');
     const top = el('div', 'faab-me');
     const a = el('div'); a.appendChild(el('small', null, 'My FAAB left')); a.appendChild(el('b', null, `$${me?.faabLeft ?? '--'}`)); a.appendChild(el('span', null, ` of $${L.faab}`)); top.appendChild(a);
@@ -51,7 +51,7 @@ export function render(S, main) {
     fp.appendChild(grid);
     main.appendChild(fp);
   }
-  const h = el('div', 'h'); h.appendChild(el('h2', null, 'Suggested pickups')); h.appendChild(el('span', 'sub', `${L.key} scoring, week ${S.state.week} projections`)); main.appendChild(h);
+  const h = el('div', 'h'); h.appendChild(el('h2', null, 'Suggested pickups')); h.appendChild(el('span', 'sub', `week ${S.state.week} projections`)); main.appendChild(h);
   const panel = el('section', 'panel');
   const pc = el('div', 'chips'); const posf = f.pos || 'ALL';
   for (const p of ['ALL', 'QB', 'RB', 'WR', 'TE', 'K', 'DST']) { const b = el('button', 'chip', p); b.setAttribute('aria-pressed', String(posf === p)); b.onclick = () => { f.pos = p; S.render(); }; pc.appendChild(b); }
@@ -72,7 +72,6 @@ export function render(S, main) {
   }
   if (!ul.children.length) ul.appendChild(el('li', 'empty', 'No projected free agents at this position'));
   panel.appendChild(ul);
-  panel.appendChild(el('div', 'note', L.faab ? `Bids are estimates from lineup upgrade and add volume; place the real claim on Sleeper.` : 'RT Sports waivers run on the league schedule; claim on RT.'));
   main.appendChild(panel);
 
   const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'Moves')); h2.appendChild(el('span', 'sub', `${L.transactions.length} this season`)); main.appendChild(h2);

@@ -2,7 +2,7 @@
 // play, and every one of my players in it as full rows (both leagues' points).
 import { el, f1, teamLogo, tag, fmtKick } from '../util.js';
 import { myMatchup } from '../model.js';
-import { playerRow, legendItem } from './rows.js';
+import { playerRow } from './rows.js';
 
 export function openGame(S, g) {
   document.querySelectorAll('.modal').forEach(m => m.remove());
@@ -45,6 +45,5 @@ export function openGame(S, g) {
   }
   if (!mine.length) ul.appendChild(el('li', 'empty', 'None of your players are in this game'));
   sheet.appendChild(ul);
-  const lg = el('div', 'legend'); lg.append(legendItem('o', 'Live now'), legendItem('b', 'Up vs projection'), legendItem('g', 'Final')); sheet.appendChild(lg);
   modal.appendChild(sheet); document.body.appendChild(modal); x.focus();
 }

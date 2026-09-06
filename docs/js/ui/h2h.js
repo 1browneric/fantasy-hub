@@ -45,7 +45,8 @@ function cell(S, league, slot, matchup, right) {
   if (!slot || slot.empty) { c.appendChild(el('span', 'nm dim', 'Empty')); return c; }
   const r = scoreSlot(league, slot, S.ctx, matchup);
   paintTeam(c, S.T, slot.nfl);
-  if (r.state === 'in') c.classList.add('live'); if (r.state === 'post') c.classList.add('done');
+  if (r.state === 'in') c.classList.add('live'); if (r.state === 'post') c.classList.add('done'); if (r.state === 'pre') c.classList.add('pre');
+  if (r.state === 'in' && r.game.redzone && r.game.possession === slot.nfl) c.classList.add('rz');
   c.appendChild(el('span', 'bar'));
   c.appendChild(headshot(S.T, slot.pid, slot.name, slot.nfl, 'sm'));
   const t = el('div', 't');
@@ -68,6 +69,5 @@ export function h2hPanel(S, league, mm) {
     row.appendChild(cell(S, league, b, mm.m, true));
     panel.appendChild(row);
   }
-  const foot = el('div', 'r ft'); foot.appendChild(el('div', 'c me', 'Score, then projection. Tap a player.')); foot.appendChild(el('div', 'mid', '')); foot.appendChild(el('div', 'c them', 'Orange bar: live. Grey: final.')); panel.appendChild(foot);
   return panel;
 }

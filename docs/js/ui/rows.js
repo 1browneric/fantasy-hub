@@ -16,7 +16,8 @@ export function playerRow(S, slot, opts) {
   const { league, ctx, matchup } = opts;
   const r = scoreSlot(league, slot, ctx, matchup);
   const g = gameText(r.game);
-  const li = paintTeam(el('li', 'row ' + g.cls + (r.state === 'post' ? ' done' : '') + (slot.unmatched ? ' unmatched' : '') + (opts.onOpen ? ' clickable' : '')), S.T, slot.nfl);
+  const rz = r.state === 'in' && r.game.redzone && r.game.possession === slot.nfl;
+  const li = paintTeam(el('li', 'row ' + g.cls + (r.state === 'post' ? ' done' : '') + (rz ? ' rz' : '') + (slot.unmatched ? ' unmatched' : '') + (opts.onOpen ? ' clickable' : '')), S.T, slot.nfl);
   li.appendChild(el('span', 'bar'));
   const sl = el('span', 'slot', slot.slot);
   if (slot.slot !== slot.pos && slot.pos) sl.appendChild(el('small', null, slot.pos));
@@ -125,7 +126,7 @@ export function lineupPanel(S, league, team, opts = {}) {
   const w = S.state.whatIf[league.key];
   if (w && w.team === team.id) {
     const wi = el('div', 'whatif');
-    wi.appendChild(el('span', null, `What-if lineup: ${w.inName} in for ${w.outName}. Set the real lineup on ${league.platform === 'sleeper' ? 'Sleeper' : 'RT Sports'}.`));
+    wi.appendChild(el('span', null, `What-if: ${w.inName} in for ${w.outName}`));
     const b = el('button', 'btn ghost', 'Reset'); b.onclick = () => { delete S.state.whatIf[league.key]; S.render(); }; wi.appendChild(b);
     panel.appendChild(wi);
   }
@@ -156,9 +157,6 @@ export function lineupPanel(S, league, team, opts = {}) {
     }
     panel.appendChild(bl);
   }
-  const lg = el('div', 'legend');
-  lg.append(legendItem('o', 'Live now'), legendItem('b', 'Ahead / up vs projection'), legendItem('g', 'Final'));
-  panel.appendChild(lg);
   return panel;
 }
 export function legendItem(c, t) { const s = el('span'); s.appendChild(el('i', c)); s.append(t); return s; }

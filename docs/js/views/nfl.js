@@ -3,7 +3,7 @@
 import { el, teamLogo, paintTeam, tag, fmtKick } from '../util.js';
 
 export function gameChip(S, g, names) {
-  const c = el('button', 'game' + (g.state === 'in' ? ' live' : ''));
+  const c = el('button', 'game' + (g.state === 'in' ? ' live' : '') + (g.state === 'in' && g.redzone ? ' rz' : ''));
   c.type = 'button'; c.setAttribute('aria-label', `${g.away} at ${g.home}, open game`); c.onclick = () => S.openGame(g);
   c.style.setProperty('--tp', S.T[g.away]?.primary || '#333'); c.style.setProperty('--to', S.T[g.home]?.primary || '#777');
   const side = (abbr, score, other) => {

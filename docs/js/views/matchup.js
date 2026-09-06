@@ -11,8 +11,8 @@ export function render(S, main) {
   if (!L) return;
   const mm = myMatchup(L);
   if (!mm) { main.appendChild(el('div', 'empty', 'No matchup')); return; }
-  const h = el('div', 'h'); h.appendChild(el('h2', null, 'Head to head')); h.appendChild(el('span', 'sub', L.platform === 'rtsports' ? 'Both sides scored live from NFL stats' : 'Sleeper live')); main.appendChild(h);
+  const h = el('div', 'h'); h.appendChild(el('h2', null, 'Head to head')); main.appendChild(h);
   main.appendChild(h2hPanel(S, L, mm));
-  const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'My bench')); h2.appendChild(el('span', 'sub', 'Start buttons are a what-if')); main.appendChild(h2);
+  const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'My bench')); main.appendChild(h2);
   main.appendChild(lineupPanel(S, L, mm.me, { title: mm.me.name, whatIf: true, startersHidden: true }));
 }

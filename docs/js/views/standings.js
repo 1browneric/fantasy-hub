@@ -23,7 +23,6 @@ export function render(S, main) {
       tb.appendChild(r);
     });
     t.appendChild(tb); sc.appendChild(t); panel.appendChild(sc);
-    if (!L.teams.some(T => T.w + T.l > 0)) panel.appendChild(el('div', 'note', 'Preseason: records populate after the first game.'));
     main.appendChild(panel);
   }
 }
