@@ -49,7 +49,6 @@ export function render(S, main) {
   main.appendChild(grid);
   const more = el('button', 'chip', 'All NFL games'); more.style.marginTop = '10px'; more.onclick = () => S.go('nfl'); main.appendChild(more);
 
-  main.appendChild(brandCard(S));
 
   const h3 = el('div', 'h'); h3.appendChild(el('h2', null, 'Standings')); main.appendChild(h3);
   const strip = el('div', 'lgcards');
@@ -64,30 +63,4 @@ export function render(S, main) {
     c.onclick = () => S.go('standings'); strip.appendChild(c);
   }
   main.appendChild(strip);
-}
-
-// Presented-by module: a fictional partner, built from live data so it reads
-// as an insight, not an ad slot.
-export function brandCard(S) {
-  const card = el('section', 'brandcard');
-  const t = el('div'); t.appendChild(el('div', 'pb', 'Presented by')); const bn = el('div', 'bn'); bn.append('Meridian '); bn.appendChild(el('b', null, 'Motors')); t.appendChild(bn);
-  let best = null;
-  for (const L of S.leagueList()) {
-    const mm = myMatchup(L); if (!mm) continue;
-    for (const r of summarize(L, mm.me, S.ctx, mm.m).rows) {
-      if (r.state === 'pre' || r.pts == null) continue;
-      const d = r.pts - r.proj; if (!best || d > best.d) best = { d, r, L };
-    }
-  }
-  const ins = el('div', 'ins');
-  if (best) { ins.append('Momentum: '); ins.appendChild(el('b', null, best.r.slot.name)); ins.append(` is ${best.d >= 0 ? 'up' : 'down'} ${f1(Math.abs(best.d))} against projection with ${f1(best.r.pts)} in ${best.L.key}.`); }
-  else {
-    let top = null;
-    for (const L of S.leagueList()) { const mm = myMatchup(L); if (!mm) continue; for (const r of summarize(L, mm.me, S.ctx, mm.m).rows) if (!top || r.proj > top.r.proj) top = { r, L }; }
-    if (top) { ins.append('Highest projected starter across your leagues: '); ins.appendChild(el('b', null, top.r.slot.name)); ins.append(` at ${f1(top.r.proj)} in ${top.L.key}.`); }
-    else ins.append('Momentum report starts at kickoff.');
-  }
-  t.appendChild(ins); card.appendChild(t);
-  card.appendChild(el('div', 'mark', 'M'));
-  return card;
 }

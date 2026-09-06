@@ -218,17 +218,6 @@ main>.h:first-child{margin-top:4px}
 .tbl tr.me td{background:var(--sky-bg)}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
-/* ---------- brand module ---------- */
-.brandcard{border-radius:14px;padding:12px 14px;background:linear-gradient(120deg,#101B36 0%,#0E2A1C 100%);color:#fff;
-  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-.brandcard .pb{font:700 10px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.brandcard .bn{font:800 18px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
-.brandcard .bn b{color:#8FD3FF}
-.brandcard .ins{margin-top:8px;font:500 12.5px/1.35 var(--body);color:rgba(255,255,255,.85)}
-.brandcard .ins b{color:#fff;font-family:var(--display);font-size:15px}
-.brandcard .mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(145deg,#8FD3FF,#2F7BFF);
-  display:flex;align-items:center;justify-content:center;font:800 22px/1 var(--display);color:#071630}
-
 /* ---------- chips / filters ---------- */
 .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 8px}
 .chips::-webkit-scrollbar{display:none}
