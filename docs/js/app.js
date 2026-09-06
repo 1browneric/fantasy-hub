@@ -5,6 +5,7 @@ import * as sleeper from './sources/sleeper.js';
 import * as rt from './sources/rt.js';
 import { makeLookup, buildBoats, boatsTransactions, buildRT, myMatchup, effectiveSlots } from './model.js';
 import { openPlayer } from './ui/sheet.js';
+import { openGame } from './ui/gamesheet.js';
 import * as home from './views/home.js';
 import * as matchup from './views/matchup.js';
 import * as players from './views/players.js';
@@ -27,6 +28,7 @@ const S = {
   leagueList: () => ['SoFi', 'Y60', 'Boats'].map(k => S.leagues[k]).filter(Boolean),
   go: tab => { S.state.tab = tab; history.replaceState(null, '', '#' + tab); S.render(); window.scrollTo(0, 0); },
   openPlayer: (slot, league) => openPlayer(S, slot, league),
+  openGame: g => openGame(S, g),
   render, myPlayers, myGames,
 };
 S.ctx.whatIf = S.state.whatIf;
@@ -45,12 +47,19 @@ function myPlayers() {
   }
   return [...by.values()];
 }
+// "Thomas" not "Jr.", and a defense keeps its full label.
+const SUFFIX = /^(jr\.?|sr\.?|ii|iii|iv|v)$/i;
+function shortName(slot) {
+  if (slot.pos === 'DST') return slot.name;
+  const w = slot.name.split(' ').filter(x => !SUFFIX.test(x));
+  return w[w.length - 1] || slot.name;
+}
 function myGames() {
   const byGame = new Map();
   for (const p of myPlayers()) {
     const g = S.ctx.games.byTeam.get(p.slot.nfl); if (!g) continue;
     if (!byGame.has(g.id)) byGame.set(g.id, { g: S.ctx.games.list.find(x => x.id === g.id), names: [] });
-    byGame.get(g.id).names.push(p.slot.name.split(' ').slice(-1)[0] + (p.owned.some(o => o.slot.starter) ? '' : ' (bn)'));
+    byGame.get(g.id).names.push(shortName(p.slot) + (p.owned.some(o => o.slot.starter) ? '' : ' (bn)'));
   }
   const order = g => g.state === 'in' ? 0 : g.state === 'pre' ? 1 : 2;
   return [...byGame.values()].sort((a, b) => order(a.g) - order(b.g) || new Date(a.g.kickoff) - new Date(b.g.kickoff));
