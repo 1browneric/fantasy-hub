@@ -11,14 +11,28 @@ const posIdx = p => { const i = POS.indexOf(p); return i < 0 ? POS.length : i; }
 // within each position and pad the short side.
 function pairs(league, mine, theirs) {
   if (league.platform === 'sleeper') return mine.map((m, i) => [m.slot, m, theirs[i] || null]);
-  const out = [];
+  // RT: pair within a position up to the smaller count; the extra RB/WR/TE
+  // on either side are that team's flex plays, so they pair as FLEX rows.
+  const out = [], flexA = [], flexB = [];
   const byPos = list => list.reduce((o, s) => { (o[s.slot] = o[s.slot] || []).push(s); return o; }, {});
   const A = byPos(mine), B = byPos(theirs);
   for (const p of [...new Set([...Object.keys(A), ...Object.keys(B)])].sort((a, b) => posIdx(a) - posIdx(b))) {
-    const n = Math.max((A[p] || []).length, (B[p] || []).length);
-    for (let i = 0; i < n; i++) out.push([p, (A[p] || [])[i] || null, (B[p] || [])[i] || null]);
+    const a = A[p] || [], b = B[p] || [], n = Math.min(a.length, b.length);
+    for (let i = 0; i < n; i++) out.push([p, a[i], b[i]]);
+    if (['RB', 'WR', 'TE'].includes(p)) { flexA.push(...a.slice(n)); flexB.push(...b.slice(n)); }
+    else for (let i = n; i < Math.max(a.length, b.length); i++) out.push([p, a[i] || null, b[i] || null]);
   }
+  const k = Math.max(flexA.length, flexB.length);
+  const kIdx = out.findIndex(r => posIdx(r[0]) > posIdx('FLEX'));
+  const flexRows = []; for (let i = 0; i < k; i++) flexRows.push(['FLEX', flexA[i] || null, flexB[i] || null]);
+  out.splice(kIdx < 0 ? out.length : kIdx, 0, ...flexRows);
   return out;
+}
+const SUFFIX = /^(jr\.?|sr\.?|ii|iii|iv|v)$/i;
+function shortName(slot) {
+  if (slot.pos === 'DST') return `${slot.nfl} D/ST`;
+  const w = slot.name.split(' ').filter(x => !SUFFIX.test(x));
+  return w.length > 1 ? `${w[0][0]}. ${w.slice(1).join(' ')}` : slot.name;
 }
 function short(g) {
   if (!g) return 'no game';
@@ -35,7 +49,7 @@ function cell(S, league, slot, matchup, right) {
   c.appendChild(el('span', 'bar'));
   c.appendChild(headshot(S.T, slot.pid, slot.name, slot.nfl, 'sm'));
   const t = el('div', 't');
-  const nm = el('div', 'nm', slot.name); if (slot.inj) nm.appendChild(el('span', 'inj', slot.inj.slice(0, 3).toUpperCase())); t.appendChild(nm);
+  const nm = el('div', 'nm', shortName(slot)); nm.title = slot.name; if (slot.inj) nm.appendChild(el('span', 'inj', slot.inj.slice(0, 3).toUpperCase())); t.appendChild(nm);
   const sub = el('div', 'sub'); sub.appendChild(teamLogo(S.T, slot.nfl)); sub.appendChild(el('span', null, (r.game ? (r.game.isHome ? 'vs ' : '@ ') + r.game.opp + ' ' : '') + short(r.game))); t.appendChild(sub);
   c.appendChild(t);
   const v = el('div', 'v'); v.appendChild(el('b', null, r.pts == null ? '--' : f1(r.pts))); v.appendChild(el('small', null, f1(r.proj))); c.appendChild(v);
