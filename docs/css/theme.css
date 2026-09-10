@@ -233,7 +233,7 @@ main>.h:first-child{margin-top:4px}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 /* ---------- pick'em ---------- */
-.pk-stand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 4px;text-align:center}
+.pk-stand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 4px;text-align:center;width:100%}
 .pk-stand div{display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--rule)}
 .pk-stand div:first-child{border-left:0}
 .pk-stand b{font:800 28px/1 var(--display);color:var(--ink)}

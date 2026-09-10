@@ -4,6 +4,7 @@ import { el, f1, headshot, teamLogo, paintTeam, tag, pct } from '../util.js';
 import { summarize, winProb, myMatchup, scoreSlot, effectiveSlots } from '../model.js';
 import { hero, ordinal, gameText } from '../ui/rows.js';
 import { gameChip } from './nfl.js';
+import { standingBlock } from './pickem.js';
 
 export function render(S, main) {
   main.appendChild(hero(S, S.leagues[S.state.lg], k => { S.state.lg = k; S.render(); }));
@@ -49,6 +50,9 @@ export function render(S, main) {
   if (!mine.length) grid.appendChild(el('div', 'empty', 'No games on the slate for your players'));
   main.appendChild(grid);
   const more = el('button', 'chip', 'All NFL games'); more.style.marginTop = '10px'; more.onclick = () => S.go('nfl'); main.appendChild(more);
+
+  // pick'em: the standing only; the picks stay on their own tab
+  if (S.pickem) for (const n of standingBlock(S, undefined, () => S.go('pickem'))) main.appendChild(n);
 
 
   const h3 = el('div', 'h'); h3.appendChild(el('h2', null, 'Standings')); main.appendChild(h3);

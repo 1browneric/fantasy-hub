@@ -2,7 +2,7 @@
 // Same-origin files are NETWORK-FIRST (a deploy is live on the next open,
 // no stale shell), with the cache as the offline fallback. Live feeds on
 // other origins bypass the worker entirely and are never cached.
-const V = 'fantasyhub-v20';
+const V = 'fantasyhub-v21';
 const SHELL = [
   './', 'index.html', 'manifest.json', 'css/theme.css',
   'js/app.js', 'js/util.js', 'js/model.js', 'js/scoring.js', 'js/statline.js',

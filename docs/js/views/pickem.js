@@ -12,25 +12,8 @@ export function render(S, main) {
   if (!P) { main.appendChild(el('div', 'empty', S.pickemErr ? "Pick'em did not load" : "Pulling pick'em")); return; }
   if (S.pickemErr) { const b = el('div', 'banner'); b.appendChild(el('span', 'tag', 'STALE')); b.appendChild(el('span', null, `Pick'em as of ${fmtTime(P.fetched)}`)); main.appendChild(b); }
 
-  const games = new Map(S.ctx.games.list.map(g => [String(g.id), g]));
-  const rows = P.rows.map(r => {
-    // his pick once the game locks; before that, the ladder's
-    const pick = r.picked || (r.locked ? null : r.fav);
-    const g = games.get(r.event);
-    return { r, g, pick, opp: pick ? r.outs.find(o => o !== pick) : null, conf: r.picked ? r.conf : r.locked ? null : r.ladderConf, result: result(r, g, pick) };
-  }).sort((a, b) => (b.conf ?? 0) - (a.conf ?? 0));
-
-  const sc = P.me?.score || {};
-  const wk = sc.scoreByPeriod?.[P.period] || {};
-  const inPlay = rows.filter(x => x.pick && !x.result).reduce((s, x) => s + (x.conf || 0), 0);
-  const h = el('div', 'h'); h.appendChild(el('h2', null, "Pick'em")); h.appendChild(el('span', 'sub', `${P.label}, ${P.size} entries`)); main.appendChild(h);
-  const st = el('section', 'panel pk-stand');
-  const cell = (big, small) => { const c = el('div'); c.appendChild(el('b', 'num', big)); c.appendChild(el('span', null, small)); st.appendChild(c); };
-  cell(sc.rank ? ordinal(sc.rank) : '-', `of ${P.size}`);
-  cell(String(wk.score ?? 0), 'week pts');
-  cell(String(inPlay), 'in play');
-  cell(String(sc.overallScore ?? 0), 'season pts');
-  main.appendChild(st);
+  const rows = pickRows(S);
+  for (const n of standingBlock(S, rows)) main.appendChild(n);
 
   const right = rows.filter(x => x.result === 'CORRECT').length, wrong = rows.filter(x => x.result === 'INCORRECT').length;
   const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'My picks')); h2.appendChild(el('span', 'sub', `${right} correct, ${wrong} wrong, ${rows.filter(x => !x.result).length} to play`)); main.appendChild(h2);
@@ -55,6 +38,36 @@ export function render(S, main) {
     tb.appendChild(r);
   }
   t.appendChild(tb); scr.appendChild(t); panel.appendChild(scr); main.appendChild(panel);
+}
+
+// The week's games in confidence order: his pick once a game locks, the
+// ladder's before that.
+export function pickRows(S) {
+  const P = S.pickem; if (!P) return [];
+  const games = new Map(S.ctx.games.list.map(g => [String(g.id), g]));
+  return P.rows.map(r => {
+    const pick = r.picked || (r.locked ? null : r.fav);
+    const g = games.get(r.event);
+    return { r, g, pick, opp: pick ? r.outs.find(o => o !== pick) : null, conf: r.picked ? r.conf : r.locked ? null : r.ladderConf, result: result(r, g, pick) };
+  }).sort((a, b) => (b.conf ?? 0) - (a.conf ?? 0));
+}
+
+// The header and the four-number standing. Shared with Home, where a tap on
+// the numbers opens this tab.
+export function standingBlock(S, rows = pickRows(S), onTap = null) {
+  const P = S.pickem;
+  const sc = P.me?.score || {};
+  const wk = sc.scoreByPeriod?.[P.period] || {};
+  const inPlay = rows.filter(x => x.pick && !x.result).reduce((s, x) => s + (x.conf || 0), 0);
+  const h = el('div', 'h'); h.appendChild(el('h2', null, "Pick'em")); h.appendChild(el('span', 'sub', `${P.label}, ${P.size} entries`));
+  const st = el(onTap ? 'button' : 'section', 'panel pk-stand');
+  if (onTap) { st.type = 'button'; st.onclick = onTap; st.setAttribute('aria-label', "Pick'em standing, open Pick'em"); }
+  const cell = (big, small) => { const c = el('div'); c.appendChild(el('b', 'num', big)); c.appendChild(el('span', null, small)); st.appendChild(c); };
+  cell(sc.rank ? ordinal(sc.rank) : '-', `of ${P.size}`);
+  cell(String(wk.score ?? 0), 'week pts');
+  cell(String(inPlay), 'in play');
+  cell(String(sc.overallScore ?? 0), 'season pts');
+  return [h, st];
 }
 
 // ESPN's own verdict when it has posted one; the final score when it lags.
