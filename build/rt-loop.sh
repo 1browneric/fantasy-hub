@@ -12,6 +12,13 @@ MAX_LOOPS=${MAX_LOOPS:-1000}
 STALE_MIN=${STALE_MIN:-55}
 start=$(date +%s)
 
+# Every pass starts from the newest main. A run that waited in the queue behind
+# a game-day loop was checked out at the commit it was queued on - possibly
+# hours old - so without this it misreads how fresh the data is and writes on
+# top of data files the loop has since replaced, which cannot rebase cleanly.
+# Safe on a runner: nothing local is ever worth keeping between passes.
+sync() { git fetch -q origin main && git reset -q --hard origin/main; }
+
 commit() {
   git add docs/data/rt/*.json docs/data/proj.json
   if git diff --cached --quiet; then echo "  no change"; return 0; fi
@@ -26,6 +33,7 @@ rt()   { node build/rt-fetch.mjs  || echo "  rt-fetch refused this pass; last go
 proj() { node build/build-proj.mjs || echo "  build-proj failed this pass"; }
 age_min() { node -e "const d=require('./docs/data/rt/SoFi.json');console.log(Math.round((Date.now()-new Date(d.fetchedAt))/60000))" 2>/dev/null || echo 9999; }
 
+sync
 w=$(node build/game-window.mjs)
 echo "window at start: $w"
 if [ "$w" = "off" ] || [ "$w" = "unknown" ]; then
@@ -38,6 +46,7 @@ fi
 n=0; was_live=0
 while :; do
   n=$((n+1))
+  [ "$n" -gt 1 ] && sync
   case "$w" in
     live|unknown)
       if [ "$w" = "unknown" ] && [ "$was_live" -eq 0 ]; then echo "pass $n: schedule unreadable, nothing live yet: stop"; break; fi
