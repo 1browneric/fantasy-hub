@@ -53,11 +53,16 @@ function fits(order, P) {
   return Array.isArray(order) && order.length === open.length
     && order.every(o => open.some(r => r.id === o.prop && r.outs.some(x => x.id === o.out)));
 }
-// The order being edited: his saved edits while they fit, else the ladder.
+// The order being edited: his saved edits while they fit; else what ESPN
+// holds for every open game, as the VM last published it; else the ladder.
 function workingOrder(P) {
   const saved = store.get(KEY(P.period, 'order'));
   if (fits(saved, P)) return saved;
-  return [...openGames(P)].sort((a, b) => (b.fav?.p ?? 0) - (a.fav?.p ?? 0))
+  const open = openGames(P);
+  if (open.length && open.every(r => r.current && r.currentConf != null)) {
+    return [...open].sort((a, b) => b.currentConf - a.currentConf).map(r => ({ prop: r.id, out: r.current.id }));
+  }
+  return [...open].sort((a, b) => (b.fav?.p ?? 0) - (a.fav?.p ?? 0))
     .map(r => ({ prop: r.id, out: (r.fav || r.outs[0]).id }));
 }
 
@@ -82,13 +87,16 @@ export function render(S, main) {
   const editing = S.pkEditWeek === P.period;
   const sent = store.get(KEY(P.period, 'sent'));
   const sentFits = sent && fits(sent.order, P);
-  const order = editing ? workingOrder(P) : sentFits ? sent.order : null;
+  // a send newer than the VM's last published read of his entry is what ESPN
+  // will hold within minutes; an older one has already been superseded by it
+  const sentWins = sentFits && (!P.entryAt || sent.at > P.entryAt);
+  const order = editing ? workingOrder(P) : sentWins ? sent.order : null;
   const rows = pickRows(S, P, order);
   for (const n of standingBlock(S, P, rows)) main.appendChild(n);
 
   const right = rows.filter(x => x.result === 'CORRECT').length, wrong = rows.filter(x => x.result === 'INCORRECT').length;
   const subTxt = editing ? 'not sent yet'
-    : `${right} correct, ${wrong} wrong, ${rows.filter(x => !x.result).length} to play` + (sentFits ? `, sent ${fmtTime(new Date(sent.at)).replace(/:\d\d (?=[AP]M)/, ' ')}` : '');
+    : `${right} correct, ${wrong} wrong, ${rows.filter(x => !x.result).length} to play` + (sentWins ? `, sent ${fmtTime(new Date(sent.at)).replace(/:\d\d (?=[AP]M)/, ' ')}` : '');
   const h2 = el('div', 'h'); h2.appendChild(el('h2', null, editing ? 'Change order' : 'My picks')); h2.appendChild(el('span', 'sub', subTxt)); main.appendChild(h2);
 
   if (openGames(P).length) {
@@ -144,6 +152,7 @@ export function pickRows(S, P = S.pickem, order = null) {
     let pick = null, conf = null;
     if (r.picked) { pick = r.picked; conf = r.conf; }
     else if (!r.locked && pos?.has(r.id)) { const o = pos.get(r.id); pick = r.outs.find(x => x.id === o.out) || r.fav; conf = free[o.i] ?? null; }
+    else if (!r.locked && r.current) { pick = r.current; conf = r.currentConf; }
     else if (!r.locked) { pick = r.fav; conf = r.ladderConf; }
     const g = games.get(r.event);
     return { r, g, pick, opp: pick ? r.outs.find(o => o !== pick) : null, conf, result: result(r, g, pick) };

@@ -21,19 +21,23 @@ const implied = ml => { const o = Number(ml); return o > 0 ? 100 / (o + 100) : -
 // One week of the pool. No week given = ESPN's current one.
 export async function load(week) {
   const filt = encodeURIComponent(JSON.stringify({ filterSortId: { value: 0 }, limit: 200, offset: 0 }));
-  const [chal, group, entry] = await Promise.all([
+  const [chal, group, entry, mine] = await Promise.all([
     get(`${G}/challenges/${CFG.key}/?platform=chui&view=chui_default` + (week ? `&scoringPeriodId=${week}` : '')),
     get(`${G}/challenges/${CFG.cid}/groups/${CFG.group}/?platform=chui&view=chui_default_group&filter=${filt}`),
     get(`${G}/challenges/${CFG.cid}/entries/${CFG.entry}/?platform=chui&view=chui_default_entry`),
+    // his picks as ESPN holds them, published by the VM after every write
+    // (agents/pickem in home-base) - the only way the Hub can see an open pick
+    fetch('data/pickem-entry.json', { cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
   ]);
-  return build(chal, group, entry, week);
+  return build(chal, group, entry, week, mine);
 }
 
-function build(chal, group, entry, want) {
+function build(chal, group, entry, want, mine) {
   const current = chal.currentScoringPeriod?.id;
   const period = want || current;
   const weeks = (chal.scoringPeriods || []).map(p => ({ id: p.id, label: p.label, abbrev: p.abbrev }));
   const picks = new Map((entry.picks || []).map(p => [p.propositionId, p]));
+  const pub = mine?.picks || {}; // proposition id -> { out, conf }
   const rows = [];
   for (const p of chal.propositions || []) {
     if (p.scoringPeriodId !== period || p.display === false) continue;
@@ -57,6 +61,9 @@ function build(chal, group, entry, want) {
       picked: pickedId ? outs.find(o => o.id === pickedId) || null : null,
       conf: mine?.confidenceScore ?? null,
       result: mine?.outcomesPicked?.[0]?.result || null, // CORRECT / INCORRECT / undecided
+      // an open game's real pick, from the VM's published copy of his entry
+      current: !pickedId && pub[p.id] ? outs.find(o => o.id === pub[p.id].out) || null : null,
+      currentConf: !pickedId && pub[p.id] ? pub[p.id].conf ?? null : null,
     });
   }
   // the ladder for the games still open: most confident first, taking the
@@ -72,6 +79,7 @@ function build(chal, group, entry, want) {
     period, current, weeks, label: weeks.find(w => w.id === period)?.label || `Week ${period}`,
     rows, open: open.length, size: group.size || entries.length, entries,
     me: entries.find(e => e.id === CFG.entry) || null,
+    entryAt: mine?.fetched ? Date.parse(mine.fetched) : null,
     fetched: new Date(),
   };
 }
