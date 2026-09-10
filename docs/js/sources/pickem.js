@@ -18,18 +18,21 @@ const get = u => fetch(u, { credentials: 'omit', cache: 'no-store' })
 const mapping = (o, k) => (o.mappings || []).find(m => m.type === k)?.value;
 const implied = ml => { const o = Number(ml); return o > 0 ? 100 / (o + 100) : -o / (-o + 100); };
 
-export async function load() {
+// One week of the pool. No week given = ESPN's current one.
+export async function load(week) {
   const filt = encodeURIComponent(JSON.stringify({ filterSortId: { value: 0 }, limit: 200, offset: 0 }));
   const [chal, group, entry] = await Promise.all([
-    get(`${G}/challenges/${CFG.key}/?platform=chui&view=chui_default`),
+    get(`${G}/challenges/${CFG.key}/?platform=chui&view=chui_default` + (week ? `&scoringPeriodId=${week}` : '')),
     get(`${G}/challenges/${CFG.cid}/groups/${CFG.group}/?platform=chui&view=chui_default_group&filter=${filt}`),
     get(`${G}/challenges/${CFG.cid}/entries/${CFG.entry}/?platform=chui&view=chui_default_entry`),
   ]);
-  return build(chal, group, entry);
+  return build(chal, group, entry, week);
 }
 
-function build(chal, group, entry) {
-  const period = chal.currentScoringPeriod?.id;
+function build(chal, group, entry, want) {
+  const current = chal.currentScoringPeriod?.id;
+  const period = want || current;
+  const weeks = (chal.scoringPeriods || []).map(p => ({ id: p.id, label: p.label, abbrev: p.abbrev }));
   const picks = new Map((entry.picks || []).map(p => [p.propositionId, p]));
   const rows = [];
   for (const p of chal.propositions || []) {
@@ -49,7 +52,7 @@ function build(chal, group, entry) {
     const pickedId = mine?.outcomesPicked?.[0]?.outcomeId;
     rows.push({
       id: p.id, event: String(mapping(p, 'EVENT_ID') || mapping(p, 'COMPETITION_ID') || ''),
-      name: p.name, kickoff: p.date, locked: (p.status || '').toUpperCase() !== 'OPEN',
+      name: p.name, kickoff: p.date, spread: p.spread ?? null, locked: (p.status || '').toUpperCase() !== 'OPEN',
       outs, fav: priced ? outs.reduce((a, b) => (b.p > a.p ? b : a)) : null,
       picked: pickedId ? outs.find(o => o.id === pickedId) || null : null,
       conf: mine?.confidenceScore ?? null,
@@ -61,13 +64,20 @@ function build(chal, group, entry) {
   // can ever show the same number
   const used = new Set(rows.filter(r => r.picked).map(r => r.conf));
   const free = rows.map((_, i) => rows.length - i).filter(v => !used.has(v));
-  rows.filter(r => r.fav && !r.picked && !r.locked).sort((a, b) => b.fav.p - a.fav.p)
-    .forEach((r, i) => { r.ladderConf = free[i] ?? null; });
+  const open = rows.filter(r => r.fav && !r.picked && !r.locked).sort((a, b) => b.fav.p - a.fav.p);
+  open.forEach((r, i) => { r.ladderConf = free[i] ?? null; r.ladderRank = i + 1; });
+  rankAll(rows);
   const entries = group.entries || [];
   return {
-    period, label: chal.currentScoringPeriod?.label || `Week ${period}`,
-    rows, size: group.size || entries.length, entries,
+    period, current, weeks, label: weeks.find(w => w.id === period)?.label || `Week ${period}`,
+    rows, open: open.length, size: group.size || entries.length, entries,
     me: entries.find(e => e.id === CFG.entry) || null,
     fetched: new Date(),
   };
+}
+// where each game's favourite ranks among the whole week by win chance
+function rankAll(rows) {
+  const priced = rows.filter(r => r.fav).sort((a, b) => b.fav.p - a.fav.p);
+  priced.forEach((r, i) => { r.rank = i + 1; });
+  for (const r of rows) r.of = priced.length;
 }

@@ -250,6 +250,9 @@ main>.h:first-child{margin-top:4px}
 .pk-row .pk-t small{font:500 12px var(--body);color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pk-row .pk-r{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font:600 11.5px var(--body);color:var(--ink2);white-space:nowrap}
 .tbl .pk-mem{display:block;color:var(--ink2);font-size:11px}
+.sheet button.stat{width:100%;text-align:left}
+.sheet .rec div+div{margin-top:3px}
+.sheet .rec+.rec{margin-top:8px}
 
 /* ---------- chips / filters ---------- */
 .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 8px}

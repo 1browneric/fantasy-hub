@@ -52,7 +52,7 @@ export function render(S, main) {
   const more = el('button', 'chip', 'All NFL games'); more.style.marginTop = '10px'; more.onclick = () => S.go('nfl'); main.appendChild(more);
 
   // pick'em: the standing only; the picks stay on their own tab
-  if (S.pickem) for (const n of standingBlock(S, undefined, () => S.go('pickem'))) main.appendChild(n);
+  if (S.pickem) for (const n of standingBlock(S, S.pickem, undefined, () => { S.state.pkWeek = null; S.go('pickem'); })) main.appendChild(n);
 
 
   const h3 = el('div', 'h'); h3.appendChild(el('h2', null, 'Standings')); main.appendChild(h3);

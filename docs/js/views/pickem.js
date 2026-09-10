@@ -1,24 +1,59 @@
-// Pick'em: the Big Als confidence pool. Where I sit in the group, the week's
-// games in confidence order with my pick in each, and the top of the table.
+// Pick'em: the Big Als confidence pool. Every week on a chip row; for the
+// week picked, where I sit, the games in confidence order with my pick in
+// each (tap one for why), and the top of the table.
 import { el, teamLogo, tag, fmtKick, fmtTime, pct } from '../util.js';
 import { ordinal } from '../ui/rows.js';
-import { ENTRY_ID } from '../sources/pickem.js';
+import { openPick } from '../ui/pksheet.js';
+import { ENTRY_ID, load } from '../sources/pickem.js';
 
 const FADE = 0.10; // the email's POOL FADES THIS line: market beats the pool by 10 points
 const DONE = new Set(['CORRECT', 'INCORRECT']);
+const STALE_MS = 5 * 60_000;
+
+// The week on screen: ESPN's current week comes with every refresh; any other
+// week is fetched when its chip is tapped and kept.
+function weekData(S) {
+  const cur = S.pickem; if (!cur) return null;
+  const wk = S.state.pkWeek || cur.period;
+  if (wk === cur.period) return cur;
+  S.pickemWeeks ||= {};
+  const have = S.pickemWeeks[wk];
+  if (!have || Date.now() - have.fetched > STALE_MS) {
+    if (!S.pickemLoading?.[wk]) {
+      (S.pickemLoading ||= {})[wk] = true;
+      load(wk).then(p => { S.pickemWeeks[wk] = p; }).catch(e => console.warn("Pick'em week " + wk, e))
+        .finally(() => { S.pickemLoading[wk] = false; if (S.state.tab === 'pickem') S.render(); });
+    }
+  }
+  return have || null;
+}
 
 export function render(S, main) {
-  const P = S.pickem;
-  if (!P) { main.appendChild(el('div', 'empty', S.pickemErr ? "Pick'em did not load" : "Pulling pick'em")); return; }
-  if (S.pickemErr) { const b = el('div', 'banner'); b.appendChild(el('span', 'tag', 'STALE')); b.appendChild(el('span', null, `Pick'em as of ${fmtTime(P.fetched)}`)); main.appendChild(b); }
+  if (!S.pickem) { main.appendChild(el('div', 'empty', S.pickemErr ? "Pick'em did not load" : "Pulling pick'em")); return; }
+  if (S.pickemErr) { const b = el('div', 'banner'); b.appendChild(el('span', 'tag', 'STALE')); b.appendChild(el('span', null, `Pick'em as of ${fmtTime(S.pickem.fetched)}`)); main.appendChild(b); }
 
-  const rows = pickRows(S);
-  for (const n of standingBlock(S, rows)) main.appendChild(n);
+  const wk = S.state.pkWeek || S.pickem.period;
+  const chips = el('div', 'chips');
+  let sel = null;
+  for (const w of S.pickem.weeks) {
+    const b = el('button', 'chip', w.abbrev.replace(/^Wk/, 'Wk '));
+    b.setAttribute('aria-pressed', String(w.id === wk)); if (w.id === wk) sel = b;
+    b.onclick = () => { S.state.pkWeek = w.id; S.render(); };
+    chips.appendChild(b);
+  }
+  main.appendChild(chips);
+  requestAnimationFrame(() => { if (sel) chips.scrollLeft = sel.offsetLeft - (chips.clientWidth - sel.offsetWidth) / 2; });
+
+  const P = weekData(S);
+  if (!P) { main.appendChild(el('div', 'empty', `Pulling week ${wk}`)); return; }
+  const rows = pickRows(S, P);
+  for (const n of standingBlock(S, P, rows)) main.appendChild(n);
 
   const right = rows.filter(x => x.result === 'CORRECT').length, wrong = rows.filter(x => x.result === 'INCORRECT').length;
   const h2 = el('div', 'h'); h2.appendChild(el('h2', null, 'My picks')); h2.appendChild(el('span', 'sub', `${right} correct, ${wrong} wrong, ${rows.filter(x => !x.result).length} to play`)); main.appendChild(h2);
   const list = el('section', 'panel pk-list');
   for (const x of rows) list.appendChild(row(S, x));
+  if (!rows.length) list.appendChild(el('div', 'empty', 'No games posted for this week yet'));
   main.appendChild(list);
 
   const ranked = [...P.entries].sort((a, b) => (a.score?.rank ?? 1e9) - (b.score?.rank ?? 1e9));
@@ -40,10 +75,10 @@ export function render(S, main) {
   t.appendChild(tb); scr.appendChild(t); panel.appendChild(scr); main.appendChild(panel);
 }
 
-// The week's games in confidence order: his pick once a game locks, the
+// A week's games in confidence order: his pick once a game locks, the
 // ladder's before that.
-export function pickRows(S) {
-  const P = S.pickem; if (!P) return [];
+export function pickRows(S, P = S.pickem) {
+  if (!P) return [];
   const games = new Map(S.ctx.games.list.map(g => [String(g.id), g]));
   return P.rows.map(r => {
     const pick = r.picked || (r.locked ? null : r.fav);
@@ -54,8 +89,7 @@ export function pickRows(S) {
 
 // The header and the four-number standing. Shared with Home, where a tap on
 // the numbers opens this tab.
-export function standingBlock(S, rows = pickRows(S), onTap = null) {
-  const P = S.pickem;
+export function standingBlock(S, P = S.pickem, rows = pickRows(S, P), onTap = null) {
   const sc = P.me?.score || {};
   const wk = sc.scoreByPeriod?.[P.period] || {};
   const inPlay = rows.filter(x => x.pick && !x.result).reduce((s, x) => s + (x.conf || 0), 0);
@@ -82,11 +116,11 @@ function score(g, pick) {
   return home ? [g.homeScore, g.awayScore] : [g.awayScore, g.homeScore];
 }
 
-function row(S, { r, g, pick, opp, conf, result }) {
+function row(S, x) {
+  const { r, g, pick, opp, conf, result } = x;
   const live = g?.state === 'in';
   const d = el('button', 'pk-row' + (live ? ' live' : '') + (result === 'INCORRECT' ? ' miss' : ''));
-  d.type = 'button';
-  if (g) { d.onclick = () => S.openGame(g); d.setAttribute('aria-label', `${r.name}, open game`); }
+  d.type = 'button'; d.onclick = () => openPick(S, x); d.setAttribute('aria-label', `${r.name}, why this pick`);
   d.appendChild(el('span', 'pk-c', conf != null ? String(conf) : '-'));
 
   const t = el('div', 'pk-t');
