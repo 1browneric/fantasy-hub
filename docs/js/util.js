@@ -55,4 +55,17 @@ export function headshot(T, pid, name, abbr, size) {
   img.onerror = () => img.replaceWith(fb());
   return img;
 }
+// Possession, drawn rather than spelled. A shape, so it carries on its own
+// without depending on colour; it is not an icon font and not an emoji.
+const FB = '<svg class="fb" viewBox="0 0 24 15" width="21" height="13" aria-hidden="true" focusable="false">'
+  + '<ellipse cx="12" cy="7.5" rx="11.4" ry="6.9" fill="#7A4521"/>'
+  + '<path d="M5.4 2.4a13 13 0 0 0 0 10.2M18.6 2.4a13 13 0 0 1 0 10.2" stroke="#F5F2EA" stroke-width="1.3" fill="none"/>'
+  + '<path d="M8.6 7.5h6.8" stroke="#F5F2EA" stroke-width="1.4"/>'
+  + '<path d="M10.2 5.9v3.2M12 5.9v3.2M13.8 5.9v3.2" stroke="#F5F2EA" stroke-width="1.2"/>'
+  + '</svg>';
+export function football() {
+  const t = document.createElement('template');
+  t.innerHTML = FB;
+  return t.content.firstElementChild;
+}
 export const tag = (cls, txt) => el('span', 'tag ' + cls, txt);

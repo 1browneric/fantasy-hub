@@ -13,7 +13,7 @@ game day. **Live:** https://1browneric.github.io/fantasy-hub/
 - **Home** - hero matchup (switch league), one card per league, my NFL games, presented-by insight, standings strip.
 - **Matchup** - my lineup and bench with the start/sit what-if; opponent's lineup scored live.
 - **My Players** - every player I own across the leagues, both point totals where two leagues own him.
-- **Rosters**, **Standings**, **Waivers** (pickups by projected points under each league's scoring, trending adds, every move), **NFL** (all games, clock, possession, red zone, my players in each).
+- **Rosters**, **Standings**, **Waivers** (pickups by projected points under each league's scoring, trending adds, every move), **NFL** (all games, clock, possession, red zone, down and distance, the snap that just happened - labelled TOUCHDOWN / FIELD GOAL GOOD / SAFETY when it scored - and my players in each).
 
 ## Data (all public, no keys, no login)
 - **Sleeper** - live from the phone: NFL state, weekly stats, Boats league (users, rosters, matchups, transactions), trending adds. Primary for stats and points.
@@ -43,7 +43,10 @@ node build/rt-fetch.mjs       # RT guest pages -> docs/data/rt/*.json (cron)
 `build/build-players.mjs` and `docs/data/players.json` are the retired single-list build; the app no longer reads them.
 
 ## Rules baked in
-No emojis or icons; team logos and headshots are brand imagery. Blue vs orange only for meaning, always with text or shape. Never sorted or annotated by bye week. Auto-refresh 30 s while games are live, 5 min otherwise, and on return to the app. Light panels on a field-green chrome; team colours enter as data.
+No emojis or icons; team logos and headshots are brand imagery, and possession
+is a drawn football (`football()` in `docs/js/util.js`) - a shape, not an icon
+font and not an emoji. RED ZONE stays in words beside it, because that one has
+to be read rather than inferred. Blue vs orange only for meaning, always with text or shape. Never sorted or annotated by bye week. Auto-refresh 30 s while games are live, 5 min otherwise, and on return to the app. Light panels on a field-green chrome; team colours enter as data.
 
 ## Debug
 `?season=2025&week=1&date=20250907` replays a completed slate (Boats uses its 2025 league). `&simulate=live` forces every game in progress. Both show a REPLAY banner.

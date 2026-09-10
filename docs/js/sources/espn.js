@@ -28,7 +28,12 @@ export async function loadGames(debug) {
       period, clock, elapsed, home: H, away: A,
       homeScore: Number(home.score || 0), awayScore: Number(away.score || 0),
       possession: situ.possession ? (situ.possession === home.id ? H : A) : null,
-      redzone: !!situ.isRedZone, down: situ.downDistanceText || '', lastPlay: situ.lastPlay?.text || '',
+      redzone: !!situ.isRedZone, down: situ.downDistanceText || '',
+      // the last snap, and what it was worth: scoreValue is 0 on an ordinary play
+      // and the points on a touchdown, field goal, safety or two point try
+      lastPlay: (situ.lastPlay?.text || '').trim(),
+      playType: (situ.lastPlay?.type?.text || '').trim(),
+      scored: Number(situ.lastPlay?.scoreValue || 0),
       broadcast: c.broadcasts?.[0]?.names?.[0] || '',
     };
     list.push(g);

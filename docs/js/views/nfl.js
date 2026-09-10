@@ -1,6 +1,6 @@
 // NFL: every game this week with logos, live score, clock, possession,
 // red zone, and which of my players are in it.
-import { el, teamLogo, paintTeam, tag, fmtKick } from '../util.js';
+import { el, teamLogo, paintTeam, tag, fmtKick, football } from '../util.js';
 
 export function gameChip(S, g, names) {
   const c = el('button', 'game' + (g.state === 'in' ? ' live' : '') + (g.state === 'in' && g.redzone ? ' rz' : ''));
@@ -9,7 +9,10 @@ export function gameChip(S, g, names) {
   const side = (abbr, score, other) => {
     const t = el('div', 't' + (g.state !== 'pre' && score < other ? ' trail' : ''));
     const ab = el('span', 'ab'); ab.appendChild(teamLogo(S.T, abbr, 'lg')); ab.append(abbr);
-    if (g.state === 'in' && g.possession === abbr) ab.appendChild(el('span', 'rz', g.redzone ? 'RED ZONE' : 'BALL'));
+    if (g.state === 'in' && g.possession === abbr) {
+      ab.appendChild(football());
+      if (g.redzone) ab.appendChild(el('span', 'rz', 'RED ZONE'));
+    }
     t.appendChild(ab); t.appendChild(el('span', 's', g.state === 'pre' ? '' : String(score)));
     return t;
   };
@@ -24,6 +27,14 @@ export function gameChip(S, g, names) {
   else { st.appendChild(el('span', null, fmtKick(g.kickoff))); if (g.broadcast) st.appendChild(el('span', 'tv', g.broadcast)); }
   c.appendChild(st);
   if (g.state === 'in' && g.down) c.appendChild(el('div', 'st sub', g.down));
+  // the snap that just happened, called out when it put points on the board
+  if (g.state === 'in' && g.lastPlay) {
+    if (g.scored > 0) c.classList.add('score');
+    const lp = el('div', 'lp' + (g.scored > 0 ? ' scored' : ''));
+    if (g.scored > 0 && g.playType) lp.appendChild(el('span', 'lpt', g.playType));
+    lp.append(g.lastPlay);
+    c.appendChild(lp);
+  }
   if (names?.length) { const m = el('div', 'mine'); for (const n of names) m.appendChild(el('span', null, n)); c.appendChild(m); }
   return c;
 }

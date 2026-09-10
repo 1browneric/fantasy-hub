@@ -1,6 +1,6 @@
 // Game sheet: one NFL game expanded -- live score, clock, situation, last
 // play, and every one of my players in it as full rows (both leagues' points).
-import { el, f1, teamLogo, tag, fmtKick } from '../util.js';
+import { el, f1, teamLogo, tag, fmtKick, football } from '../util.js';
 import { myMatchup } from '../model.js';
 import { playerRow } from './rows.js';
 
@@ -14,7 +14,10 @@ export function openGame(S, g) {
     const d = el('div', 'gside' + (right ? ' r' : ''));
     d.appendChild(teamLogo(S.T, abbr, 'xl'));
     const n = el('div', 'gab', abbr);
-    if (g.state === 'in' && g.possession === abbr) n.appendChild(el('span', 'poss', g.redzone ? 'RED ZONE' : 'BALL'));
+    if (g.state === 'in' && g.possession === abbr) {
+      n.appendChild(football());
+      if (g.redzone) n.appendChild(el('span', 'poss', 'RED ZONE'));
+    }
     d.appendChild(n);
     d.appendChild(el('div', 'gsc' + (g.state !== 'pre' && score < other ? ' trail' : ''), g.state === 'pre' ? '' : String(score)));
     return d;
