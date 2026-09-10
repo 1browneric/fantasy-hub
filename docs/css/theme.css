@@ -251,6 +251,14 @@ main>.h:first-child{margin-top:4px}
 .pk-row .pk-r{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font:600 11.5px var(--body);color:var(--ink2);white-space:nowrap}
 .tbl .pk-mem{display:block;color:var(--ink2);font-size:11px}
 .sheet button.stat{width:100%;text-align:left}
+.pk-bar{padding-top:0}
+a.chip{text-decoration:none;display:inline-flex;align-items:center}
+.pk-row.edit.lock{opacity:.55}
+.pk-row .pk-flip{display:block;width:100%;min-width:0;text-align:left;padding:2px 0}
+.pk-row .pk-mv{flex-direction:row;align-items:center;gap:6px}
+.pk-row .pk-mv button{font:700 11.5px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:9px 10px;border-radius:8px;
+  background:var(--panel2);color:var(--ink);border:1px solid var(--rule)}
+.pk-row .pk-mv button:disabled{opacity:.35}
 .sheet .rec div+div{margin-top:3px}
 .sheet .rec+.rec{margin-top:8px}
 
