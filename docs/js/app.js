@@ -3,6 +3,7 @@ import { $, el, fmtTime, normTeam } from './util.js';
 import * as espn from './sources/espn.js';
 import * as sleeper from './sources/sleeper.js';
 import * as rt from './sources/rt.js';
+import * as pickemSrc from './sources/pickem.js';
 import { makeLookup, buildBoats, boatsTransactions, buildRT, myMatchup, effectiveSlots } from './model.js';
 import { openPlayer } from './ui/sheet.js';
 import { openGame } from './ui/gamesheet.js';
@@ -12,6 +13,7 @@ import * as players from './views/players.js';
 import * as rosters from './views/rosters.js';
 import * as standings from './views/standings.js';
 import * as waivers from './views/waivers.js';
+import * as pickem from './views/pickem.js';
 import * as nfl from './views/nfl.js';
 
 const Q = new URLSearchParams(location.search);
@@ -19,7 +21,7 @@ const DEBUG = { season: Q.get('season'), week: Q.get('week'), date: Q.get('date'
   get on() { return !!(this.season || this.week || this.date || this.simulateLive || this.simulateSunday); }, replayStats: !!Q.get('season') };
 const MY_HANDLE = '1browneric2025';
 const TABS = [['home', 'Home', home], ['matchup', 'Matchup', matchup], ['players', 'My Players', players],
-  ['rosters', 'Rosters', rosters], ['standings', 'Standings', standings], ['waivers', 'Waivers', waivers], ['nfl', 'NFL', nfl]];
+  ['rosters', 'Rosters', rosters], ['standings', 'Standings', standings], ['waivers', 'Waivers', waivers], ['pickem', "Pick'em", pickem], ['nfl', 'NFL', nfl]];
 
 const S = {
   state: { tab: (location.hash || '#home').slice(1), lg: 'SoFi', week: null, season: null, updated: null, err: null, whatIf: {} },
@@ -83,14 +85,17 @@ async function refresh() {
     const season = DEBUG.season || st.season, week = Number(DEBUG.week) || st.week || st.display_week || 1;
     S.state.season = season; S.state.week = week;
     const boatsId = DEBUG.season === '2025' ? sleeper.BOATS_2025 : sleeper.BOATS_ID;
-    const [games, stats, boats, so, y6, tr] = await Promise.all([
+    const [games, stats, boats, so, y6, tr, pk] = await Promise.all([
       espn.loadGames(DEBUG),
       sleeper.stats(season, week).catch(() => ({})),
       sleeper.league(boatsId, week).catch(e => { console.warn('Boats', e); return null; }),
       rt.load('SoFi').catch(e => { console.warn('SoFi', e); return null; }),
       rt.load('Y60').catch(e => { console.warn('Y60', e); return null; }),
       S.cache.trending ? null : sleeper.trending().catch(() => null),
+      pickemSrc.load().catch(e => { console.warn("Pick'em", e); return null; }),
     ]);
+    // a failed pick'em read keeps the last good one, marked stale on its tab
+    if (pk) { S.pickem = pk; S.pickemErr = null; } else S.pickemErr = true;
     S.ctx.games = games; S.ctx.stats = stats;
     if (tr) S.cache.trending = Object.fromEntries(tr.map(x => [x.player_id, x.count]));
     if (boats) { const L = buildBoats(boats, week, S.lookup, MY_HANDLE); S.leagues.Boats = L; sleeper.transactions(boatsId, week).then(x => { boatsTransactions(L, x, S.lookup); }).catch(() => {}); }

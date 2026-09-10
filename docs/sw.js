@@ -2,14 +2,14 @@
 // Same-origin files are NETWORK-FIRST (a deploy is live on the next open,
 // no stale shell), with the cache as the offline fallback. Live feeds on
 // other origins bypass the worker entirely and are never cached.
-const V = 'fantasyhub-v19';
+const V = 'fantasyhub-v20';
 const SHELL = [
   './', 'index.html', 'manifest.json', 'css/theme.css',
   'js/app.js', 'js/util.js', 'js/model.js', 'js/scoring.js', 'js/statline.js',
-  'js/sources/espn.js', 'js/sources/sleeper.js', 'js/sources/rt.js',
+  'js/sources/espn.js', 'js/sources/sleeper.js', 'js/sources/rt.js', 'js/sources/pickem.js',
   'js/ui/rows.js', 'js/ui/sheet.js', 'js/ui/gamesheet.js', 'js/ui/h2h.js',
   'js/views/home.js', 'js/views/matchup.js', 'js/views/players.js', 'js/views/rosters.js',
-  'js/views/standings.js', 'js/views/waivers.js', 'js/views/nfl.js',
+  'js/views/standings.js', 'js/views/waivers.js', 'js/views/pickem.js', 'js/views/nfl.js',
   'data/teams.json', 'data/index.json', 'data/leagues.json',
   'icons/icon-192.png', 'icons/apple-touch-icon.png', 'icons/mark-96.png',
 ];
