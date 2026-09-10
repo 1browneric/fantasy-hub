@@ -4,32 +4,38 @@ name: RT Sports guest data
 #
 # GitHub's scheduler does not keep time. In the week of 2026-09-06 it delivered
 # 7 of 24 hourly runs with gaps up to 6 hours, and one run in the whole season
-# opener. So freshness during games no longer depends on it firing on time: any
-# run that lands while an NFL game is on, or within 90 minutes of a kickoff,
-# stays alive and refreshes every 6 minutes until the last game of that window
-# is final (build/rt-loop.sh). Windows come from ESPN's own schedule
+# opener; on 2026-09-10 the */10 cron below landed nothing for over an hour.
+# So freshness no longer depends on it at all. Each run lives up to 340
+# minutes - refreshing every 6 minutes while an NFL game is on or within 90
+# minutes of a kickoff, hourly otherwise (build/rt-loop.sh) - and then
+# dispatches its own successor. Windows come from ESPN's own schedule
 # (build/game-window.mjs), so Wednesday openers, London mornings, December
-# Saturdays and holidays need no calendar. Off-window runs refresh once if the
-# data is older than 55 minutes, and exit.
+# Saturdays and holidays need no calendar. The cron is only how a broken chain
+# restarts itself.
 on:
   schedule:
-    - cron: '*/10 * * * *'    # a landing point, not a clock - see above
+    - cron: '*/10 * * * *'    # restarts a broken chain; not the clock
   workflow_dispatch:
     inputs:
       force_window:
-        description: 'Test only: live, soon or off'
+        description: 'Test only: live, soon or off (no successor)'
         required: false
         default: ''
       max_loops:
-        description: 'Test only: stop after this many passes'
+        description: 'Test only: stop after this many passes (no successor)'
+        required: false
+        default: ''
+      budget_min:
+        description: 'Minutes before handing off to the next run (default 340)'
         required: false
         default: ''
 
 permissions:
   contents: write
+  actions: write     # to dispatch the successor run
 
-# One run at a time. A run that lands while a window run is looping waits its
-# turn, and on start either takes over the window or finds it closed and exits.
+# One run at a time. A successor (or a cron run) queues here until the running
+# link has finished, then picks the window up where it was left.
 concurrency:
   group: rt-data
   cancel-in-progress: false
@@ -43,10 +49,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Refresh, and keep refreshing while games are on
+      - name: Refresh while games are on, then hand off to the next run
         env:
           FORCE_WINDOW: ${{ inputs.force_window }}
           MAX_LOOPS: ${{ inputs.max_loops || '1000' }}
+          BUDGET_MIN: ${{ inputs.budget_min || '340' }}
+          CHAIN: ${{ (!inputs.force_window && !inputs.max_loops) && '1' || '0' }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           git config user.name "rt-data-bot"
           git config user.email "rt-data-bot@users.noreply.github.com"
