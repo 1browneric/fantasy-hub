@@ -29,7 +29,8 @@ export function render(S, main) {
       card.appendChild(m);
       const f = el('div', 'f');
       const l = el('span'); l.append('proj '); l.appendChild(el('b', null, f1(A.projFinal))); l.append(' to '); l.appendChild(el('b', null, f1(B.projFinal))); f.appendChild(l);
-      const r = el('span'); r.append('win '); r.appendChild(el('b', null, pct(winProb(A, B)))); r.append(` est.  ${A.yet} to play`); f.appendChild(r);
+      const wpa = Math.round(winProb(A, B) * 100);
+      const r = el('span'); r.append('win '); r.appendChild(el('b', null, wpa + '%')); r.append(' to '); r.appendChild(el('b', null, (100 - wpa) + '%')); r.append(` est.  ${A.yet} to play`); f.appendChild(r);
       card.appendChild(f);
       const heads = el('div', 'heads');
       for (const row of A.rows.slice(0, 9)) heads.appendChild(headshot(S.T, row.slot.pid, row.slot.name, row.slot.nfl, 'sm'));

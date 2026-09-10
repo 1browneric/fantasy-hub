@@ -117,8 +117,12 @@ main>.h:first-child{margin-top:4px}
 .hero .proj .r{text-align:right}
 .hero .proj b{color:#fff;font:700 15px var(--display);font-variant-numeric:tabular-nums}
 .hero .wp{padding:10px 12px 12px}
-.hero .wp .lab{display:flex;justify-content:space-between;align-items:center;font:700 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
-.hero .wp .lab b{color:#fff;font-size:15px}
+.hero .wp .lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:700 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.hero .wp .lab span{text-align:center}
+/* each number takes its end of the bar's colour; the side it sits on says whose */
+.hero .wp .lab b{font-size:24px;font-weight:800;letter-spacing:0;line-height:1;font-variant-numeric:tabular-nums}
+.hero .wp .lab b.a{color:#6FA4FF}
+.hero .wp .lab b.b{color:#FF8A3D}
 .hero .bar{height:10px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden;display:flex}
 .hero .bar i{display:block;height:100%;background:var(--sky);transition:width .8s cubic-bezier(.2,.8,.2,1)}
 .hero .bar i+i{background:var(--signal);flex:1}

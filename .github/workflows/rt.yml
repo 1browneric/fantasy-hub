@@ -1,19 +1,35 @@
 name: RT Sports guest data
 
-# Public guest pages only: no login, no secrets. Every 5 minutes inside NFL
-# game windows (Central Time expressed in UTC), hourly the rest of the week.
+# Public guest pages only: no login, no secrets.
+#
+# GitHub's scheduler does not keep time. In the week of 2026-09-06 it delivered
+# 7 of 24 hourly runs with gaps up to 6 hours, and one run in the whole season
+# opener. So freshness during games no longer depends on it firing on time: any
+# run that lands while an NFL game is on, or within 90 minutes of a kickoff,
+# stays alive and refreshes every 6 minutes until the last game of that window
+# is final (build/rt-loop.sh). Windows come from ESPN's own schedule
+# (build/game-window.mjs), so Wednesday openers, London mornings, December
+# Saturdays and holidays need no calendar. Off-window runs refresh once if the
+# data is older than 55 minutes, and exit.
 on:
   schedule:
-    - cron: '*/5 17-23 * 9-12,1 0'     # Sun 12:00-6:59pm CT  (17:00-23:59 UTC)
-    - cron: '*/5 0-5 * 9-12,1 1'       # Sun night 7:00pm-12:59am CT (Mon 00-05 UTC)
-    - cron: '*/5 0-5 * 9-12,1 2'       # Mon night 7:00pm-12:59am CT (Tue 00-05 UTC)
-    - cron: '*/5 0-5 * 9-12,1 5'       # Thu night 7:00pm-12:59am CT (Fri 00-05 UTC)
-    - cron: '17 * * * *'               # hourly, all week
+    - cron: '*/10 * * * *'    # a landing point, not a clock - see above
   workflow_dispatch:
+    inputs:
+      force_window:
+        description: 'Test only: live, soon or off'
+        required: false
+        default: ''
+      max_loops:
+        description: 'Test only: stop after this many passes'
+        required: false
+        default: ''
 
 permissions:
   contents: write
 
+# One run at a time. A run that lands while a window run is looping waits its
+# turn, and on start either takes over the window or finds it closed and exits.
 concurrency:
   group: rt-data
   cancel-in-progress: false
@@ -21,21 +37,17 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Fetch and parse RT guest pages
-        run: node build/rt-fetch.mjs
-      - name: Weekly projections, pre-scored
-        run: node build/build-proj.mjs
-      - name: Commit if changed
+      - name: Refresh, and keep refreshing while games are on
+        env:
+          FORCE_WINDOW: ${{ inputs.force_window }}
+          MAX_LOOPS: ${{ inputs.max_loops || '1000' }}
         run: |
           git config user.name "rt-data-bot"
           git config user.email "rt-data-bot@users.noreply.github.com"
-          git add docs/data/rt/*.json docs/data/proj.json
-          if git diff --cached --quiet; then echo "no change"; exit 0; fi
-          git commit -m "rt: guest data $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push
+          bash build/rt-loop.sh

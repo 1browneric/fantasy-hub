@@ -101,10 +101,17 @@ export function hero(S, league, onPick) {
   const pb = el('div', 'r'); pb.append('proj final '); pb.appendChild(el('b', null, f1(B.projFinal))); proj.appendChild(pb);
   box.appendChild(proj);
   const wp = winProb(A, B);
+  // both sides' odds, each over its own team and its own end of the bar; the
+  // two always add to 100
+  const wa = Math.round(wp * 100), wb = 100 - wa;
   const w = el('div', 'wp');
-  const lab = el('div', 'lab'); lab.appendChild(el('span', null, 'Win probability, est.')); lab.appendChild(el('b', null, pct(wp))); w.appendChild(lab);
+  const lab = el('div', 'lab');
+  lab.appendChild(el('b', 'a', wa + '%'));
+  lab.appendChild(el('span', null, 'Win probability, est.'));
+  lab.appendChild(el('b', 'b', wb + '%'));
+  w.appendChild(lab);
   const bar = el('div', 'bar'); const i = el('i'); i.style.width = '0%'; bar.appendChild(i); bar.appendChild(el('i')); w.appendChild(bar);
-  requestAnimationFrame(() => requestAnimationFrame(() => { i.style.width = pct(wp); }));
+  requestAnimationFrame(() => requestAnimationFrame(() => { i.style.width = wa + '%'; }));
   const left = el('div', 'left');
   const la = el('span'); la.appendChild(el('b', null, String(A.yet))); la.append(` of ${A.n} yet to play`);
   const lb = el('span'); lb.appendChild(el('b', null, String(B.yet))); lb.append(` of ${B.n} yet to play`);
