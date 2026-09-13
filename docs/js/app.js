@@ -97,9 +97,11 @@ async function refresh() {
     // a failed pick'em read keeps the last good one, marked stale on its tab
     if (pk) { S.pickem = pk; S.pickemErr = null; } else S.pickemErr = true;
     S.ctx.games = games; S.ctx.stats = stats;
-    // scoring plays ride behind the scoreboard: read only when a score moved,
+    // scoring plays and box scores ride behind the scoreboard: read only when
+    // a score moved (and every refresh for the live game whose sheet is open),
     // and repaint once they land rather than holding up this refresh
-    espn.loadScoring(games.list, S.scoring).then(ch => { if (ch) render(); }).catch(() => {});
+    const open = S.liveSheet && document.body.contains(S.liveSheet.node) ? new Set([S.liveSheet.id]) : null;
+    espn.loadSummaries(games.list, S.scoring, open).then(ch => { if (ch) render(); }).catch(() => {});
     if (tr) S.cache.trending = Object.fromEntries(tr.map(x => [x.player_id, x.count]));
     if (boats) { const L = buildBoats(boats, week, S.lookup, MY_HANDLE); S.leagues.Boats = L; sleeper.transactions(boatsId, week).then(x => { boatsTransactions(L, x, S.lookup); }).catch(() => {}); }
     if (so) S.leagues.SoFi = buildRT(so, S.lookup);
@@ -136,5 +138,7 @@ function render() {
   const tab = TABS.find(t => t[0] === S.state.tab) || TABS[0];
   if (!S.state.updated && !S.state.err) { main.appendChild(el('div', 'empty', 'Pulling live feeds')); return; }
   try { tab[2].render(S, main); } catch (e) { console.error(e); main.appendChild(el('div', 'banner', 'Render error: ' + e.message)); }
+  // an open game sheet follows the refresh instead of freezing at the score it opened on
+  if (S.liveSheet) { if (document.body.contains(S.liveSheet.node)) { try { S.liveSheet.redraw(); } catch (e) { console.error(e); } } else S.liveSheet = null; }
 }
 boot();
