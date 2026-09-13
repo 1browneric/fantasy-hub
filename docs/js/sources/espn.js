@@ -71,3 +71,47 @@ export async function loadGames(debug) {
   list.sort((a, b) => new Date(a.kickoff) - new Date(b.kickoff));
   return { byTeam, list, week: d.week?.number, season: d.season?.year };
 }
+
+// Scoring plays for one game, from ESPN's per-game summary: every score in
+// game order with the running score after it, and the drive line (plays,
+// yards, time) for offensive scores. A defensive score's drive on file is
+// the drive the other team just lost, so it carries none.
+const SUMMARY = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=';
+const OFFENSIVE = new Set(['TD', 'FG']);
+export function parseScoring(d, home, away) {
+  const driveOf = new Map();
+  for (const dr of d?.drives?.previous || []) {
+    if (!OFFENSIVE.has(String(dr.result || '').toUpperCase())) continue;
+    for (const p of dr.plays || []) driveOf.set(String(p.id), dr.description || '');
+  }
+  const out = [];
+  for (const p of d?.scoringPlays || []) {
+    const id = String(p.id || '');
+    out.push({
+      id, period: Number(p.period?.number || 0), clock: p.clock?.displayValue || '',
+      team: normTeam(p.team?.abbreviation), kind: p.scoringType?.displayName || '', type: p.type?.text || '',
+      text: (p.text || '').trim(), awayScore: Number(p.awayScore || 0), homeScore: Number(p.homeScore || 0),
+      drive: driveOf.get(id) || '',
+    });
+  }
+  return out;
+}
+// Keep `cache[gameId] = { key, plays }` current for every game that has
+// started. The summary is a large document, so it is read only when the
+// scoreboard shows a score the cache has not seen (once, for a final).
+// Resolves true when anything changed. A failed read keeps the last list.
+export async function loadScoring(list, cache) {
+  const due = list.filter(g => g.state !== 'pre' && cache[g.id]?.key !== `${g.awayScore}-${g.homeScore}`);
+  if (!due.length) return false;
+  let changed = false;
+  await Promise.all(due.map(async g => {
+    try {
+      const r = await fetch(SUMMARY + g.id, { cache: 'no-store' });
+      if (!r.ok) throw new Error('ESPN summary HTTP ' + r.status);
+      const plays = parseScoring(await r.json(), g.home, g.away);
+      cache[g.id] = { key: `${g.awayScore}-${g.homeScore}`, plays };
+      changed = true;
+    } catch (e) { console.warn('scoring', g.name, e.message); }
+  }));
+  return changed;
+}

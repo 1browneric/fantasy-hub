@@ -25,7 +25,7 @@ const TABS = [['home', 'Home', home], ['matchup', 'Matchup', matchup], ['players
 
 const S = {
   state: { tab: (location.hash || '#home').slice(1), lg: 'SoFi', week: null, season: null, updated: null, err: null, whatIf: {} },
-  T: {}, index: {}, lookup: null, proj: { p: {} }, leagues: {}, cache: { stats: {}, trending: null },
+  T: {}, index: {}, lookup: null, proj: { p: {} }, leagues: {}, cache: { stats: {}, trending: null }, scoring: {},
   ctx: { stats: {}, proj: { p: {} }, games: { byTeam: new Map(), list: [] }, whatIf: {}, debug: DEBUG },
   leagueList: () => ['SoFi', 'Y60', 'Boats'].map(k => S.leagues[k]).filter(Boolean),
   go: tab => { S.state.tab = tab; history.replaceState(null, '', '#' + tab); S.render(); window.scrollTo(0, 0); },
@@ -97,6 +97,9 @@ async function refresh() {
     // a failed pick'em read keeps the last good one, marked stale on its tab
     if (pk) { S.pickem = pk; S.pickemErr = null; } else S.pickemErr = true;
     S.ctx.games = games; S.ctx.stats = stats;
+    // scoring plays ride behind the scoreboard: read only when a score moved,
+    // and repaint once they land rather than holding up this refresh
+    espn.loadScoring(games.list, S.scoring).then(ch => { if (ch) render(); }).catch(() => {});
     if (tr) S.cache.trending = Object.fromEntries(tr.map(x => [x.player_id, x.count]));
     if (boats) { const L = buildBoats(boats, week, S.lookup, MY_HANDLE); S.leagues.Boats = L; sleeper.transactions(boatsId, week).then(x => { boatsTransactions(L, x, S.lookup); }).catch(() => {}); }
     if (so) S.leagues.SoFi = buildRT(so, S.lookup);

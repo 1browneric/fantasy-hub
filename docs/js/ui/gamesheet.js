@@ -3,6 +3,7 @@
 import { el, f1, teamLogo, tag, fmtKick, football } from '../util.js';
 import { myMatchup } from '../model.js';
 import { playerRow } from './rows.js';
+import { scoringList } from '../views/nfl.js';
 
 export function openGame(S, g) {
   document.querySelectorAll('.modal').forEach(m => m.remove());
@@ -33,6 +34,13 @@ export function openGame(S, g) {
   const x = el('button', 'x', 'Close'); x.onclick = () => modal.remove(); hd.appendChild(x);
   sheet.appendChild(hd);
   if (g.state === 'in' && g.lastPlay) { sheet.appendChild(el('div', 'sec', 'Last play')); sheet.appendChild(el('div', 'stat', g.lastPlay)); }
+  // every score in the game, by quarter, with the running score
+  const plays = S.scoring[g.id]?.plays;
+  if (g.state !== 'pre') {
+    sheet.appendChild(el('div', 'sec', 'Scoring plays' + (plays?.length ? ` (${plays.length})` : '')));
+    if (plays?.length) sheet.appendChild(scoringList(S, g, plays, 0));
+    else sheet.appendChild(el('div', 'stat', S.scoring[g.id] ? 'No score yet' : 'Loading'));
+  }
 
   const mine = S.myPlayers().filter(p => p.slot.nfl === g.away || p.slot.nfl === g.home);
   mine.sort((a, b) => (b.owned.some(o => o.slot.starter) - a.owned.some(o => o.slot.starter)) || a.slot.nfl.localeCompare(b.slot.nfl) || a.slot.name.localeCompare(b.slot.name));
