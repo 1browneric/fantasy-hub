@@ -96,22 +96,44 @@ export function parseScoring(d, home, away) {
   }
   return out;
 }
-// Keep `cache[gameId] = { key, plays }` current for every game that has
-// started. The summary is a large document, so it is read only when the
-// scoreboard shows a score the cache has not seen (once, for a final).
-// Resolves true when anything changed. A failed read keeps the last list.
-export async function loadScoring(list, cache) {
-  const due = list.filter(g => g.state !== 'pre' && cache[g.id]?.key !== `${g.awayScore}-${g.homeScore}`);
+// The box score: team stats side by side, every player's line by group
+// (passing, rushing, receiving ... punting, ESPN's order and labels, empty
+// groups dropped), and the game leaders. Before kickoff it is empty.
+const GROUP = { passing: 'Passing', rushing: 'Rushing', receiving: 'Receiving', fumbles: 'Fumbles', defensive: 'Defense',
+  interceptions: 'Interceptions', kickReturns: 'Kick returns', puntReturns: 'Punt returns', kicking: 'Kicking', punting: 'Punting' };
+export function parseBox(d) {
+  const b = d?.boxscore || {};
+  const teams = (b.teams || []).map(t => ({ team: normTeam(t.team?.abbreviation),
+    stats: (t.statistics || []).map(s => [s.label || s.name || '', s.displayValue ?? '']) }));
+  const players = (b.players || []).map(p => ({ team: normTeam(p.team?.abbreviation),
+    groups: (p.statistics || []).filter(g => (g.athletes || []).length).map(g => ({
+      name: g.name || '', label: GROUP[g.name] || g.text || g.name || '', labels: g.labels || [],
+      rows: g.athletes.map(a => ({ id: String(a.athlete?.id || ''), name: a.athlete?.displayName || '', stats: a.stats || [] })),
+      totals: g.totals || [],
+    })) }));
+  const leaders = (d?.leaders || []).map(l => ({ team: normTeam(l.team?.abbreviation),
+    cats: (l.leaders || []).filter(c => c.leaders?.[0]).map(c => ({ name: c.name || '', label: c.displayName || c.name || '',
+      who: c.leaders[0].athlete?.displayName || '', id: String(c.leaders[0].athlete?.id || ''), value: c.leaders[0].displayValue || '' })) }));
+  return { teams, players, leaders };
+}
+// Keep `cache[gameId] = { key, plays, box }` current for every game that
+// has started. The summary is a large document, so it is read only when the
+// scoreboard shows a score the cache has not seen (once, for a final) - or,
+// for ids in `force` (the live game whose sheet is open), every refresh so
+// its box score keeps up. Resolves true when anything changed. A failed
+// read keeps the last one.
+export async function loadSummaries(list, cache, force) {
+  const due = list.filter(g => g.state !== 'pre' && (cache[g.id]?.key !== `${g.awayScore}-${g.homeScore}` || (g.state === 'in' && force?.has(g.id))));
   if (!due.length) return false;
   let changed = false;
   await Promise.all(due.map(async g => {
     try {
       const r = await fetch(SUMMARY + g.id, { cache: 'no-store' });
       if (!r.ok) throw new Error('ESPN summary HTTP ' + r.status);
-      const plays = parseScoring(await r.json(), g.home, g.away);
-      cache[g.id] = { key: `${g.awayScore}-${g.homeScore}`, plays };
+      const d = await r.json();
+      cache[g.id] = { key: `${g.awayScore}-${g.homeScore}`, plays: parseScoring(d, g.home, g.away), box: parseBox(d), at: Date.now() };
       changed = true;
-    } catch (e) { console.warn('scoring', g.name, e.message); }
+    } catch (e) { console.warn('summary', g.name, e.message); }
   }));
   return changed;
 }

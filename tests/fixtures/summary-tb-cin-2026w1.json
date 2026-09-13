@@ -942,5 +942,2022 @@
     ]
    }
   ]
- }
+ },
+ "boxscore": {
+  "teams": [
+   {
+    "team": {
+     "abbreviation": "TB"
+    },
+    "statistics": [
+     {
+      "label": "1st Downs",
+      "displayValue": "19"
+     },
+     {
+      "label": "Passing 1st downs",
+      "displayValue": "12"
+     },
+     {
+      "label": "Rushing 1st downs",
+      "displayValue": "5"
+     },
+     {
+      "label": "1st downs from penalties",
+      "displayValue": "2"
+     },
+     {
+      "label": "3rd down efficiency",
+      "displayValue": "5-10"
+     },
+     {
+      "label": "4th down efficiency",
+      "displayValue": "0-0"
+     },
+     {
+      "label": "Total Plays",
+      "displayValue": "52"
+     },
+     {
+      "label": "Total Yards",
+      "displayValue": "282"
+     },
+     {
+      "label": "Yards per Play",
+      "displayValue": "5.4"
+     },
+     {
+      "label": "Total Drives",
+      "displayValue": "9"
+     },
+     {
+      "label": "Passing",
+      "displayValue": "193"
+     },
+     {
+      "label": "Comp/Att",
+      "displayValue": "23/28"
+     },
+     {
+      "label": "Yards per pass",
+      "displayValue": "6.0"
+     },
+     {
+      "label": "Interceptions thrown",
+      "displayValue": "0"
+     },
+     {
+      "label": "Sacks-Yards Lost",
+      "displayValue": "4-23"
+     },
+     {
+      "label": "Rushing",
+      "displayValue": "89"
+     },
+     {
+      "label": "Rushing Attempts",
+      "displayValue": "20"
+     },
+     {
+      "label": "Yards per rush",
+      "displayValue": "4.5"
+     },
+     {
+      "label": "Red Zone (Made-Att)",
+      "displayValue": "2-4"
+     },
+     {
+      "label": "Penalties",
+      "displayValue": "8-39"
+     },
+     {
+      "label": "Turnovers",
+      "displayValue": "4"
+     },
+     {
+      "label": "Fumbles lost",
+      "displayValue": "4"
+     },
+     {
+      "label": "Interceptions thrown",
+      "displayValue": "0"
+     },
+     {
+      "label": "Defensive / Special Teams TDs",
+      "displayValue": "1"
+     },
+     {
+      "label": "Possession",
+      "displayValue": "28:35"
+     }
+    ]
+   },
+   {
+    "team": {
+     "abbreviation": "CIN"
+    },
+    "statistics": [
+     {
+      "label": "1st Downs",
+      "displayValue": "26"
+     },
+     {
+      "label": "Passing 1st downs",
+      "displayValue": "14"
+     },
+     {
+      "label": "Rushing 1st downs",
+      "displayValue": "10"
+     },
+     {
+      "label": "1st downs from penalties",
+      "displayValue": "2"
+     },
+     {
+      "label": "3rd down efficiency",
+      "displayValue": "8-14"
+     },
+     {
+      "label": "4th down efficiency",
+      "displayValue": "0-0"
+     },
+     {
+      "label": "Total Plays",
+      "displayValue": "63"
+     },
+     {
+      "label": "Total Yards",
+      "displayValue": "351"
+     },
+     {
+      "label": "Yards per Play",
+      "displayValue": "5.6"
+     },
+     {
+      "label": "Total Drives",
+      "displayValue": "9"
+     },
+     {
+      "label": "Passing",
+      "displayValue": "245"
+     },
+     {
+      "label": "Comp/Att",
+      "displayValue": "25/35"
+     },
+     {
+      "label": "Yards per pass",
+      "displayValue": "6.8"
+     },
+     {
+      "label": "Interceptions thrown",
+      "displayValue": "1"
+     },
+     {
+      "label": "Sacks-Yards Lost",
+      "displayValue": "1-9"
+     },
+     {
+      "label": "Rushing",
+      "displayValue": "106"
+     },
+     {
+      "label": "Rushing Attempts",
+      "displayValue": "27"
+     },
+     {
+      "label": "Yards per rush",
+      "displayValue": "3.9"
+     },
+     {
+      "label": "Red Zone (Made-Att)",
+      "displayValue": "2-5"
+     },
+     {
+      "label": "Penalties",
+      "displayValue": "7-47"
+     },
+     {
+      "label": "Turnovers",
+      "displayValue": "1"
+     },
+     {
+      "label": "Fumbles lost",
+      "displayValue": "0"
+     },
+     {
+      "label": "Interceptions thrown",
+      "displayValue": "1"
+     },
+     {
+      "label": "Defensive / Special Teams TDs",
+      "displayValue": "1"
+     },
+     {
+      "label": "Possession",
+      "displayValue": "31:25"
+     }
+    ]
+   }
+  ],
+  "players": [
+   {
+    "team": {
+     "abbreviation": "TB"
+    },
+    "statistics": [
+     {
+      "name": "passing",
+      "text": "Tampa Bay Passing",
+      "labels": [
+       "C/ATT",
+       "YDS",
+       "AVG",
+       "TD",
+       "INT",
+       "SACKS",
+       "RTG"
+      ],
+      "totals": [
+       "23/28",
+       "193",
+       "7.7",
+       "0",
+       "0",
+       "4-23",
+       "98.8"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "3052587",
+         "displayName": "Baker Mayfield",
+         "jersey": "6"
+        },
+        "stats": [
+         "23/28",
+         "216",
+         "7.7",
+         "0",
+         "0",
+         "4-23",
+         "98.8"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "rushing",
+      "text": "Tampa Bay Rushing",
+      "labels": [
+       "CAR",
+       "YDS",
+       "AVG",
+       "TD",
+       "LONG"
+      ],
+      "totals": [
+       "20",
+       "89",
+       "4.5",
+       "2",
+       "10"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4596448",
+         "displayName": "Bucky Irving",
+         "jersey": "7"
+        },
+        "stats": [
+         "8",
+         "45",
+         "5.6",
+         "1",
+         "10"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3052587",
+         "displayName": "Baker Mayfield",
+         "jersey": "6"
+        },
+        "stats": [
+         "5",
+         "30",
+         "6.0",
+         "1",
+         "9"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4371733",
+         "displayName": "Kenny Gainwell",
+         "jersey": "1"
+        },
+        "stats": [
+         "5",
+         "15",
+         "3.0",
+         "0",
+         "7"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3116165",
+         "displayName": "Chris Godwin Jr.",
+         "jersey": "14"
+        },
+        "stats": [
+         "1",
+         "3",
+         "3.0",
+         "0",
+         "3"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4608810",
+         "displayName": "Tez Johnson",
+         "jersey": "15"
+        },
+        "stats": [
+         "1",
+         "-4",
+         "-4.0",
+         "0",
+         "-4"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "receiving",
+      "text": "Tampa Bay Receiving",
+      "labels": [
+       "REC",
+       "YDS",
+       "AVG",
+       "TD",
+       "LONG",
+       "TGTS"
+      ],
+      "totals": [
+       "23",
+       "216",
+       "9.4",
+       "0",
+       "30",
+       "27"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4567750",
+         "displayName": "Emeka Egbuka",
+         "jersey": "2"
+        },
+        "stats": [
+         "5",
+         "63",
+         "12.6",
+         "0",
+         "17",
+         "6"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4596448",
+         "displayName": "Bucky Irving",
+         "jersey": "7"
+        },
+        "stats": [
+         "7",
+         "48",
+         "6.9",
+         "0",
+         "22",
+         "7"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3116165",
+         "displayName": "Chris Godwin Jr.",
+         "jersey": "14"
+        },
+        "stats": [
+         "4",
+         "40",
+         "10.0",
+         "0",
+         "30",
+         "4"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "5220680",
+         "displayName": "Ted Hurst III",
+         "jersey": "17"
+        },
+        "stats": [
+         "3",
+         "36",
+         "12.0",
+         "0",
+         "16",
+         "3"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4243331",
+         "displayName": "Cade Otton",
+         "jersey": "88"
+        },
+        "stats": [
+         "3",
+         "26",
+         "8.7",
+         "0",
+         "13",
+         "5"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4371733",
+         "displayName": "Kenny Gainwell",
+         "jersey": "1"
+        },
+        "stats": [
+         "1",
+         "3",
+         "3.0",
+         "0",
+         "3",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4608810",
+         "displayName": "Tez Johnson",
+         "jersey": "15"
+        },
+        "stats": [
+         "0",
+         "0",
+         "0.0",
+         "0",
+         "0",
+         "1"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "fumbles",
+      "text": "Tampa Bay Fumbles",
+      "labels": [
+       "FUM",
+       "LOST",
+       "REC"
+      ],
+      "totals": [
+       "4",
+       "4",
+       "0"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "3052587",
+         "displayName": "Baker Mayfield",
+         "jersey": "6"
+        },
+        "stats": [
+         "3",
+         "3",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4596448",
+         "displayName": "Bucky Irving",
+         "jersey": "7"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "defensive",
+      "text": "Tampa Bay Defense",
+      "labels": [
+       "TOT",
+       "SOLO",
+       "SACKS",
+       "TFL",
+       "PD",
+       "QB HTS",
+       "TD"
+      ],
+      "totals": [
+       "66",
+       "46",
+       "1",
+       "5",
+       "6",
+       "6",
+       "1"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4870998",
+         "displayName": "Josiah Trotter",
+         "jersey": "45"
+        },
+        "stats": [
+         "11",
+         "4",
+         "1",
+         "2",
+         "1",
+         "1",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4250392",
+         "displayName": "Zyon McCollum",
+         "jersey": "27"
+        },
+        "stats": [
+         "9",
+         "8",
+         "0",
+         "1",
+         "2",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4034790",
+         "displayName": "Antoine Winfield Jr.",
+         "jersey": "31"
+        },
+        "stats": [
+         "9",
+         "7",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3043107",
+         "displayName": "Alex Anzalone",
+         "jersey": "34"
+        },
+        "stats": [
+         "7",
+         "2",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3054857",
+         "displayName": "A'Shawn Robinson",
+         "jersey": "91"
+        },
+        "stats": [
+         "5",
+         "3",
+         "0",
+         "0",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4816107",
+         "displayName": "Benjamin Morrison",
+         "jersey": "21"
+        },
+        "stats": [
+         "4",
+         "4",
+         "0",
+         "1",
+         "1",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "5093694",
+         "displayName": "Keionte Scott",
+         "jersey": "22"
+        },
+        "stats": [
+         "4",
+         "4",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4428522",
+         "displayName": "Tykee Smith",
+         "jersey": "23"
+        },
+        "stats": [
+         "4",
+         "3",
+         "0",
+         "0",
+         "1",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4602648",
+         "displayName": "Kevin Knowles",
+         "jersey": "38"
+        },
+        "stats": [
+         "2",
+         "2",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4912847",
+         "displayName": "Jacob Parrish",
+         "jersey": "25"
+        },
+        "stats": [
+         "2",
+         "2",
+         "0",
+         "0",
+         "1",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3894856",
+         "displayName": "Anthony Nelson",
+         "jersey": "98"
+        },
+        "stats": [
+         "2",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3051942",
+         "displayName": "Al-Quadin Muhammad",
+         "jersey": "97"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "2",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4429511",
+         "displayName": "SirVocea Dennis",
+         "jersey": "8"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4686334",
+         "displayName": "Yaya Diaby",
+         "jersey": "0"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "1",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4870617",
+         "displayName": "Rueben Bain Jr.",
+         "jersey": "3"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4890373",
+         "displayName": "Bauer Sharp",
+         "jersey": "84"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "5085355",
+         "displayName": "David Walker",
+         "jersey": "51"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "2575453",
+         "displayName": "Rakeem Nunez-Roches",
+         "jersey": "56"
+        },
+        "stats": [
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3134362",
+         "displayName": "Vita Vea",
+         "jersey": "50"
+        },
+        "stats": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4427673",
+         "displayName": "Calijah Kancey",
+         "jersey": "94"
+        },
+        "stats": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "1",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "interceptions",
+      "text": "Tampa Bay Interceptions",
+      "labels": [
+       "INT",
+       "YDS",
+       "TD"
+      ],
+      "totals": [
+       "1",
+       "38",
+       "1"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4870998",
+         "displayName": "Josiah Trotter",
+         "jersey": "45"
+        },
+        "stats": [
+         "1",
+         "38",
+         "1"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "kickReturns",
+      "text": "Tampa Bay Kick Returns",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "LONG",
+       "TD"
+      ],
+      "totals": [
+       "7",
+       "206",
+       "29.4",
+       "47",
+       "0"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "5097554",
+         "displayName": "Kameron Johnson",
+         "jersey": "19"
+        },
+        "stats": [
+         "5",
+         "137",
+         "27.4",
+         "32",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4568024",
+         "displayName": "Josh Williams",
+         "jersey": "18"
+        },
+        "stats": [
+         "1",
+         "47",
+         "47.0",
+         "47",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4371733",
+         "displayName": "Kenny Gainwell",
+         "jersey": "1"
+        },
+        "stats": [
+         "1",
+         "22",
+         "22.0",
+         "22",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "puntReturns",
+      "text": "Tampa Bay Punt Returns",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "LONG",
+       "TD"
+      ],
+      "totals": [
+       "1",
+       "13",
+       "13.0",
+       "13",
+       "0"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4608810",
+         "displayName": "Tez Johnson",
+         "jersey": "15"
+        },
+        "stats": [
+         "1",
+         "13",
+         "13.0",
+         "13",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "kicking",
+      "text": "Tampa Bay Kicking",
+      "labels": [
+       "FG",
+       "PCT",
+       "LONG",
+       "XP",
+       "PTS"
+      ],
+      "totals": [
+       "2/2",
+       "100.0",
+       "51",
+       "3/3",
+       "9"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "3150744",
+         "displayName": "Chase McLaughlin",
+         "jersey": "4"
+        },
+        "stats": [
+         "2/2",
+         "100.0",
+         "51",
+         "3/3",
+         "9"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "punting",
+      "text": "Tampa Bay Punting",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "TB",
+       "In 20",
+       "LONG"
+      ],
+      "totals": [],
+      "athletes": []
+     }
+    ]
+   },
+   {
+    "team": {
+     "abbreviation": "CIN"
+    },
+    "statistics": [
+     {
+      "name": "passing",
+      "text": "Cincinnati Passing",
+      "labels": [
+       "C/ATT",
+       "YDS",
+       "AVG",
+       "TD",
+       "INT",
+       "SACKS",
+       "RTG"
+      ],
+      "totals": [
+       "25/35",
+       "245",
+       "7.3",
+       "1",
+       "1",
+       "1-9",
+       "89.5"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "3915511",
+         "displayName": "Joe Burrow",
+         "jersey": "9"
+        },
+        "stats": [
+         "25/35",
+         "254",
+         "7.3",
+         "1",
+         "1",
+         "1-9",
+         "89.5"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "rushing",
+      "text": "Cincinnati Rushing",
+      "labels": [
+       "CAR",
+       "YDS",
+       "AVG",
+       "TD",
+       "LONG"
+      ],
+      "totals": [
+       "27",
+       "106",
+       "3.9",
+       "1",
+       "13"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4362238",
+         "displayName": "Chase Brown",
+         "jersey": "30"
+        },
+        "stats": [
+         "16",
+         "56",
+         "3.5",
+         "1",
+         "13"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3116389",
+         "displayName": "Samaje Perine",
+         "jersey": "34"
+        },
+        "stats": [
+         "5",
+         "20",
+         "4.0",
+         "0",
+         "8"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3915511",
+         "displayName": "Joe Burrow",
+         "jersey": "9"
+        },
+        "stats": [
+         "5",
+         "20",
+         "4.0",
+         "0",
+         "12"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4384852",
+         "displayName": "Dohnte Meyers",
+         "jersey": "81"
+        },
+        "stats": [
+         "1",
+         "10",
+         "10.0",
+         "0",
+         "10"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "receiving",
+      "text": "Cincinnati Receiving",
+      "labels": [
+       "REC",
+       "YDS",
+       "AVG",
+       "TD",
+       "LONG",
+       "TGTS"
+      ],
+      "totals": [
+       "25",
+       "254",
+       "10.2",
+       "1",
+       "29",
+       "34"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "3116164",
+         "displayName": "Mike Gesicki",
+         "jersey": "88"
+        },
+        "stats": [
+         "5",
+         "78",
+         "15.6",
+         "1",
+         "25",
+         "7"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4239993",
+         "displayName": "Tee Higgins",
+         "jersey": "5"
+        },
+        "stats": [
+         "3",
+         "59",
+         "19.7",
+         "0",
+         "29",
+         "6"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3116389",
+         "displayName": "Samaje Perine",
+         "jersey": "34"
+        },
+        "stats": [
+         "3",
+         "30",
+         "10.0",
+         "0",
+         "14",
+         "3"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4362238",
+         "displayName": "Chase Brown",
+         "jersey": "30"
+        },
+        "stats": [
+         "5",
+         "22",
+         "4.4",
+         "0",
+         "9",
+         "6"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3127310",
+         "displayName": "Drew Sample",
+         "jersey": "89"
+        },
+        "stats": [
+         "3",
+         "19",
+         "6.3",
+         "0",
+         "11",
+         "3"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4384852",
+         "displayName": "Dohnte Meyers",
+         "jersey": "81"
+        },
+        "stats": [
+         "1",
+         "18",
+         "18.0",
+         "0",
+         "18",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4362628",
+         "displayName": "Ja'Marr Chase",
+         "jersey": "1"
+        },
+        "stats": [
+         "2",
+         "12",
+         "6.0",
+         "0",
+         "16",
+         "4"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4368003",
+         "displayName": "Andrei Iosivas",
+         "jersey": "80"
+        },
+        "stats": [
+         "2",
+         "12",
+         "6.0",
+         "0",
+         "12",
+         "3"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3050481",
+         "displayName": "Tanner Hudson",
+         "jersey": "87"
+        },
+        "stats": [
+         "1",
+         "4",
+         "4.0",
+         "0",
+         "4",
+         "1"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "fumbles",
+      "text": "Cincinnati Fumbles",
+      "labels": [
+       "FUM",
+       "LOST",
+       "REC"
+      ],
+      "totals": [
+       "0",
+       "0",
+       "4"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4240612",
+         "displayName": "T.J. Slaton Jr.",
+         "jersey": "98"
+        },
+        "stats": [
+         "0",
+         "0",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4240754",
+         "displayName": "Boye Mafe",
+         "jersey": "53"
+        },
+        "stats": [
+         "0",
+         "0",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4247726",
+         "displayName": "Bryan Cook",
+         "jersey": "6"
+        },
+        "stats": [
+         "0",
+         "0",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4427729",
+         "displayName": "Demetrius Knight Jr.",
+         "jersey": "44"
+        },
+        "stats": [
+         "0",
+         "0",
+         "1"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "defensive",
+      "text": "Cincinnati Defense",
+      "labels": [
+       "TOT",
+       "SOLO",
+       "SACKS",
+       "TFL",
+       "PD",
+       "QB HTS",
+       "TD"
+      ],
+      "totals": [
+       "63",
+       "41",
+       "4",
+       "5",
+       "1",
+       "6",
+       "1"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4567098",
+         "displayName": "Jordan Battle",
+         "jersey": "27"
+        },
+        "stats": [
+         "9",
+         "6",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4431519",
+         "displayName": "Barrett Carter",
+         "jersey": "49"
+        },
+        "stats": [
+         "8",
+         "5",
+         "0.5",
+         "1",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4426422",
+         "displayName": "Dax Hill",
+         "jersey": "23"
+        },
+        "stats": [
+         "7",
+         "7",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4427729",
+         "displayName": "Demetrius Knight Jr.",
+         "jersey": "44"
+        },
+        "stats": [
+         "7",
+         "5",
+         "0",
+         "0",
+         "0",
+         "0",
+         "1"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4247726",
+         "displayName": "Bryan Cook",
+         "jersey": "6"
+        },
+        "stats": [
+         "6",
+         "4",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3125356",
+         "displayName": "Jalen Davis",
+         "jersey": "35"
+        },
+        "stats": [
+         "5",
+         "2",
+         "0",
+         "1",
+         "1",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4572036",
+         "displayName": "DJ Turner II",
+         "jersey": "0"
+        },
+        "stats": [
+         "4",
+         "3",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3054840",
+         "displayName": "Jonathan Allen",
+         "jersey": "93"
+        },
+        "stats": [
+         "3",
+         "2",
+         "1",
+         "1",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3116389",
+         "displayName": "Samaje Perine",
+         "jersey": "34"
+        },
+        "stats": [
+         "2",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4428985",
+         "displayName": "Myles Murphy",
+         "jersey": "99"
+        },
+        "stats": [
+         "2",
+         "1",
+         "0.5",
+         "0",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4570546",
+         "displayName": "Swayze Bozeman",
+         "jersey": "47"
+        },
+        "stats": [
+         "2",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4240754",
+         "displayName": "Boye Mafe",
+         "jersey": "53"
+        },
+        "stats": [
+         "1",
+         "1",
+         "1",
+         "1",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4432301",
+         "displayName": "Kris Jenkins Jr.",
+         "jersey": "90"
+        },
+        "stats": [
+         "1",
+         "1",
+         "1",
+         "1",
+         "0",
+         "1",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4240612",
+         "displayName": "T.J. Slaton Jr.",
+         "jersey": "98"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4360234",
+         "displayName": "Evan McPherson",
+         "jersey": "2"
+        },
+        "stats": [
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3051746",
+         "displayName": "Oren Burks",
+         "jersey": "42"
+        },
+        "stats": [
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "3917797",
+         "displayName": "Joe Giles-Harris",
+         "jersey": "43"
+        },
+        "stats": [
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4430065",
+         "displayName": "Cedric Johnson",
+         "jersey": "52"
+        },
+        "stats": [
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4726127",
+         "displayName": "Tacario Davis",
+         "jersey": "20"
+        },
+        "stats": [
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4035483",
+         "displayName": "Dexter Lawrence II",
+         "jersey": "97"
+        },
+        "stats": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "1",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "interceptions",
+      "text": "Cincinnati Interceptions",
+      "labels": [
+       "INT",
+       "YDS",
+       "TD"
+      ],
+      "totals": [],
+      "athletes": []
+     },
+     {
+      "name": "kickReturns",
+      "text": "Cincinnati Kick Returns",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "LONG",
+       "TD"
+      ],
+      "totals": [
+       "6",
+       "142",
+       "23.7",
+       "26",
+       "0"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4384852",
+         "displayName": "Dohnte Meyers",
+         "jersey": "81"
+        },
+        "stats": [
+         "4",
+         "93",
+         "23.3",
+         "25",
+         "0"
+        ]
+       },
+       {
+        "athlete": {
+         "id": "4429299",
+         "displayName": "Tahj Brooks",
+         "jersey": "25"
+        },
+        "stats": [
+         "2",
+         "49",
+         "24.5",
+         "26",
+         "0"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "puntReturns",
+      "text": "Cincinnati Punt Returns",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "LONG",
+       "TD"
+      ],
+      "totals": [],
+      "athletes": []
+     },
+     {
+      "name": "kicking",
+      "text": "Cincinnati Kicking",
+      "labels": [
+       "FG",
+       "PCT",
+       "LONG",
+       "XP",
+       "PTS"
+      ],
+      "totals": [
+       "4/4",
+       "100.0",
+       "58",
+       "3/3",
+       "15"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4360234",
+         "displayName": "Evan McPherson",
+         "jersey": "2"
+        },
+        "stats": [
+         "4/4",
+         "100.0",
+         "58",
+         "3/3",
+         "15"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "punting",
+      "text": "Cincinnati Punting",
+      "labels": [
+       "NO",
+       "YDS",
+       "AVG",
+       "TB",
+       "In 20",
+       "LONG"
+      ],
+      "totals": [
+       "1",
+       "51",
+       "51.0",
+       "0",
+       "0",
+       "51"
+      ],
+      "athletes": [
+       {
+        "athlete": {
+         "id": "4608820",
+         "displayName": "Ryan Rehkow",
+         "jersey": "8"
+        },
+        "stats": [
+         "1",
+         "51",
+         "51.0",
+         "0",
+         "0",
+         "51"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "leaders": [
+  {
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "leaders": [
+    {
+     "name": "passingYards",
+     "displayName": "Passing Yards",
+     "leaders": [
+      {
+       "displayValue": "25/35, 254 YDS, 1 TD, 1 INT",
+       "athlete": {
+        "id": "3915511",
+        "displayName": "Joe Burrow"
+       }
+      }
+     ]
+    },
+    {
+     "name": "rushingYards",
+     "displayName": "Rushing Yards",
+     "leaders": [
+      {
+       "displayValue": "16 CAR, 56 YDS, 1 TD",
+       "athlete": {
+        "id": "4362238",
+        "displayName": "Chase Brown"
+       }
+      }
+     ]
+    },
+    {
+     "name": "receivingYards",
+     "displayName": "Receiving Yards",
+     "leaders": [
+      {
+       "displayValue": "5 REC, 78 YDS, 1 TD",
+       "athlete": {
+        "id": "3116164",
+        "displayName": "Mike Gesicki"
+       }
+      }
+     ]
+    },
+    {
+     "name": "sacks",
+     "displayName": "Sacks",
+     "leaders": [
+      {
+       "displayValue": "1",
+       "athlete": {
+        "id": "3054840",
+        "displayName": "Jonathan Allen"
+       }
+      }
+     ]
+    },
+    {
+     "name": "totalTackles",
+     "displayName": "Tackles",
+     "leaders": [
+      {
+       "displayValue": "9",
+       "athlete": {
+        "id": "4567098",
+        "displayName": "Jordan Battle"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "team": {
+    "abbreviation": "TB"
+   },
+   "leaders": [
+    {
+     "name": "passingYards",
+     "displayName": "Passing Yards",
+     "leaders": [
+      {
+       "displayValue": "23/28, 216 YDS",
+       "athlete": {
+        "id": "3052587",
+        "displayName": "Baker Mayfield"
+       }
+      }
+     ]
+    },
+    {
+     "name": "rushingYards",
+     "displayName": "Rushing Yards",
+     "leaders": [
+      {
+       "displayValue": "8 CAR, 45 YDS, 1 TD",
+       "athlete": {
+        "id": "4596448",
+        "displayName": "Bucky Irving"
+       }
+      }
+     ]
+    },
+    {
+     "name": "receivingYards",
+     "displayName": "Receiving Yards",
+     "leaders": [
+      {
+       "displayValue": "5 REC, 63 YDS",
+       "athlete": {
+        "id": "4567750",
+        "displayName": "Emeka Egbuka"
+       }
+      }
+     ]
+    },
+    {
+     "name": "sacks",
+     "displayName": "Sacks",
+     "leaders": [
+      {
+       "displayValue": "1",
+       "athlete": {
+        "id": "4870998",
+        "displayName": "Josiah Trotter"
+       }
+      }
+     ]
+    },
+    {
+     "name": "totalTackles",
+     "displayName": "Tackles",
+     "leaders": [
+      {
+       "displayValue": "11",
+       "athlete": {
+        "id": "4870998",
+        "displayName": "Josiah Trotter"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }

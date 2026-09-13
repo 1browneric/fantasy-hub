@@ -212,6 +212,42 @@ main>.h:first-child{margin-top:4px}
 .scoring .sp .sc{font:800 17px/1 var(--display);font-variant-numeric:tabular-nums;text-align:right;color:var(--yard)}
 .scoring .sp .sc.on{color:var(--ink)}
 .sheet .scoring{margin:4px 14px 6px;padding-top:0;border-top:0}
+/* game sheet tabs and the box score */
+.sheet .chips{padding:10px 14px 8px;border-bottom:1px solid var(--rule)}
+.sheet .chip{color:var(--ink2);background:var(--panel2);border-color:var(--rule);display:inline-flex;align-items:center;gap:6px}
+.sheet .chip[aria-pressed="true"]{color:#fff;background:var(--ink);border-color:var(--ink)}
+.sheet .chips.side{border-bottom:0;padding-top:12px}
+.sheet .chip .tlogo,.sheet .chip .shield{width:18px;height:18px}
+.tsw{padding:6px 0 0}
+.ts{width:100%;border-collapse:collapse;font-size:12.5px}
+.ts th{padding:8px 14px 6px;border-bottom:1px solid var(--rule);font:800 12px/1 var(--display);letter-spacing:.06em;color:var(--ink);text-align:left}
+.ts th.v{display:flex;align-items:center;gap:6px}
+.ts th.v.r{flex-direction:row-reverse}
+.ts th.l{font:700 10px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-align:center}
+.ts td{padding:7px 14px;border-top:1px solid var(--rule);vertical-align:middle}
+.ts tr:nth-child(odd) td{background:var(--zebra)}
+.ts td.l{font:500 11.5px var(--body);color:var(--ink2);text-align:center;padding:7px 4px}
+.ts td.v{font:800 15px/1 var(--display);font-variant-numeric:tabular-nums;color:var(--ink);width:72px;white-space:nowrap}
+.ts td.v.r{text-align:right}
+.ldrs{padding:0 14px 4px}
+.ldrs .lc{font:700 10.5px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);padding:8px 0 4px;border-top:1px solid var(--rule)}
+.ldrs .lc:first-child{border-top:0;padding-top:2px}
+.ldrs .lr{display:flex;align-items:center;gap:8px;padding:4px 0}
+.ldrs .lr .w{min-width:0}
+.ldrs .lr .n{font:600 13px/1.2 var(--body);color:var(--ink);display:flex;align-items:center;gap:6px}
+.ldrs .lr .v{font:500 11.5px var(--body);color:var(--ink2);font-variant-numeric:tabular-nums;margin-top:1px}
+.bx{border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:100%}
+.bx th,.bx td{padding:7px 8px;white-space:nowrap;text-align:right;border-top:1px solid var(--rule);font-variant-numeric:tabular-nums}
+.bx th{font:700 10px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);border-top:0;padding-top:2px}
+.bx td{font:600 13px/1 var(--display);color:var(--ink)}
+.bx th:first-child,.bx td:first-child{text-align:left;position:sticky;left:0;background:var(--panel);padding-left:14px;min-width:150px;max-width:190px;overflow:hidden;text-overflow:ellipsis;z-index:1}
+.bx td:first-child{font:600 12.5px/1.2 var(--body);display:flex;align-items:center;gap:6px}
+.bx td:last-child,.bx th:last-child{padding-right:14px}
+.bx tr.me td{background:var(--sky-bg)}
+.bx tr.tot td{color:var(--ink2);background:var(--panel2);font-weight:700}
+.bx tr.tot td:first-child{font:700 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.sheet .tag.me{font-size:9px;padding:2px 4px}
+.sheet .empty{padding:26px 14px}
 .sheet .scoring .sh{padding:6px 0}
 .sheet .scoring .sh .lab{visibility:hidden}
 .sheet .scoring .sp .tx{font-size:12.5px;color:var(--ink)}
