@@ -191,6 +191,31 @@ main>.h:first-child{margin-top:4px}
   text-transform:uppercase;color:var(--signal-ink);background:var(--signal-bg);
   padding:2px 5px;border-radius:3px;margin-right:6px;vertical-align:1px}
 .sheet .gab .fb{flex:none;display:block}
+/* scoring plays: logo, what and when, the play, then the score after it.
+   The scoring team's number is in ink, the other side's stays muted; the
+   home side's row tints toward the home colour so the two teams read apart
+   without leaning on colour alone (the logo and the abbreviation column say who). */
+.scoring{margin-top:8px;padding-top:6px;border-top:1px solid var(--rule);font-size:12px}
+.scoring .sh{display:grid;grid-template-columns:minmax(0,1fr) 30px 30px;gap:0 6px;align-items:baseline;padding:0 0 4px}
+.scoring .sh .lab{font:800 10.5px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.scoring .sh .col{font:800 11px/1 var(--display);letter-spacing:.05em;text-align:right;color:var(--ink2)}
+.scoring .q{font:700 10.5px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);padding:8px 0 3px;border-top:1px solid var(--rule)}
+.scoring .more{font:600 11px var(--body);color:var(--ink2);padding:2px 0 4px}
+.scoring .sp{display:grid;grid-template-columns:22px minmax(0,1fr) 30px 30px;gap:0 6px;align-items:center;padding:5px 0;border-top:1px solid var(--rule)}
+.scoring .sp:first-of-type{border-top:0}
+.scoring .sp .w{min-width:0}
+.scoring .sp .k{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.scoring .sp .k b{font:800 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.scoring .sp .k span{font:600 10.5px var(--body);color:var(--ink2);font-variant-numeric:tabular-nums}
+.scoring .sp .tx{font:500 12px/1.3 var(--body);color:var(--ink2);margin-top:1px}
+.scoring .sp .dr{font:500 10.5px var(--body);color:var(--yard);margin-top:1px}
+.scoring .sp .sc{font:800 17px/1 var(--display);font-variant-numeric:tabular-nums;text-align:right;color:var(--yard)}
+.scoring .sp .sc.on{color:var(--ink)}
+.sheet .scoring{margin:4px 14px 6px;padding-top:0;border-top:0}
+.sheet .scoring .sh{padding:6px 0}
+.sheet .scoring .sh .lab{visibility:hidden}
+.sheet .scoring .sp .tx{font-size:12.5px;color:var(--ink)}
+.sheet .scoring .sp .sc{font-size:19px}
 .game.live{box-shadow:0 0 0 2px var(--signal)}
 .game.live.rz{box-shadow:0 0 0 2px var(--red)}
 .game .rz{color:var(--red)}

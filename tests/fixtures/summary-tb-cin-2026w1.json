@@ -1,0 +1,946 @@
+{
+ "scoringPlays": [
+  {
+   "id": "401872925340",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Chase McLaughlin 34 Yd Field Goal",
+   "awayScore": 3,
+   "homeScore": 0,
+   "period": {
+    "number": 1
+   },
+   "clock": {
+    "displayValue": "9:09"
+   },
+   "team": {
+    "abbreviation": "TB"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "401872925545",
+   "type": {
+    "text": "Sack Opp Fumble Recovery"
+   },
+   "text": "Demetrius Knight Jr. 27 Yd Fumble Return (Evan McPherson Kick)",
+   "awayScore": 3,
+   "homeScore": 7,
+   "period": {
+    "number": 1
+   },
+   "clock": {
+    "displayValue": "6:18"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  },
+  {
+   "id": "401872925861",
+   "type": {
+    "text": "Passing Touchdown"
+   },
+   "text": "Mike Gesicki 2 Yd pass from Joe Burrow (Evan McPherson Kick)",
+   "awayScore": 3,
+   "homeScore": 14,
+   "period": {
+    "number": 1
+   },
+   "clock": {
+    "displayValue": "1:48"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  },
+  {
+   "id": "4018729251543",
+   "type": {
+    "text": "Rushing Touchdown"
+   },
+   "text": "Chase Brown 5 Yd Rush (Evan McPherson Kick)",
+   "awayScore": 3,
+   "homeScore": 21,
+   "period": {
+    "number": 2
+   },
+   "clock": {
+    "displayValue": "5:32"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  },
+  {
+   "id": "4018729251788",
+   "type": {
+    "text": "Rushing Touchdown"
+   },
+   "text": "Bucky Irving 10 Yd Rush (Chase McLaughlin Kick)",
+   "awayScore": 10,
+   "homeScore": 21,
+   "period": {
+    "number": 2
+   },
+   "clock": {
+    "displayValue": "1:49"
+   },
+   "team": {
+    "abbreviation": "TB"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  },
+  {
+   "id": "4018729252087",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Evan McPherson 20 Yd Field Goal",
+   "awayScore": 10,
+   "homeScore": 24,
+   "period": {
+    "number": 2
+   },
+   "clock": {
+    "displayValue": "0:06"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "4018729252397",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Evan McPherson 55 Yd Field Goal",
+   "awayScore": 10,
+   "homeScore": 27,
+   "period": {
+    "number": 3
+   },
+   "clock": {
+    "displayValue": "10:03"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "4018729252705",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Chase McLaughlin 51 Yd Field Goal",
+   "awayScore": 13,
+   "homeScore": 27,
+   "period": {
+    "number": 3
+   },
+   "clock": {
+    "displayValue": "3:41"
+   },
+   "team": {
+    "abbreviation": "TB"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "4018729252805",
+   "type": {
+    "text": "Interception Return Touchdown"
+   },
+   "text": "Josiah Trotter 38 Yd Interception Return (Chase McLaughlin Kick)",
+   "awayScore": 20,
+   "homeScore": 27,
+   "period": {
+    "number": 3
+   },
+   "clock": {
+    "displayValue": "2:16"
+   },
+   "team": {
+    "abbreviation": "TB"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  },
+  {
+   "id": "4018729253172",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Evan McPherson 58 Yd Field Goal",
+   "awayScore": 20,
+   "homeScore": 30,
+   "period": {
+    "number": 4
+   },
+   "clock": {
+    "displayValue": "14:04"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "4018729253620",
+   "type": {
+    "text": "Field Goal Good"
+   },
+   "text": "Evan McPherson 32 Yd Field Goal",
+   "awayScore": 20,
+   "homeScore": 33,
+   "period": {
+    "number": 4
+   },
+   "clock": {
+    "displayValue": "5:19"
+   },
+   "team": {
+    "abbreviation": "CIN"
+   },
+   "scoringType": {
+    "displayName": "Field Goal",
+    "abbreviation": "FG"
+   }
+  },
+  {
+   "id": "4018729253854",
+   "type": {
+    "text": "Rushing Touchdown"
+   },
+   "text": "Baker Mayfield 9 Yd Rush (Chase McLaughlin Kick)",
+   "awayScore": 27,
+   "homeScore": 33,
+   "period": {
+    "number": 4
+   },
+   "clock": {
+    "displayValue": "3:19"
+   },
+   "team": {
+    "abbreviation": "TB"
+   },
+   "scoringType": {
+    "displayName": "Touchdown",
+    "abbreviation": "TD"
+   }
+  }
+ ],
+ "drives": {
+  "previous": [
+   {
+    "id": "4018729251",
+    "description": "11 plays, 56 yards, 5:51",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "40187292540"
+     },
+     {
+      "id": "40187292568"
+     },
+     {
+      "id": "40187292590"
+     },
+     {
+      "id": "401872925102"
+     },
+     {
+      "id": "401872925113"
+     },
+     {
+      "id": "401872925145"
+     },
+     {
+      "id": "401872925179"
+     },
+     {
+      "id": "401872925201"
+     },
+     {
+      "id": "401872925223"
+     },
+     {
+      "id": "401872925248"
+     },
+     {
+      "id": "401872925273"
+     },
+     {
+      "id": "401872925295"
+     },
+     {
+      "id": "401872925317"
+     },
+     {
+      "id": "401872925340"
+     },
+     {
+      "id": "401872925350"
+     }
+    ]
+   },
+   {
+    "id": "4018729252",
+    "description": "3 plays, 4 yards, 1:31",
+    "result": "PUNT",
+    "plays": [
+     {
+      "id": "401872925360"
+     },
+     {
+      "id": "401872925390"
+     },
+     {
+      "id": "401872925412"
+     },
+     {
+      "id": "401872925437"
+     },
+     {
+      "id": "401872925460"
+     },
+     {
+      "id": "401872925476"
+     }
+    ]
+   },
+   {
+    "id": "4018729253",
+    "description": "3 plays, -6 yards, 1:20",
+    "result": "FUMBLE TD",
+    "plays": [
+     {
+      "id": "401872925491"
+     },
+     {
+      "id": "401872925520"
+     },
+     {
+      "id": "401872925545"
+     },
+     {
+      "id": "401872925588"
+     }
+    ]
+   },
+   {
+    "id": "4018729254",
+    "description": "3 plays, 3 yards, 0:56",
+    "result": "FUMBLE",
+    "plays": [
+     {
+      "id": "401872925595"
+     },
+     {
+      "id": "401872925625"
+     },
+     {
+      "id": "401872925656"
+     },
+     {
+      "id": "401872925679"
+     }
+    ]
+   },
+   {
+    "id": "4018729255",
+    "description": "7 plays, 33 yards, 3:34",
+    "result": "TD",
+    "plays": [
+     {
+      "id": "401872925720"
+     },
+     {
+      "id": "401872925745"
+     },
+     {
+      "id": "401872925767"
+     },
+     {
+      "id": "401872925790"
+     },
+     {
+      "id": "401872925817"
+     },
+     {
+      "id": "401872925839"
+     },
+     {
+      "id": "401872925861"
+     },
+     {
+      "id": "401872925895"
+     }
+    ]
+   },
+   {
+    "id": "4018729256",
+    "description": "7 plays, 62 yards, 4:44",
+    "result": "FUMBLE",
+    "plays": [
+     {
+      "id": "401872925902"
+     },
+     {
+      "id": "401872925932"
+     },
+     {
+      "id": "401872925962"
+     },
+     {
+      "id": "401872925984"
+     },
+     {
+      "id": "4018729251009"
+     },
+     {
+      "id": "4018729251041"
+     },
+     {
+      "id": "4018729251065"
+     },
+     {
+      "id": "4018729251090"
+     },
+     {
+      "id": "4018729251115"
+     },
+     {
+      "id": "4018729251137"
+     },
+     {
+      "id": "4018729251180"
+     },
+     {
+      "id": "4018729251213"
+     },
+     {
+      "id": "4018729251233"
+     }
+    ]
+   },
+   {
+    "id": "4018729257",
+    "description": "12 plays, 80 yards, 6:32",
+    "result": "TD",
+    "plays": [
+     {
+      "id": "4018729251252"
+     },
+     {
+      "id": "4018729251282"
+     },
+     {
+      "id": "4018729251304"
+     },
+     {
+      "id": "4018729251329"
+     },
+     {
+      "id": "4018729251354"
+     },
+     {
+      "id": "4018729251376"
+     },
+     {
+      "id": "4018729251406"
+     },
+     {
+      "id": "4018729251431"
+     },
+     {
+      "id": "4018729251456"
+     },
+     {
+      "id": "4018729251478"
+     },
+     {
+      "id": "4018729251492"
+     },
+     {
+      "id": "4018729251506"
+     },
+     {
+      "id": "4018729251543"
+     },
+     {
+      "id": "4018729251574"
+     }
+    ]
+   },
+   {
+    "id": "4018729258",
+    "description": "6 plays, 75 yards, 3:43",
+    "result": "TD",
+    "plays": [
+     {
+      "id": "4018729251581"
+     },
+     {
+      "id": "4018729251611"
+     },
+     {
+      "id": "4018729251641"
+     },
+     {
+      "id": "4018729251666"
+     },
+     {
+      "id": "4018729251691"
+     },
+     {
+      "id": "4018729251726"
+     },
+     {
+      "id": "4018729251739"
+     },
+     {
+      "id": "4018729251751"
+     },
+     {
+      "id": "4018729251788"
+     }
+    ]
+   },
+   {
+    "id": "4018729259",
+    "description": "10 plays, 70 yards, 1:43",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "4018729251826"
+     },
+     {
+      "id": "4018729251849"
+     },
+     {
+      "id": "4018729251872"
+     },
+     {
+      "id": "4018729251897"
+     },
+     {
+      "id": "4018729251920"
+     },
+     {
+      "id": "4018729251945"
+     },
+     {
+      "id": "4018729251958"
+     },
+     {
+      "id": "4018729251970"
+     },
+     {
+      "id": "4018729252010"
+     },
+     {
+      "id": "4018729252021"
+     },
+     {
+      "id": "4018729252032"
+     },
+     {
+      "id": "4018729252062"
+     },
+     {
+      "id": "4018729252075"
+     },
+     {
+      "id": "4018729252087"
+     }
+    ]
+   },
+   {
+    "id": "40187292510",
+    "description": "1 play, -1 yard, 0:06",
+    "result": "END OF HALF",
+    "plays": [
+     {
+      "id": "4018729252114"
+     },
+     {
+      "id": "4018729252131"
+     },
+     {
+      "id": "4018729252153"
+     }
+    ]
+   },
+   {
+    "id": "40187292511",
+    "description": "8 plays, 36 yards, 4:57",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "4018729252173"
+     },
+     {
+      "id": "4018729252209"
+     },
+     {
+      "id": "4018729252231"
+     },
+     {
+      "id": "4018729252256"
+     },
+     {
+      "id": "4018729252271"
+     },
+     {
+      "id": "4018729252286"
+     },
+     {
+      "id": "4018729252325"
+     },
+     {
+      "id": "4018729252352"
+     },
+     {
+      "id": "4018729252377"
+     },
+     {
+      "id": "4018729252397"
+     },
+     {
+      "id": "4018729252407"
+     }
+    ]
+   },
+   {
+    "id": "40187292512",
+    "description": "10 plays, 38 yards, 6:22",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "4018729252417"
+     },
+     {
+      "id": "4018729252447"
+     },
+     {
+      "id": "4018729252469"
+     },
+     {
+      "id": "4018729252496"
+     },
+     {
+      "id": "4018729252530"
+     },
+     {
+      "id": "4018729252555"
+     },
+     {
+      "id": "4018729252577"
+     },
+     {
+      "id": "4018729252599"
+     },
+     {
+      "id": "4018729252640"
+     },
+     {
+      "id": "4018729252662"
+     },
+     {
+      "id": "4018729252685"
+     },
+     {
+      "id": "4018729252705"
+     },
+     {
+      "id": "4018729252715"
+     }
+    ]
+   },
+   {
+    "id": "40187292513",
+    "description": "3 plays, 5 yards, 1:25",
+    "result": "INT TD",
+    "plays": [
+     {
+      "id": "4018729252725"
+     },
+     {
+      "id": "4018729252758"
+     },
+     {
+      "id": "4018729252783"
+     },
+     {
+      "id": "4018729252805"
+     },
+     {
+      "id": "4018729252851"
+     }
+    ]
+   },
+   {
+    "id": "40187292514",
+    "description": "8 plays, 43 yards, 3:12",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "4018729252858"
+     },
+     {
+      "id": "4018729252899"
+     },
+     {
+      "id": "4018729252935"
+     },
+     {
+      "id": "4018729252960"
+     },
+     {
+      "id": "4018729253023"
+     },
+     {
+      "id": "4018729253048"
+     },
+     {
+      "id": "4018729253070"
+     },
+     {
+      "id": "4018729253100"
+     },
+     {
+      "id": "4018729253120"
+     },
+     {
+      "id": "4018729253131"
+     },
+     {
+      "id": "4018729253142"
+     },
+     {
+      "id": "4018729253172"
+     },
+     {
+      "id": "4018729253182"
+     }
+    ]
+   },
+   {
+    "id": "40187292515",
+    "description": "6 plays, 16 yards, 3:33",
+    "result": "FUMBLE",
+    "plays": [
+     {
+      "id": "4018729253192"
+     },
+     {
+      "id": "4018729253222"
+     },
+     {
+      "id": "4018729253247"
+     },
+     {
+      "id": "4018729253269"
+     },
+     {
+      "id": "4018729253291"
+     },
+     {
+      "id": "4018729253321"
+     },
+     {
+      "id": "4018729253345"
+     },
+     {
+      "id": "4018729253375"
+     },
+     {
+      "id": "4018729253399"
+     },
+     {
+      "id": "4018729253414"
+     }
+    ]
+   },
+   {
+    "id": "40187292516",
+    "description": "8 plays, 31 yards, 5:12",
+    "result": "FG",
+    "plays": [
+     {
+      "id": "4018729253429"
+     },
+     {
+      "id": "4018729253461"
+     },
+     {
+      "id": "4018729253483"
+     },
+     {
+      "id": "4018729253505"
+     },
+     {
+      "id": "4018729253527"
+     },
+     {
+      "id": "4018729253549"
+     },
+     {
+      "id": "4018729253571"
+     },
+     {
+      "id": "4018729253596"
+     },
+     {
+      "id": "4018729253620"
+     },
+     {
+      "id": "4018729253630"
+     }
+    ]
+   },
+   {
+    "id": "40187292517",
+    "description": "7 plays, 51 yards, 2:00",
+    "result": "TD",
+    "plays": [
+     {
+      "id": "4018729253640"
+     },
+     {
+      "id": "4018729253675"
+     },
+     {
+      "id": "4018729253699"
+     },
+     {
+      "id": "4018729253729"
+     },
+     {
+      "id": "4018729253754"
+     },
+     {
+      "id": "4018729253779"
+     },
+     {
+      "id": "4018729253806"
+     },
+     {
+      "id": "4018729253831"
+     },
+     {
+      "id": "4018729253854"
+     }
+    ]
+   },
+   {
+    "id": "40187292518",
+    "description": "8 plays, 59 yards, 3:19",
+    "result": "END OF GAME",
+    "plays": [
+     {
+      "id": "4018729253918"
+     },
+     {
+      "id": "4018729253941"
+     },
+     {
+      "id": "4018729253966"
+     },
+     {
+      "id": "4018729253979"
+     },
+     {
+      "id": "4018729253991"
+     },
+     {
+      "id": "4018729254006"
+     },
+     {
+      "id": "4018729254020"
+     },
+     {
+      "id": "4018729254036"
+     },
+     {
+      "id": "4018729254052"
+     },
+     {
+      "id": "4018729254068"
+     },
+     {
+      "id": "4018729254083"
+     },
+     {
+      "id": "4018729254114"
+     },
+     {
+      "id": "4018729254136"
+     },
+     {
+      "id": "4018729254158"
+     },
+     {
+      "id": "4018729254180"
+     }
+    ]
+   }
+  ]
+ },
+ "header": {
+  "competitions": [
+   {
+    "competitors": [
+     {
+      "homeAway": "home",
+      "team": {
+       "abbreviation": "CIN"
+      }
+     },
+     {
+      "homeAway": "away",
+      "team": {
+       "abbreviation": "TB"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

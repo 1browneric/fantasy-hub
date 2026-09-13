@@ -35,8 +35,49 @@ export function gameChip(S, g, names) {
     lp.append(g.lastPlay);
     c.appendChild(lp);
   }
+  // how the points went on the board, in game order, the latest at the bottom;
+  // a long list keeps its last few here and the sheet has all of them
+  const plays = S.scoring[g.id]?.plays;
+  if (g.state !== 'pre' && plays?.length) c.appendChild(scoringList(S, g, plays, 5));
   if (names?.length) { const m = el('div', 'mine'); for (const n of names) m.appendChild(el('span', null, n)); c.appendChild(m); }
   return c;
+}
+const KIND = p => {
+  const k = p.kind.toUpperCase();
+  if (k === 'TOUCHDOWN' && /(interception|fumble|blocked|punt return|kickoff return|kick return)/i.test(p.type)) return 'DEFENSIVE TD';
+  if (k === 'FIELD GOAL' && /missed|no good|blocked/i.test(p.type)) return 'FIELD GOAL MISSED';
+  return k || p.type.toUpperCase();
+};
+// Scoring plays as rows: the team's logo, what it was and when, the play,
+// then the score after it with the scoring team's side in ink. `limit`
+// keeps the newest N and says how many came before.
+export function scoringList(S, g, plays, limit) {
+  const box = el('div', 'scoring');
+  const hd = el('div', 'sh');
+  hd.appendChild(el('span', 'lab', 'Scoring'));
+  hd.appendChild(el('span', 'col', g.away)); hd.appendChild(el('span', 'col', g.home));
+  box.appendChild(hd);
+  const shown = limit && plays.length > limit ? plays.slice(-limit) : plays;
+  if (shown.length < plays.length) box.appendChild(el('div', 'more', `${plays.length - shown.length} earlier, open the game for all ${plays.length}`));
+  let period = 0;
+  for (const p of shown) {
+    if (!limit && p.period !== period) { period = p.period; box.appendChild(el('div', 'q', period > 4 ? 'Overtime' : `${ordinalQ(period)} quarter`)); }
+    box.appendChild(scoringRow(S, g, p, !!limit));
+  }
+  return box;
+}
+const ordinalQ = n => ['', '1st', '2nd', '3rd', '4th'][n] || `${n}th`;
+export function scoringRow(S, g, p, stamp) {
+  const r = el('div', 'sp' + (p.team === g.home ? ' hm' : ''));
+  r.appendChild(teamLogo(S.T, p.team));
+  const w = el('div', 'w');
+  const k = el('div', 'k'); k.appendChild(el('b', null, KIND(p))); k.appendChild(el('span', null, (stamp ? (p.period > 4 ? 'OT ' : `Q${p.period} `) : '') + p.clock)); w.appendChild(k);
+  w.appendChild(el('div', 'tx', p.text));
+  if (p.drive) w.appendChild(el('div', 'dr', p.drive));
+  r.appendChild(w);
+  r.appendChild(el('span', 'sc' + (p.team === g.away ? ' on' : ''), String(p.awayScore)));
+  r.appendChild(el('span', 'sc' + (p.team === g.home ? ' on' : ''), String(p.homeScore)));
+  return r;
 }
 export function render(S, main) {
   const list = S.ctx.games.list;

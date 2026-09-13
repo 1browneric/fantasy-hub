@@ -13,11 +13,12 @@ game day. **Live:** https://1browneric.github.io/fantasy-hub/
 - **Home** - hero matchup (switch league), one card per league, my NFL games, presented-by insight, standings strip.
 - **Matchup** - my lineup and bench with the start/sit what-if; opponent's lineup scored live.
 - **My Players** - every player I own across the leagues, both point totals where two leagues own him.
-- **Rosters**, **Standings**, **Waivers** (pickups by projected points under each league's scoring, trending adds, every move), **NFL** (all games, clock, possession, red zone, down and distance, the snap that just happened - labelled TOUCHDOWN / FIELD GOAL GOOD / SAFETY when it scored - and my players in each).
+- **Rosters**, **Standings**, **Waivers** (pickups by projected points under each league's scoring, trending adds, every move), **NFL** (all games, clock, possession, red zone, down and distance, the snap that just happened - labelled TOUCHDOWN / FIELD GOAL GOOD / SAFETY when it scored - then how the points went on the board: every scoring play in game order with the drive line and the score after it, the last five on the card and all of them by quarter in the game sheet - and my players in each).
 
 ## Data (all public, no keys, no login)
 - **Sleeper** - live from the phone: NFL state, weekly stats, Boats league (users, rosters, matchups, transactions), trending adds. Primary for stats and points.
 - **ESPN scoreboard** - live from the phone: every game, clock, score, possession. Primary for game state. Team colours and logos from ESPN's team feed at build time.
+- **ESPN game summary** (`summary?event=<id>`) - live from the phone, one call per game: the scoring plays and the drives. It is a large document, so it is read only when the scoreboard shows a score that game has not shown before (once for a final, and on each score while live); a failed read keeps the last list. `parseScoring` in `docs/js/sources/espn.js`, tested by `node --test tests/*.test.mjs`.
 - **RT Sports guest pages** - no CORS, so `build/rt-fetch.mjs` runs in GitHub Actions (`.github/workflows/rt.yml`) and commits `docs/data/rt/{SoFi,Y60}.json`. GitHub's scheduler does not keep time (7 of 24 hourly runs delivered in a week of September 2026), so the workflow does not rely on it firing often: a run that lands during an NFL game, or within 90 minutes of a kickoff, stays alive and refreshes every 6 minutes until the window's last game is final (`build/rt-loop.sh`). Windows are read from ESPN's schedule (`build/game-window.mjs`), so odd days need no calendar. Off-window it refreshes about hourly.: matchups with scores, standings, every roster, transactions. My team is detected by roster overlap with `docs/data/my-players.json`. RT opponents' scores and standings lag 5-10 minutes; my own RT points are computed live from Sleeper stats under RT scoring.
 - **Projections** - `build/build-proj.mjs` (same cron) pre-scores Sleeper's weekly projections under both scoring systems into `docs/data/proj.json`.
 - `docs/data/index.json` - compact id -> [name, pos, team, injury, espn id, number] for every active fantasy player (built from Sleeper's 14.6 MB file, never shipped to the phone).
@@ -30,6 +31,12 @@ game day. **Live:** https://1browneric.github.io/fantasy-hub/
 
 ## Live math
 Projected final per starter = points so far + projection x share of game remaining. Win probability is a logistic on the projected-final gap, widened by how much football is left; labelled "est." everywhere.
+
+## Tests
+```bash
+source ~/.nvm/nvm.sh
+node --test tests/*.test.mjs
+```
 
 ## Build
 ```bash
