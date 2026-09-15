@@ -20,8 +20,9 @@ const Q = new URLSearchParams(location.search);
 const DEBUG = { season: Q.get('season'), week: Q.get('week'), date: Q.get('date'), simulateLive: Q.get('simulate') === 'live', simulateSunday: Q.get('simulate') === 'sunday',
   get on() { return !!(this.season || this.week || this.date || this.simulateLive || this.simulateSunday); }, replayStats: !!Q.get('season') };
 const MY_HANDLE = '1browneric2025';
-const TABS = [['home', 'Home', home], ['matchup', 'Matchup', matchup], ['players', 'My Players', players],
-  ['rosters', 'Rosters', rosters], ['standings', 'Standings', standings], ['waivers', 'Waivers', waivers], ['pickem', "Pick'em", pickem], ['nfl', 'NFL', nfl]];
+// NFL sits beside Home (Eric, 2026-09-15): the game slate is the second thing looked at.
+const TABS = [['home', 'Home', home], ['nfl', 'NFL', nfl], ['matchup', 'Matchup', matchup], ['players', 'My Players', players],
+  ['rosters', 'Rosters', rosters], ['standings', 'Standings', standings], ['waivers', 'Waivers', waivers], ['pickem', "Pick'em", pickem]];
 
 const S = {
   state: { tab: (location.hash || '#home').slice(1), lg: 'SoFi', week: null, season: null, updated: null, err: null, whatIf: {} },

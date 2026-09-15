@@ -1,0 +1,185 @@
+{
+ "ok": true,
+ "generatedAt": 1789475856,
+ "league": {
+  "id": 389290,
+  "name": "Road to SoFi",
+  "fantasyWeek": 2,
+  "nflWeek": 2
+ },
+ "viewerTeamId": 0,
+ "matchup": {
+  "away": {
+   "id": 7196409,
+   "name": "SoFi Kings",
+   "abbreviation": "SOFI",
+   "owner": "Eric Brown",
+   "logo": "https://cloudfront.rtsports.com/logos/fbteam-389290-7196409-2328.jpg",
+   "score": 0,
+   "projected": 124.2,
+   "record": "1-0",
+   "pmr": 540,
+   "maxPmr": 540,
+   "final": false
+  },
+  "home": {
+   "id": 7212704,
+   "name": "Tallahassee Titans 1",
+   "abbreviation": "TT1",
+   "owner": "",
+   "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-carbon.png",
+   "score": 0,
+   "projected": 122.93,
+   "record": "0-1",
+   "pmr": 540,
+   "maxPmr": 540,
+   "final": false
+  }
+ },
+ "fantasyGames": [
+  {
+   "id": 33064917,
+   "away": {
+    "id": 7196552,
+    "name": "Tino",
+    "abbreviation": "Tino",
+    "owner": "",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-blue.png",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "home": {
+    "id": 7194451,
+    "name": "RedChair01",
+    "abbreviation": "RedC",
+    "owner": "CHAD BULLEN",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-forest.png",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "state": "upcoming"
+  },
+  {
+   "id": 33064918,
+   "away": {
+    "id": 7186524,
+    "name": "Hawks",
+    "abbreviation": "Hawk",
+    "owner": "Kirk Davis",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-orange.png",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "home": {
+    "id": 7190649,
+    "name": "Coach's Crazies 14",
+    "abbreviation": "Craz",
+    "owner": "Larry Krukowski",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/nfl/buffalo-2.jpg",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "state": "upcoming"
+  },
+  {
+   "id": 33064919,
+   "away": {
+    "id": 7193697,
+    "name": "Sack Attack.",
+    "abbreviation": "SA",
+    "owner": "",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/beer-10.png",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "home": {
+    "id": 7212802,
+    "name": "Kobeez Krew",
+    "abbreviation": "KK",
+    "owner": "",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-gold.png",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "state": "upcoming"
+  },
+  {
+   "id": 33064920,
+   "away": {
+    "id": 7197331,
+    "name": "KinCam",
+    "abbreviation": "KinC",
+    "owner": "Hunter Bambenek",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-sky.png",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "home": {
+    "id": 7212422,
+    "name": "BEACHBUMS",
+    "abbreviation": "BEAC",
+    "owner": "Joe Bradshaw",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-white.png",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "state": "upcoming"
+  },
+  {
+   "id": 33064921,
+   "away": {
+    "id": 7196409,
+    "name": "SoFi Kings",
+    "abbreviation": "SOFI",
+    "owner": "Eric Brown",
+    "logo": "https://cloudfront.rtsports.com/logos/fbteam-389290-7196409-2328.jpg",
+    "score": 0,
+    "projected": 0,
+    "record": "1-0"
+   },
+   "home": {
+    "id": 7196439,
+    "name": "Losing It 9-3a",
+    "abbreviation": "93A",
+    "owner": "Robert Brotzman",
+    "logo": "https://cloudfront.rtsports.com/logos/fbteam-389290-7196439-8327.gif",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "state": "upcoming"
+  },
+  {
+   "id": 33064922,
+   "away": {
+    "id": 7212704,
+    "name": "Tallahassee Titans 1",
+    "abbreviation": "TT1",
+    "owner": "",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-carbon.png",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "home": {
+    "id": 7197465,
+    "name": "McLaughlin Group AA 2",
+    "abbreviation": "MGA2",
+    "owner": "Richard McLaughlin",
+    "logo": "https://cloudfront.rtsports.com/football/img/stock-logos/helmets/rtsports-purple.png",
+    "score": 0,
+    "projected": 0,
+    "record": "0-1"
+   },
+   "state": "upcoming"
+  }
+ ]
+}

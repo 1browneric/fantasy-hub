@@ -1,6 +1,7 @@
 // RT Sports guest-page fetcher + parser. No login, no cookies, no secrets.
-// Reads three public pages per league (league home, rosters report,
-// transactions report) and writes docs/data/rt/<key>.json for the phone.
+// Reads four public sources per league (league home, rosters report,
+// transactions report, and the gamecast provider JSON for the current week)
+// and writes docs/data/rt/<key>.json for the phone.
 // Runs on a GitHub Actions cron; also runnable locally.
 //   node build/rt-fetch.mjs                # fetch live
 //   node build/rt-fetch.mjs --from DIR     # parse saved HTML (tests)
@@ -28,15 +29,16 @@ const normTeam = t => TEAM_ALIAS[t] || t;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // RT rate-limits bursts (429 on the 6th quick request). Sequential, spaced,
 // with backoff -- six pages a run is all we ever need.
-async function get(url, attempt = 0) {
+async function get(url, attempt = 0, accept = 'text/html') {
   await sleep(1200);
-  const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'text/html' }, redirect: 'follow' });
-  if (r.status === 429 && attempt < 3) { await sleep(20000 * (attempt + 1)); return get(url, attempt + 1); }
+  const r = await fetch(url, { headers: { 'user-agent': UA, accept }, redirect: 'follow' });
+  if (r.status === 429 && attempt < 3) { await sleep(20000 * (attempt + 1)); return get(url, attempt + 1, accept); }
   if (!r.ok) throw new Error(`${r.status} ${url}`);
   const t = await r.text();
   if (/window\.location\s*=\s*"\/login/.test(t)) throw new Error('login wall: ' + url);
   return t;
 }
+const getJson = async url => JSON.parse(await get(url, 0, 'application/json'));
 
 // ---- league home: weekly matchups + standings -------------------------------
 export function parseHome(html) {
@@ -47,6 +49,7 @@ export function parseHome(html) {
   while ((m = mre.exec(html))) {
     const href = un(m[1]), body = m[2];
     const tm1 = (href.match(/TM1=(\d+)/) || [])[1], tm2 = (href.match(/TM2=(\d+)/) || [])[1];
+    const fwk = num((href.match(/FWK=(\d+)/) || [])[1]) || null;
     const sides = [...body.matchAll(/<div class="home-side( away)?">([\s\S]*?)<\/div>\s*<\/div>/g)].map(s => ({
       name: text((s[2].match(/home-match-name">([^<]*)/) || [, ''])[1]),
       record: text((s[2].match(/home-match-record[^>]*>([^<]*)/) || [, ''])[1]),
@@ -59,6 +62,7 @@ export function parseHome(html) {
       away: { tid: tm1, ...sides[0], pts: num(scores[1]) },
       home: { tid: tm2, ...sides[1], pts: num(scores[2]) },
       status,   // "Live" | "Final" | kickoff text
+      fwk,      // the week this card is for: RT keeps last week's finals up until the new week's first kickoff
     });
   }
   const standings = [];
@@ -76,6 +80,65 @@ export function parseHome(html) {
     });
   }
   return { week, matchups, standings };
+}
+
+// ---- gamecast provider: the current week's matchups ------------------------
+// The league home's Weekly Matchups card keeps showing the finished week until
+// the new week's first kickoff (2026-09-15, a Tuesday: header "Week 2", every
+// card a week-1 Final), so a Tuesday-to-Thursday hub showed last week's
+// opponent. /football/gamecast-provider.php?LID&UID&FWK&TM1&TM2 is the JSON
+// the gamecast page polls; as a guest it answers for any two team ids and its
+// fantasyGames array is every matchup of FWK, with live scores once games
+// start. That is the week's schedule; the home card is only the fallback.
+export function parseProvider(json) {
+  if (!json || json.ok === false || !json.league) return null;
+  const side = t => ({ tid: String(t.id), name: un(t.name), record: un(t.record || ''), logo: un(t.logo || ''), pts: num(t.score) });
+  const status = st => /final/i.test(st) ? 'Final' : /live|progress|active/i.test(st) ? 'Live' : 'Upcoming';
+  const matchups = (json.fantasyGames || []).map(g => ({ away: side(g.away), home: side(g.home), status: status(g.state || ''), fwk: num(json.league.fantasyWeek) || null }));
+  return { week: num(json.league.fantasyWeek) || null, matchups };
+}
+const providerSide = t => ({ tid: String(t.id), name: un(t.name), record: un(t.record || ''), logo: un(t.logo || ''), pts: num(t.score) });
+// The provider's own matchup block answers for the pair it was asked about
+// even while fantasyGames is empty (Road to SoFi, 2026-09-15 12:35 UTC: every
+// pair, both weeks, zero games for an hour while Year of the 60 answered
+// fine), so with the week's pair from the capsule it is my matchup, scored.
+export function providerMatchup(json, week) {
+  const m = json?.matchup;
+  if (!json || json.ok === false || !m?.away?.id || !m?.home?.id) return null;
+  const final = m.away.final && m.home.final;
+  const started = num(m.away.score) > 0 || num(m.home.score) > 0 || (m.away.pmr != null && m.away.maxPmr != null && m.away.pmr < m.away.maxPmr);
+  return { away: providerSide(m.away), home: providerSide(m.home), status: final ? 'Final' : started ? 'Live' : 'Upcoming', fwk: num(json.league?.fantasyWeek) || week || null };
+}
+// team-capsules.php?TID=<mine> (guest): "Game Schedule / This week · Week N"
+// links the week's gamecast with TM1, TM2 and FWK - the pair to ask the
+// provider about.
+export function parseCapsule(html) {
+  const m = html.match(/This week[\s\S]{0,400}?gamecast\.php\?([^"]+)"/) || html.match(/gamecast\.php\?([^"]*FWK=\d+[^"]*)"/);
+  if (!m) return null;
+  const q = un(m[1]);
+  const g = k => (q.match(new RegExp(k + '=(\\d+)')) || [])[1];
+  return g('TM1') && g('TM2') ? { tm1: g('TM1'), tm2: g('TM2'), fwk: num(g('FWK')) || null } : null;
+}
+// The week's matchups, first source that has them:
+//   provider  - fantasyGames for the header week (the whole week, live scores)
+//   home      - the home card's rows for the header week
+//   capsule   - my matchup alone, from the capsule's pair scored by the provider
+//   carried   - the matchups the last run wrote, when they were this week's
+//   home-stale- whatever the card holds (last week), labelled with its week
+//   carried-stale - the last run's matchups, whatever week, rather than nothing
+export function pickMatchups(home, provider, mine = null, prev = null) {
+  const week = home.week || provider?.week || null;
+  if (provider && provider.matchups.length && (!week || provider.week === week)) {
+    return { week, matchupsWeek: provider.week, matchups: provider.matchups, source: 'provider' };
+  }
+  const current = home.matchups.filter(m => m.fwk === week);
+  if (current.length) return { week, matchupsWeek: week, matchups: current, source: 'home' };
+  if (mine && (!week || mine.fwk === week)) return { week, matchupsWeek: mine.fwk, matchups: [mine], source: 'capsule' };
+  if (prev?.matchups?.length && week && prev.matchupsWeek === week) return { week, matchupsWeek: week, matchups: prev.matchups, source: 'carried' };
+  const weeks = [...new Set(home.matchups.map(m => m.fwk).filter(Boolean))];
+  if (home.matchups.length) return { week, matchupsWeek: weeks.length === 1 ? weeks[0] : null, matchups: home.matchups, source: 'home-stale' };
+  if (prev?.matchups?.length) return { week, matchupsWeek: prev.matchupsWeek ?? null, matchups: prev.matchups, source: 'carried-stale' };
+  return { week, matchupsWeek: null, matchups: [], source: 'none' };
 }
 
 // ---- rosters report ---------------------------------------------------------
@@ -146,7 +209,7 @@ async function main() {
       ? f => fs.readFileSync(path.join(FROM, f), 'utf8')
       : null;
     const [home, rosters, tx] = FROM
-      ? [src(`home_${lg.lid}.html`), src(`rosters_${lg.lid}.html`), src(`tx_${lg.lid}.html`)]
+      ? [src(`home_${lg.lid}.html`), src(`rosters_${lg.lid}.html`), fs.existsSync(path.join(FROM, `tx_${lg.lid}.html`)) ? src(`tx_${lg.lid}.html`) : null]
       : [await get(`${BASE}/fantasy-football-league/${lg.lid}`),
          await get(`${BASE}/football/report-rosters.php?${q}`),
          // transactions are the lowest-value page: never let it sink the run
@@ -154,17 +217,43 @@ async function main() {
     const prevPath = path.join(OUT, `${key}.json`);
     const prev = fs.existsSync(prevPath) ? JSON.parse(fs.readFileSync(prevPath, 'utf8')) : null;
     const H = parseHome(home), T = parseRosters(rosters), X = tx ? parseTransactions(tx) : (prev?.transactions || []);
+    if (!T.length) throw new Error(`${key}: parse produced no teams`);
     const mine = seed.filter(p => p.leagues.includes(key));
     const myTeamId = detectMyTeam(T, mine);
-    if (!T.length || !H.matchups.length) throw new Error(`${key}: parse produced ${T.length} teams / ${H.matchups.length} matchups`);
     if (!myTeamId) throw new Error(`${key}: could not detect my team from roster overlap`);
+    // the week's matchups (see parseProvider); any two team ids will do, the
+    // provider answers with the whole week either way
+    const fromFile = (f, json) => fs.existsSync(path.join(FROM, f)) ? (json ? JSON.parse(src(f)) : src(f)) : null;
+    const provider = (tm1, tm2) => FROM ? fromFile(`provider_${lg.lid}.json`, true)
+      : getJson(`${BASE}/football/gamecast-provider.php?${q}&FWK=${H.week}&TM1=${tm1}&TM2=${tm2}`);
+    let P = null, my = null;
+    try {
+      const pj = await provider(T[0].tid, T[1].tid);
+      P = parseProvider(pj);
+      console.log(`${key}: provider week ${P?.week ?? '?'}, ${P?.matchups.length ?? 0} matchups` + (P ? '' : ` (unusable: ${JSON.stringify(pj).slice(0, 120)})`));
+      if (!P?.matchups.length && !H.matchups.some(m => m.fwk === H.week)) {
+        // the week's list is empty everywhere: my capsule names my pair, the provider scores it
+        const cap = parseCapsule(FROM ? (fromFile(`capsule_${lg.lid}.html`) || '') : await get(`${BASE}/football/team-capsules.php?${q}&TID=${myTeamId}`));
+        if (cap) my = providerMatchup(await provider(cap.tm1, cap.tm2), cap.fwk);
+        if (my) my.fwk = cap.fwk || my.fwk;
+        console.log(`${key}: capsule ${cap ? `week ${cap.fwk} ${cap.tm1} vs ${cap.tm2}` : 'no pair'}, provider matchup ${my ? `${my.away.name} vs ${my.home.name} (${my.status})` : 'none'}`);
+      }
+    } catch (e) { console.warn(key, 'provider skipped:', e.message); }
+    const M = pickMatchups(H, P, my, prev);
+    if (/stale|none/.test(M.source)) console.warn(`${key}: week ${M.week} header but the matchups on hand are ${M.source} (week ${M.matchupsWeek ?? '?'})`);
+    if (!M.matchups.length) throw new Error(`${key}: parse produced ${T.length} teams / 0 matchups`);
     const out = {
       key, name: lg.name, lid: lg.lid, platform: 'rtsports',
-      fetchedAt: new Date().toISOString(), week: H.week,
-      myTeamId, teams: T, matchups: H.matchups, standings: H.standings, transactions: X,
+      fetchedAt: new Date().toISOString(), week: M.week, matchupsWeek: M.matchupsWeek, matchupsSource: M.source,
+      myTeamId, teams: T, matchups: M.matchups, standings: H.standings, transactions: X,
     };
     fs.writeFileSync(path.join(OUT, `${key}.json`), JSON.stringify(out));
-    console.log(`${key}: week ${H.week}, ${T.length} teams, ${H.matchups.length} matchups, ${H.standings.length} standings rows, ${X.length} transactions, my team ${myTeamId} (${T.find(t => t.tid === myTeamId).name})`);
+    const mm = M.matchups.find(m => m.away.tid === myTeamId || m.home.tid === myTeamId);
+    const opp = mm ? (mm.away.tid === myTeamId ? mm.home.name : mm.away.name) : 'none';
+    console.log(`${key}: week ${M.week}, ${T.length} teams, ${M.matchups.length} matchups (${M.source}, week ${M.matchupsWeek}), ${H.standings.length} standings rows, ${X.length} transactions, my team ${myTeamId} (${T.find(t => t.tid === myTeamId).name}) vs ${opp}`);
   }
 }
-main().catch(e => { console.error('rt-fetch FAILED:', e.message); process.exit(1); });
+// Only the CLI runs the fetch; tests import the parsers without touching RT.
+if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
+  main().catch(e => { console.error('rt-fetch FAILED:', e.message); process.exit(1); });
+}
