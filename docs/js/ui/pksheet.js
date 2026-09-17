@@ -3,6 +3,7 @@
 // a win means against the pool when the pool fades it.
 import { el, teamLogo, tag, fmtKick, pct } from '../util.js';
 import { ordinal } from './rows.js';
+import { fmtSpread } from '../sources/pickem.js';
 
 const FADE = 0.10; // the email's POOL FADES THIS line
 const money = v => (v == null ? '--' : v > 0 ? '+' + v : String(v));
@@ -64,6 +65,7 @@ export function openPick(S, x) {
   const stat = (k, v) => { const d = el('div', 'stat'); d.appendChild(el('span', null, k)); d.appendChild(el('b', null, v)); sheet.appendChild(d); };
   if (away.p != null) stat('Win chance', both(away, home, o => pct(o.p)));
   if (away.pool != null) stat('Pool picks', both(away, home, o => pct(o.pool)));
+  if (away.spread != null) stat('Spread', both(away, home, o => fmtSpread(o.spread)));
   stat('Moneyline', both(away, home, o => money(o.ml)));
   if (g) {
     const b = el('button', 'stat'); b.type = 'button'; b.appendChild(el('span', null, 'Game sheet')); b.appendChild(el('b', null, 'Open'));

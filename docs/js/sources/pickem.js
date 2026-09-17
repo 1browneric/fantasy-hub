@@ -41,10 +41,15 @@ function build(chal, group, entry, want, mine) {
   const rows = [];
   for (const p of chal.propositions || []) {
     if (p.scoringPeriodId !== period || p.display === false) continue;
+    // ESPN's spread is the HOME team's line (CAR @ ATL 2.5 with CAR the -155
+    // favourite), so the away side carries it with the sign flipped
+    const line = p.spread == null ? null : Number(p.spread);
     const outs = (p.possibleOutcomes || []).map(o => {
       const ml = mapping(o, 'BETTING_LINE');
+      const home = o.subType === 'HOME';
       return {
-        id: o.id, abbrev: normTeam(o.abbrev), name: o.name, home: o.subType === 'HOME',
+        id: o.id, abbrev: normTeam(o.abbrev), name: o.name, home,
+        spread: line == null ? null : home ? line : -line,
         ml: ml == null || ml === '' ? null : Number(ml),
         pool: (o.choiceCounters || []).find(c => c.scoringFormatId === CFG.fmt)?.percentage ?? null,
       };
@@ -83,6 +88,8 @@ function build(chal, group, entry, want, mine) {
     fetched: new Date(),
   };
 }
+// A team's line as the books print it: -6.5, +1.5, PK.
+export const fmtSpread = v => (v == null ? '' : v === 0 ? 'PK' : (v > 0 ? '+' : '') + v);
 // where each game's favourite ranks among the whole week by win chance
 function rankAll(rows) {
   const priced = rows.filter(r => r.fav).sort((a, b) => b.fav.p - a.fav.p);

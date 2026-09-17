@@ -7,7 +7,7 @@
 import { el, teamLogo, tag, fmtKick, fmtTime, pct } from '../util.js';
 import { ordinal } from '../ui/rows.js';
 import { openPick } from '../ui/pksheet.js';
-import { ENTRY_ID, load } from '../sources/pickem.js';
+import { ENTRY_ID, load, fmtSpread } from '../sources/pickem.js';
 
 const FADE = 0.10; // the email's POOL FADES THIS line: market beats the pool by 10 points
 const DONE = new Set(['CORRECT', 'INCORRECT']);
@@ -226,7 +226,7 @@ function row(S, x) {
   else if (result === 'INCORRECT') rc.appendChild(tag('them', 'WRONG'));
   else if (!pick) rc.appendChild(tag('warn', 'NO PICK'));
   else if (live) { const [ps, os] = score(g, pick); rc.appendChild(ps > os ? tag('pre', 'LEADING') : ps < os ? tag('warn', 'TRAILING') : tag('final', 'TIED')); }
-  const odds = [pick?.p != null ? `win ${pct(pick.p)}` : '', pick?.pool != null ? `pool ${pct(pick.pool)}` : ''].filter(Boolean).join('  ');
+  const odds = [fmtSpread(pick?.spread), pick?.p != null ? `win ${pct(pick.p)}` : '', pick?.pool != null ? `pool ${pct(pick.pool)}` : ''].filter(Boolean).join('  ');
   if (odds) rc.appendChild(el('span', null, odds));
   if (!r.locked && pick?.p != null && pick.pool != null && pick.p - pick.pool > FADE) rc.appendChild(tag('pre', 'POOL FADES THIS'));
   d.appendChild(rc);
