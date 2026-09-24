@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-22T11:00:10Z",
+ "fetched": "2026-09-24T20:00:10Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -135,7 +135,7 @@
   },
   "17c92eb0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17c92eb2-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 14
+   "conf": 13
   },
   "17c97cd0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17c97cd1-52cd-11f1-9f21-bf39e498b3db",
@@ -143,11 +143,11 @@
   },
   "17c9caf0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17c9caf2-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 13
+   "conf": 12
   },
   "17c9f200-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17c9f201-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 3
+   "conf": 2
   },
   "17ca4020-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17ca4021-52cd-11f1-9f21-bf39e498b3db",
@@ -155,15 +155,15 @@
   },
   "17ca6730-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17ca6732-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 9
+   "conf": 3
   },
   "17cab550-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cab551-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 10
+   "conf": 9
   },
   "17cadc60-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cadc61-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 12
+   "conf": 14
   },
   "17cb2a80-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cb2a82-52cd-11f1-9f21-bf39e498b3db",
@@ -179,7 +179,7 @@
   },
   "17cbc6c0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cbc6c1-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 4
+   "conf": 7
   },
   "17cbedd0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cbedd2-52cd-11f1-9f21-bf39e498b3db",
@@ -187,11 +187,11 @@
   },
   "17cc3bf0-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cc3bf1-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 2
+   "conf": 4
   },
   "17cc6300-52cd-11f1-9f21-bf39e498b3db": {
    "out": "17cc6301-52cd-11f1-9f21-bf39e498b3db",
-   "conf": 7
+   "conf": 10
   }
  }
 }
