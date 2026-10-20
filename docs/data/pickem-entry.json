@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-15T17:08:05Z",
+ "fetched": "2026-10-20T11:00:08Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -372,6 +372,62 @@
   "187d1560-52cd-11f1-803c-c57af355fd63": {
    "out": "187d1562-52cd-11f1-803c-c57af355fd63",
    "conf": 10
+  },
+  "18bd0490-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bd0492-52cd-11f1-803c-c57af355fd63",
+   "conf": 4
+  },
+  "18bda0d0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bda0d1-52cd-11f1-803c-c57af355fd63",
+   "conf": 7
+  },
+  "18bdeef0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bdeef1-52cd-11f1-803c-c57af355fd63",
+   "conf": 9
+  },
+  "18be3d10-52cd-11f1-803c-c57af355fd63": {
+   "out": "18be3d11-52cd-11f1-803c-c57af355fd63",
+   "conf": 1
+  },
+  "18be6420-52cd-11f1-803c-c57af355fd63": {
+   "out": "18be6422-52cd-11f1-803c-c57af355fd63",
+   "conf": 13
+  },
+  "18beb240-52cd-11f1-803c-c57af355fd63": {
+   "out": "18beb242-52cd-11f1-803c-c57af355fd63",
+   "conf": 11
+  },
+  "18bed950-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bed952-52cd-11f1-803c-c57af355fd63",
+   "conf": 6
+  },
+  "18bf2770-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bf2772-52cd-11f1-803c-c57af355fd63",
+   "conf": 3
+  },
+  "18bf4e80-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bf4e82-52cd-11f1-803c-c57af355fd63",
+   "conf": 14
+  },
+  "18bf9ca0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bf9ca1-52cd-11f1-803c-c57af355fd63",
+   "conf": 12
+  },
+  "18bfc3b0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18bfc3b2-52cd-11f1-803c-c57af355fd63",
+   "conf": 5
+  },
+  "18c011d0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18c011d1-52cd-11f1-803c-c57af355fd63",
+   "conf": 10
+  },
+  "18c05ff0-52cd-11f1-803c-c57af355fd63": {
+   "out": "18c05ff2-52cd-11f1-803c-c57af355fd63",
+   "conf": 2
+  },
+  "18c08700-52cd-11f1-803c-c57af355fd63": {
+   "out": "18c08701-52cd-11f1-803c-c57af355fd63",
+   "conf": 8
   }
  }
 }
