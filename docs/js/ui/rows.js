@@ -68,8 +68,10 @@ export function hero(S, league, onPick) {
     b.onclick = () => onPick(k); sel.appendChild(b);
   }
   if (league?.platform === 'rtsports' && league.fetchedAt) {
-    const age = Math.round((Date.now() - new Date(league.fetchedAt)) / 60000);
-    sel.appendChild(tag('est st', `RT ${age} min ago`));
+    // RT is pulled five times a week now, so the pull's day and time, not minutes
+    const at = new Date(league.fetchedAt).toLocaleString('en-US',
+      { weekday: 'short', hour: 'numeric', minute: '2-digit' });
+    sel.appendChild(tag('est st', `RT ${at}`));
   }
   box.appendChild(sel);
   if (!league) { box.appendChild(el('div', 'empty', 'League not loaded')); return box; }
