@@ -2,40 +2,38 @@ name: RT Sports guest data
 
 # Public guest pages only: no login, no secrets.
 #
-# GitHub's scheduler does not keep time. In the week of 2026-09-06 it delivered
-# 7 of 24 hourly runs with gaps up to 6 hours, and one run in the whole season
-# opener; on 2026-09-10 the */10 cron below landed nothing for over an hour.
-# So freshness no longer depends on it at all. Each run lives up to 340
-# minutes - refreshing every 6 minutes while an NFL game is on or within 90
-# minutes of a kickoff, hourly otherwise (build/rt-loop.sh) - and then
-# dispatches its own successor. Windows come from ESPN's own schedule
-# (build/game-window.mjs), so Wednesday openers, London mornings, December
-# Saturdays and holidays need no calendar. The cron is only how a broken chain
-# restarts itself.
+# FIVE PULLS A WEEK (Eric, 2026-10-29), not an always-on loop. Until then each
+# run lived 340 minutes and dispatched its own successor, so a runner was busy
+# around the clock (~45,000 minutes in October; free only because this repo is
+# public). Live NFL scoring comes from ESPN straight to the phone, so RT is
+# only needed at these points:
+#   Thursday  5:00 PM CT  before Thursday Night Football
+#   Saturday  8:00 AM CT
+#   Sunday    9:30 AM CT  before the noon kickoffs
+#   Sunday    3:00 PM CT
+#   Monday    8:00 AM CT
+# GitHub cron is UTC and has no time zone: these are Central STANDARD time
+# (UTC-6), the whole season after the first Sunday in November. In September
+# and October (daylight time) each lands an hour later on the clock.
+# GitHub's scheduler drops and delays runs, so every slot has a retry 40
+# minutes later; build/rt-pull.sh skips it when the first one already landed.
 on:
   schedule:
-    - cron: '*/10 * * * *'    # restarts a broken chain; not the clock
-  workflow_dispatch:
-    inputs:
-      force_window:
-        description: 'Test only: live, soon or off (no successor)'
-        required: false
-        default: ''
-      max_loops:
-        description: 'Test only: stop after this many passes (no successor)'
-        required: false
-        default: ''
-      budget_min:
-        description: 'Minutes before handing off to the next run (default 340)'
-        required: false
-        default: ''
+    - cron: '0 23 * * 4'      # Thu 5:00 PM CT
+    - cron: '40 23 * * 4'     #   retry
+    - cron: '0 14 * * 6'      # Sat 8:00 AM CT
+    - cron: '40 14 * * 6'     #   retry
+    - cron: '30 15 * * 0'     # Sun 9:30 AM CT
+    - cron: '10 16 * * 0'     #   retry
+    - cron: '0 21 * * 0'      # Sun 3:00 PM CT
+    - cron: '40 21 * * 0'     #   retry
+    - cron: '0 14 * * 1'      # Mon 8:00 AM CT
+    - cron: '40 14 * * 1'     #   retry
+  workflow_dispatch:          # a manual pull from the Actions tab, any time
 
 permissions:
   contents: write
-  actions: write     # to dispatch the successor run
 
-# One run at a time. A successor (or a cron run) queues here until the running
-# link has finished, then picks the window up where it was left.
 concurrency:
   group: rt-data
   cancel-in-progress: false
@@ -43,21 +41,16 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 355
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Refresh while games are on, then hand off to the next run
+      - name: Pull RT once
         env:
-          FORCE_WINDOW: ${{ inputs.force_window }}
-          MAX_LOOPS: ${{ inputs.max_loops || '1000' }}
-          BUDGET_MIN: ${{ inputs.budget_min || '340' }}
-          CHAIN: ${{ (!inputs.force_window && !inputs.max_loops) && '1' || '0' }}
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: |
           git config user.name "rt-data-bot"
           git config user.email "rt-data-bot@users.noreply.github.com"
-          bash build/rt-loop.sh
+          bash build/rt-pull.sh
