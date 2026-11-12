@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-10T11:06:06Z",
+ "fetched": "2026-11-12T21:00:07Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -547,7 +547,7 @@
   },
   "19ada620-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ada622-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 3
+   "conf": 1
   },
   "19ae1b50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ae1b52-52cd-11f1-9faa-c3495999c3c1",
@@ -559,35 +559,35 @@
   },
   "19aeb790-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19aeb791-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 10
+   "conf": 9
   },
   "19af05b0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19af05b2-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 9
+   "conf": 3
   },
   "19af2cc0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19af2cc1-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 13
+   "conf": 14
   },
   "19af7ae0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19af7ae2-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 2
+   "conf": 7
   },
   "19afa1f0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19afa1f2-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 1
+   "conf": 2
   },
   "19aff010-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19aff011-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 14
+   "conf": 12
   },
   "19b01720-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19b01721-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 7
+   "conf": 11
   },
   "19b06540-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19b06541-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 12
+   "conf": 13
   },
   "19b08c50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19b08c51-52cd-11f1-9faa-c3495999c3c1",
@@ -599,7 +599,7 @@
   },
   "19b10180-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19b10182-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 11
+   "conf": 10
   }
  }
 }
