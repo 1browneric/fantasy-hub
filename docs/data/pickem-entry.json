@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-12T21:00:07Z",
+ "fetched": "2026-11-17T11:06:05Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -600,6 +600,58 @@
   "19b10180-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19b10182-52cd-11f1-9faa-c3495999c3c1",
    "conf": 10
+  },
+  "19eaaf20-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19eaaf22-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 11
+  },
+  "19eb2450-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19eb2452-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 12
+  },
+  "19eb4b60-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19eb4b62-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 10
+  },
+  "19eb9980-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19eb9982-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 8
+  },
+  "19ebc090-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ebc092-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 6
+  },
+  "19ec0eb0-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ec0eb2-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 13
+  },
+  "19ec35c0-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ec35c1-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 5
+  },
+  "19ec83e0-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ec83e2-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 1
+  },
+  "19ecaaf0-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ecaaf2-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 2
+  },
+  "19ecf910-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ecf912-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 9
+  },
+  "19ed4730-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ed4731-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 4
+  },
+  "19ed6e40-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19ed6e42-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 3
+  },
+  "19edbc60-52cd-11f1-9faa-c3495999c3c1": {
+   "out": "19edbc61-52cd-11f1-9faa-c3495999c3c1",
+   "conf": 7
   }
  }
 }
