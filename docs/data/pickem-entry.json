@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-17T11:06:05Z",
+ "fetched": "2026-11-19T21:00:06Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -607,7 +607,7 @@
   },
   "19eb2450-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19eb2452-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 12
+   "conf": 13
   },
   "19eb4b60-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19eb4b62-52cd-11f1-9faa-c3495999c3c1",
@@ -619,11 +619,11 @@
   },
   "19ebc090-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ebc092-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 6
+   "conf": 7
   },
   "19ec0eb0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ec0eb2-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 13
+   "conf": 12
   },
   "19ec35c0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ec35c1-52cd-11f1-9faa-c3495999c3c1",
@@ -635,7 +635,7 @@
   },
   "19ecaaf0-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ecaaf2-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 2
+   "conf": 3
   },
   "19ecf910-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ecf912-52cd-11f1-9faa-c3495999c3c1",
@@ -647,11 +647,11 @@
   },
   "19ed6e40-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19ed6e42-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 3
+   "conf": 2
   },
   "19edbc60-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19edbc61-52cd-11f1-9faa-c3495999c3c1",
-   "conf": 7
+   "conf": 6
   }
  }
 }
