@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-19T21:00:06Z",
+ "fetched": "2026-11-24T11:06:05Z",
  "picks": {
   "1746df50-52cd-11f1-9faa-c3495999c3c1": {
    "out": "1746df52-52cd-11f1-9faa-c3495999c3c1",
@@ -652,6 +652,70 @@
   "19edbc60-52cd-11f1-9faa-c3495999c3c1": {
    "out": "19edbc61-52cd-11f1-9faa-c3495999c3c1",
    "conf": 6
+  },
+  "1a24d1f0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a24d1f2-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 2
+  },
+  "1a256e30-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a256e31-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 3
+  },
+  "1a259540-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a259542-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 14
+  },
+  "1a25e360-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a25e362-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 4
+  },
+  "1a260a70-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a260a71-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 6
+  },
+  "1a265890-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a265892-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 15
+  },
+  "1a267fa0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a267fa2-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 9
+  },
+  "1a26a6b0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a26a6b1-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 11
+  },
+  "1a26f4d0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a26f4d1-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 8
+  },
+  "1a271be0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a271be2-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 12
+  },
+  "1a2742f0-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a2742f2-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 10
+  },
+  "1a276a00-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a276a02-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 16
+  },
+  "1a279110-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a279111-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 13
+  },
+  "1a27df30-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a27df32-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 7
+  },
+  "1a282d50-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a282d52-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 1
+  },
+  "1a285460-52cd-11f1-9f21-bf39e498b3db": {
+   "out": "1a285462-52cd-11f1-9f21-bf39e498b3db",
+   "conf": 5
   }
  }
 }
